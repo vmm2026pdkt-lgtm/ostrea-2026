@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>OSTREA AWARDS 2026 — Admin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1F3A;
+    --navy-deep:#081527;
+    --royal:#1E4FBF;
+    --teal:#0E8C8C;
+    --gold:#D8A83C;
+    --gold-light:#F0CE7D;
+    --coral:#E8603C;
+    --ivory:#FBF8F1;
+    --ivory-dim:#F1ECDF;
+    --ink:#152238;
+    --ink-soft:#4B5A72;
+    --line:#E4DFD1;
+    --white:#FFFFFF;
+    --error:#C23A2E;
+    --ok:#1E8A5F;
+    --radius-lg:20px;
+    --radius-md:14px;
+    --radius-sm:10px;
+    --shadow-sm:0 4px 14px -6px rgba(11,31,58,0.18);
+    --font-display:'Fraunces', Georgia, serif;
+    --font-body:'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  body{
+    margin:0;font-family:var(--font-body);background:var(--ivory);color:var(--ink);
+    line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;
+  }
+  h1,h2,h3{font-family:var(--font-display);color:var(--navy);margin:0;}
+  button,input,select{font-family:inherit;}
+  :focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:6px;}
+
+  /* ============ LOGIN ============ */
+  .login-wrap{
+    min-height:100vh;display:flex;align-items:center;justify-content:center;
+    padding:24px;
+    background:
+      radial-gradient(1100px 500px at 15% -10%, rgba(216,168,60,0.16), transparent 60%),
+      radial-gradient(900px 500px at 110% 10%, rgba(14,140,140,0.28), transparent 55%),
+      linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+  }
+  .login-card{
+    background:var(--white);
+    border-radius:var(--radius-lg);
+    padding:32px 26px;
+    width:100%;max-width:380px;
+    box-shadow:0 24px 50px -16px rgba(0,0,0,0.4);
+  }
+  .login-badge{
+    width:52px;height:52px;border-radius:50%;margin:0 auto 16px;
+    background:radial-gradient(circle at 32% 28%, var(--gold-light), var(--gold) 60%, #B4842A 100%);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--navy-deep);font-weight:800;font-size:1.2rem;
+  }
+  .login-title{text-align:center;font-size:1.3rem;font-weight:600;}
+  .login-sub{text-align:center;color:var(--ink-soft);font-size:0.86rem;margin-top:4px;margin-bottom:24px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:0.82rem;font-weight:700;color:var(--navy);margin-bottom:6px;}
+  .input{
+    width:100%;padding:12px 14px;border:1.6px solid var(--line);border-radius:var(--radius-sm);
+    font-size:0.95rem;color:var(--ink);background:var(--ivory);
+  }
+  .input:focus{border-color:var(--gold);outline:none;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    min-height:48px;padding:13px 22px;border-radius:12px;font-weight:700;font-size:0.95rem;
+    border:none;cursor:pointer;width:100%;transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:active{transform:scale(0.98);}
+  .btn-primary{
+    background:linear-gradient(135deg, var(--coral), #D14E30);color:var(--ivory);
+    box-shadow:0 12px 24px -8px rgba(232,96,60,0.5);
+  }
+  .btn-outline{background:transparent;color:var(--navy);border:1.6px solid var(--line);}
+  .btn[disabled]{opacity:0.55;cursor:not-allowed;}
+  .login-error{
+    background:rgba(194,58,46,0.1);color:var(--error);border:1px solid rgba(194,58,46,0.25);
+    border-radius:var(--radius-sm);padding:10px 12px;font-size:0.84rem;margin-bottom:16px;display:none;
+  }
+  .login-error.show{display:block;}
+
+  /* ============ DASHBOARD SHELL ============ */
+  #dashboard{display:none;}
+  .topbar{
+    background:var(--navy);color:var(--ivory);
+    padding:14px 20px;display:flex;align-items:center;justify-content:space-between;
+    position:sticky;top:0;z-index:20;box-shadow:0 2px 12px rgba(0,0,0,0.15);
+  }
+  .topbar .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600;}
+  .topbar .badge{
+    width:32px;height:32px;border-radius:50%;
+    background:radial-gradient(circle at 32% 28%, var(--gold-light), var(--gold) 60%, #B4842A 100%);
+    display:flex;align-items:center;justify-content:center;color:var(--navy-deep);font-weight:800;font-size:0.84rem;
+  }
+  .logout-btn{
+    background:rgba(255,255,255,0.08);color:var(--ivory);border:1px solid rgba(255,255,255,0.25);
+    padding:9px 14px;border-radius:10px;font-size:0.82rem;font-weight:700;cursor:pointer;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 16px 60px;}
+
+  .stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px;}
+  .stat-card{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius-md);
+    padding:16px 14px;box-shadow:var(--shadow-sm);
+  }
+  .stat-val{font-family:var(--font-display);font-weight:700;font-size:1.5rem;color:var(--navy);}
+  .stat-lbl{font-size:0.78rem;color:var(--ink-soft);margin-top:2px;}
+
+  .toolbar{
+    display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;
+  }
+  .toolbar .input, .toolbar select{
+    flex:1;min-width:140px;padding:11px 14px;border:1.6px solid var(--line);
+    border-radius:var(--radius-sm);font-size:0.9rem;background:var(--white);color:var(--ink);
+  }
+  .toolbar-btn{
+    padding:11px 16px;border-radius:var(--radius-sm);border:1.6px solid var(--line);
+    background:var(--white);color:var(--navy);font-weight:700;font-size:0.85rem;cursor:pointer;white-space:nowrap;
+  }
+  .toolbar-btn.primary{background:var(--navy);color:var(--ivory);border-color:var(--navy);}
+
+  .app-list{display:flex;flex-direction:column;gap:10px;}
+  .app-card{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius-md);
+    padding:14px 16px;box-shadow:var(--shadow-sm);
+  }
+  .app-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+  .app-id{font-size:0.72rem;color:var(--teal);font-weight:700;}
+  .app-name{font-family:var(--font-display);font-weight:600;font-size:1.05rem;color:var(--navy);margin-top:2px;}
+  .app-time{font-size:0.72rem;color:var(--ink-soft);white-space:nowrap;}
+  .app-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+  .app-pill{
+    background:var(--ivory-dim);border:1px solid var(--line);border-radius:999px;
+    padding:4px 11px;font-size:0.78rem;font-weight:600;color:var(--navy);
+  }
+  .app-contact{margin-top:10px;font-size:0.84rem;color:var(--ink-soft);}
+  .app-contact a{color:var(--teal);text-decoration:none;font-weight:600;}
+
+  .empty-state, .loading-state{
+    text-align:center;padding:50px 20px;color:var(--ink-soft);font-size:0.9rem;
+  }
+  .toast{
+    position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);
+    background:var(--navy-deep);color:var(--ivory);padding:13px 20px;border-radius:12px;
+    font-size:0.88rem;font-weight:600;box-shadow:0 12px 30px -8px rgba(0,0,0,0.4);z-index:100;
+    opacity:0;pointer-events:none;transition:opacity .25s ease, transform .25s ease;max-width:88vw;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .toast.error{background:var(--error);}
+  .toast.ok{background:var(--ok);}
+
+  @media (min-width:640px){
+    .stat-grid{grid-template-columns:repeat(4,1fr);}
+  }
+  @media (min-width:820px){
+    .app-list{display:block;}
+    table{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);}
+    thead th{
+      text-align:left;font-size:0.74rem;letter-spacing:0.03em;color:var(--ink-soft);
+      background:var(--ivory-dim);padding:10px 14px;font-weight:700;
+    }
+    tbody td{padding:12px 14px;border-top:1px solid var(--line);font-size:0.86rem;vertical-align:top;}
+    tbody tr:hover{background:var(--ivory-dim);}
+    .app-card{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ LOGIN SCREEN ============ -->
+<div class="login-wrap" id="loginScreen">
+  <div class="login-card">
+    <div class="login-badge">OA</div>
+    <h1 class="login-title">Admin sign in</h1>
+    <p class="login-sub">OSTREA AWARDS 2026 — Applications dashboard</p>
+    <div class="login-error" id="loginError"></div>
+    <form id="loginForm">
+      <div class="field">
+        <label for="loginEmail">Email</label>
+        <input class="input" type="email" id="loginEmail" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label for="loginPassword">Password</label>
+        <input class="input" type="password" id="loginPassword" autocomplete="current-password" required>
+      </div>
+      <button class="btn btn-primary" type="submit" id="loginBtn">Sign in</button>
+    </form>
+  </div>
+</div>
+
+<!-- ============ DASHBOARD ============ -->
+<div id="dashboard">
+  <header class="topbar">
+    <div class="brand">
+      <span class="badge">OA</span>
+      <span>OSTREA AWARDS — Admin</span>
+    </div>
+    <button class="logout-btn" id="logoutBtn">Sign out</button>
+  </header>
+
+  <div class="wrap">
+    <div class="stat-grid" id="statGrid"></div>
+
+    <div class="toolbar">
+      <input class="input" type="search" id="searchBox" placeholder="Search name, school, application ID...">
+      <select id="compFilter">
+        <option value="">All competitions</option>
+      </select>
+      <button class="toolbar-btn" id="refreshBtn">Refresh</button>
+      <button class="toolbar-btn primary" id="exportBtn">Export CSV</button>
+    </div>
+
+    <div id="loadingState" class="loading-state">Loading applications…</div>
+    <div id="emptyState" class="empty-state" style="display:none;">No applications found.</div>
+
+    <div class="app-list" id="appList"></div>
+
+    <div style="overflow-x:auto;">
+      <table id="appTable" style="display:none;">
+        <thead>
+          <tr>
+            <th>Application ID</th>
+            <th>Student</th>
+            <th>Class</th>
+            <th>School</th>
+            <th>Competition</th>
+            <th>Category</th>
+            <th>Parent / Mobile</th>
+            <th>Submitted</th>
+          </tr>
+        </thead>
+        <tbody id="appTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ==========================================================
+     CONFIG — same Supabase project as the main application site
+  ========================================================== */
+  var SUPABASE_URL = "https://zjmteojnlgewdzdyrydh.supabase.co";
+  var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqbXRlb2pubGdld2R6ZHlyeWRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgyNTU0NTEsImV4cCI6MjEwMzgzMTQ1MX0.y3TENUGETRDwR3GTNp71dso1WaGmo5VO5O7cccBqitU";
+  var SESSION_KEY = "ostrea2026_admin_session";
+
+  function $(sel, ctx){ return (ctx||document).querySelector(sel); }
+  function $all(sel, ctx){ return Array.prototype.slice.call((ctx||document).querySelectorAll(sel)); }
+
+  function showToast(msg, type){
+    var t = $("#toast");
+    t.textContent = msg;
+    t.className = "toast show" + (type ? " " + type : "");
+    clearTimeout(showToast._tm);
+    showToast._tm = setTimeout(function(){ t.classList.remove("show"); }, 2800);
+  }
+
+  function escapeHtml(str){
+    return String(str == null ? "" : str).replace(/[&<>"']/g, function(m){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m];
+    });
+  }
+
+  /* ==========================================================
+     SESSION
+  ========================================================== */
+  function saveSession(session){
+    try{ localStorage.setItem(SESSION_KEY, JSON.stringify(session)); }catch(e){}
+  }
+  function loadSession(){
+    try{
+      var raw = localStorage.getItem(SESSION_KEY);
+      return raw ? JSON.parse(raw) : null;
+    }catch(e){ return null; }
+  }
+  function clearSession(){
+    try{ localStorage.removeItem(SESSION_KEY); }catch(e){}
+  }
+
+  /* ==========================================================
+     AUTH
+  ========================================================== */
+  function login(email, password){
+    return fetch(SUPABASE_URL + "/auth/v1/token?grant_type=password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_ANON_KEY
+      },
+      body: JSON.stringify({ email: email, password: password })
+    }).then(function(res){
+      return res.json().then(function(data){
+        if (!res.ok) throw new Error(data.error_description || data.msg || "Sign in failed.");
+        return data;
+      });
+    });
+  }
+
+  function refreshSession(refreshToken){
+    return fetch(SUPABASE_URL + "/auth/v1/token?grant_type=refresh_token", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_ANON_KEY
+      },
+      body: JSON.stringify({ refresh_token: refreshToken })
+    }).then(function(res){
+      return res.json().then(function(data){
+        if (!res.ok) throw new Error("Session expired.");
+        return data;
+      });
+    });
+  }
+
+  function showDashboard(){
+    $("#loginScreen").style.display = "none";
+    $("#dashboard").style.display = "block";
+    loadApplications();
+  }
+
+  function showLogin(){
+    $("#dashboard").style.display = "none";
+    $("#loginScreen").style.display = "flex";
+  }
+
+  $("#loginForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var email = $("#loginEmail").value.trim();
+    var password = $("#loginPassword").value;
+    var btn = $("#loginBtn");
+    var errBox = $("#loginError");
+    errBox.classList.remove("show");
+
+    btn.disabled = true;
+    btn.textContent = "Signing in…";
+
+    login(email, password).then(function(data){
+      saveSession({
+        access_token: data.access_token,
+        refresh_token: data.refresh_token,
+        expires_at: Date.now() + (data.expires_in * 1000)
+      });
+      btn.disabled = false;
+      btn.textContent = "Sign in";
+      showDashboard();
+    }).catch(function(err){
+      btn.disabled = false;
+      btn.textContent = "Sign in";
+      errBox.textContent = err.message || "Sign in failed. Check your email and password.";
+      errBox.classList.add("show");
+    });
+  });
+
+  $("#logoutBtn").addEventListener("click", function(){
+    clearSession();
+    showLogin();
+  });
+
+  function getValidAccessToken(){
+    var session = loadSession();
+    if (!session) return Promise.reject(new Error("no session"));
+
+    if (session.expires_at - 30000 > Date.now()){
+      return Promise.resolve(session.access_token);
+    }
+    return refreshSession(session.refresh_token).then(function(data){
+      saveSession({
+        access_token: data.access_token,
+        refresh_token: data.refresh_token,
+        expires_at: Date.now() + (data.expires_in * 1000)
+      });
+      return data.access_token;
+    });
+  }
+
+  /* ==========================================================
+     DATA
+  ========================================================== */
+  var allApplications = [];
+
+  function loadApplications(){
+    $("#loadingState").style.display = "block";
+    $("#emptyState").style.display = "none";
+    $("#appList").innerHTML = "";
+    $("#appTable").style.display = "none";
+
+    getValidAccessToken().then(function(token){
+      return fetch(SUPABASE_URL + "/rest/v1/applications?select=*&order=submitted_at.desc", {
+        headers: {
+          "apikey": SUPABASE_ANON_KEY,
+          "Authorization": "Bearer " + token
+        }
+      });
+    }).then(function(res){
+      if (res.status === 401){ throw new Error("unauthorized"); }
+      if (!res.ok){ throw new Error("Could not load applications."); }
+      return res.json();
+    }).then(function(rows){
+      allApplications = rows || [];
+      populateCompFilter(allApplications);
+      renderStats(allApplications);
+      renderApplications(allApplications);
+      $("#loadingState").style.display = "none";
+    }).catch(function(err){
+      $("#loadingState").style.display = "none";
+      if (err.message === "unauthorized" || err.message === "no session"){
+        clearSession();
+        showLogin();
+        showToast("Session expired. Please sign in again.", "error");
+      } else {
+        $("#emptyState").style.display = "block";
+        $("#emptyState").textContent = "Could not load applications. Check your connection and try again.";
+        showToast(err.message || "Something went wrong.", "error");
+      }
+    });
+  }
+
+  function populateCompFilter(rows){
+    var select = $("#compFilter");
+    var current = select.value;
+    var names = [];
+    rows.forEach(function(r){
+      if (r.competition_name && names.indexOf(r.competition_name) === -1) names.push(r.competition_name);
+    });
+    names.sort();
+    select.innerHTML = '<option value="">All competitions</option>' +
+      names.map(function(n){ return '<option value="' + escapeHtml(n) + '">' + escapeHtml(n) + '</option>'; }).join("");
+    select.value = current;
+  }
+
+  function renderStats(rows){
+    var total = rows.length;
+    var byComp = {};
+    rows.forEach(function(r){
+      var name = r.competition_name || "Unspecified";
+      byComp[name] = (byComp[name] || 0) + 1;
+    });
+    var topComps = Object.keys(byComp).sort(function(a,b){ return byComp[b]-byComp[a]; }).slice(0,3);
+
+    var html = '<div class="stat-card"><div class="stat-val">' + total + '</div><div class="stat-lbl">Total applications</div></div>';
+    topComps.forEach(function(name){
+      html += '<div class="stat-card"><div class="stat-val">' + byComp[name] + '</div><div class="stat-lbl">' + escapeHtml(name) + '</div></div>';
+    });
+    $("#statGrid").innerHTML = html;
+  }
+
+  function getFilteredRows(){
+    var q = $("#searchBox").value.trim().toLowerCase();
+    var comp = $("#compFilter").value;
+
+    return allApplications.filter(function(r){
+      if (comp && r.competition_name !== comp) return false;
+      if (!q) return true;
+      var hay = [r.application_id, r.student_name, r.school_name, r.district, r.parent_name]
+        .map(function(v){ return (v || "").toLowerCase(); }).join(" ");
+      return hay.indexOf(q) !== -1;
+    });
+  }
+
+  function fmtDate(iso){
+    if (!iso) return "—";
+    try{
+      var d = new Date(iso);
+      return d.toLocaleString("en-IN", { day:"2-digit", month:"short", year:"numeric", hour:"2-digit", minute:"2-digit" });
+    }catch(e){ return iso; }
+  }
+
+  function renderApplications(rows){
+    if (!rows.length){
+      $("#emptyState").style.display = "block";
+      $("#emptyState").textContent = "No applications found.";
+      $("#appList").innerHTML = "";
+      $("#appTableBody").innerHTML = "";
+      $("#appTable").style.display = "none";
+      return;
+    }
+    $("#emptyState").style.display = "none";
+    $("#appTable").style.display = "table";
+
+    var cardHtml = "";
+    var rowHtml = "";
+
+    rows.forEach(function(r){
+      var classLine = escapeHtml(r.student_class || "") + (r.student_section ? " - " + escapeHtml(r.student_section) : "");
+      var compLine = escapeHtml(r.competition_name || "—") + (r.category ? " (" + escapeHtml(r.category) + ")" : "");
+
+      cardHtml +=
+        '<div class="app-card">' +
+          '<div class="app-card-top">' +
+            '<div><div class="app-id">' + escapeHtml(r.application_id) + '</div>' +
+            '<div class="app-name">' + escapeHtml(r.student_name) + '</div></div>' +
+            '<div class="app-time">' + fmtDate(r.submitted_at) + '</div>' +
+          '</div>' +
+          '<div class="app-meta">' +
+            '<span class="app-pill">' + classLine + '</span>' +
+            '<span class="app-pill">' + escapeHtml(r.school_name) + '</span>' +
+            '<span class="app-pill">' + compLine + '</span>' +
+          '</div>' +
+          '<div class="app-contact">' + escapeHtml(r.parent_name) + ' · <a href="tel:' + escapeHtml(r.parent_mobile) + '">' + escapeHtml(r.parent_mobile) + '</a></div>' +
+        '</div>';
+
+      rowHtml +=
+        '<tr>' +
+          '<td>' + escapeHtml(r.application_id) + '</td>' +
+          '<td>' + escapeHtml(r.student_name) + '</td>' +
+          '<td>' + classLine + '</td>' +
+          '<td>' + escapeHtml(r.school_name) + '</td>' +
+          '<td>' + escapeHtml(r.competition_name || "—") + '</td>' +
+          '<td>' + escapeHtml(r.category || "—") + '</td>' +
+          '<td>' + escapeHtml(r.parent_name) + '<br>' + escapeHtml(r.parent_mobile) + '</td>' +
+          '<td>' + fmtDate(r.submitted_at) + '</td>' +
+        '</tr>';
+    });
+
+    $("#appList").innerHTML = cardHtml;
+    $("#appTableBody").innerHTML = rowHtml;
+  }
+
+  $("#searchBox").addEventListener("input", function(){ renderApplications(getFilteredRows()); });
+  $("#compFilter").addEventListener("change", function(){ renderApplications(getFilteredRows()); });
+  $("#refreshBtn").addEventListener("click", loadApplications);
+
+  $("#exportBtn").addEventListener("click", function(){
+    var rows = getFilteredRows();
+    if (!rows.length){ showToast("No rows to export.", "error"); return; }
+
+    var headers = ["Application ID","Student Name","Class","Section","School","District","Competition","Category","Parent Name","Parent Mobile","Student Mobile","Submitted At"];
+    var lines = [headers.join(",")];
+
+    rows.forEach(function(r){
+      var vals = [
+        r.application_id, r.student_name, r.student_class, r.student_section,
+        r.school_name, r.district, r.competition_name, r.category,
+        r.parent_name, r.parent_mobile, r.student_mobile, r.submitted_at
+      ].map(function(v){
+        v = (v == null ? "" : String(v)).replace(/"/g,'""');
+        return '"' + v + '"';
+      });
+      lines.push(vals.join(","));
+    });
+
+    var blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8;" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "ostrea-2026-applications-" + new Date().toISOString().slice(0,10) + ".csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  /* ==========================================================
+     INIT
+  ========================================================== */
+  function init(){
+    var session = loadSession();
+    if (session){
+      showDashboard();
+    } else {
+      showLogin();
+    }
+  }
+
+  init();
+})();
+</script>
+
+</body>
+</html>
