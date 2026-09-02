@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>OSTREA AWARDS 2026 — Admin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1F3A;
+    --navy-deep:#081527;
+    --royal:#1E4FBF;
+    --teal:#0E8C8C;
+    --gold:#D8A83C;
+    --gold-light:#F0CE7D;
+    --coral:#E8603C;
+    --ivory:#FBF8F1;
+    --ivory-dim:#F1ECDF;
+    --ink:#152238;
+    --ink-soft:#4B5A72;
+    --line:#E4DFD1;
+    --white:#FFFFFF;
+    --error:#C23A2E;
+    --ok:#1E8A5F;
+    --radius-lg:20px;
+    --radius-md:14px;
+    --radius-sm:10px;
+    --shadow-sm:0 4px 14px -6px rgba(11,31,58,0.18);
+    --font-display:'Fraunces', Georgia, serif;
+    --font-body:'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  body{
+    margin:0;font-family:var(--font-body);background:var(--ivory);color:var(--ink);
+    line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;
+  }
+  h1,h2,h3{font-family:var(--font-display);color:var(--navy);margin:0;}
+  button,input,select{font-family:inherit;}
+  :focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:6px;}
+
+  /* ============ LOGIN ============ */
+  .login-wrap{
+    min-height:100vh;display:flex;align-items:center;justify-content:center;
+    padding:24px;
+    background:
+      radial-gradient(1100px 500px at 15% -10%, rgba(216,168,60,0.16), transparent 60%),
+      radial-gradient(900px 500px at 110% 10%, rgba(14,140,140,0.28), transparent 55%),
+      linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+  }
+  .login-card{
+    background:var(--white);
+    border-radius:var(--radius-lg);
+    padding:32px 26px;
+    width:100%;max-width:380px;
+    box-shadow:0 24px 50px -16px rgba(0,0,0,0.4);
+  }
+  .login-badge{
+    width:52px;height:52px;border-radius:50%;margin:0 auto 16px;
+    background:radial-gradient(circle at 32% 28%, var(--gold-light), var(--gold) 60%, #B4842A 100%);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--navy-deep);font-weight:800;font-size:1.2rem;
+  }
+  .login-title{text-align:center;font-size:1.3rem;font-weight:600;}
+  .login-sub{text-align:center;color:var(--ink-soft);font-size:0.86rem;margin-top:4px;margin-bottom:24px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:0.82rem;font-weight:700;color:var(--navy);margin-bottom:6px;}
+  .input{
+    width:100%;padding:12px 14px;border:1.6px solid var(--line);border-radius:var(--radius-sm);
+    font-size:0.95rem;color:var(--ink);background:var(--ivory);
+  }
+  .input:focus{border-color:var(--gold);outline:none;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    min-height:48px;padding:13px 22px;border-radius:12px;font-weight:700;font-size:0.95rem;
+    border:none;cursor:pointer;width:100%;transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:active{transform:scale(0.98);}
+  .btn-primary{
+    background:linear-gradient(135deg, var(--coral), #D14E30);color:var(--ivory);
+    box-shadow:0 12px 24px -8px rgba(232,96,60,0.5);
+  }
+  .btn-outline{background:transparent;color:var(--navy);border:1.6px solid var(--line);}
+  .btn[disabled]{opacity:0.55;cursor:not-allowed;}
+  .login-error{
+    background:rgba(194,58,46,0.1);color:var(--error);border:1px solid rgba(194,58,46,0.25);
+    border-radius:var(--radius-sm);padding:10px 12px;font-size:0.84rem;margin-bottom:16px;display:none;
+  }
+  .login-error.show{display:block;}
+
+  /* ============ DASHBOARD SHELL ============ */
+  #dashboard{display:none;}
+  .topbar{
+    background:var(--navy);color:var(--ivory);
+    padding:14px 20px;display:flex;align-items:center;justify-content:space-between;
+    position:sticky;top:0;z-index:20;box-shadow:0 2px 12px rgba(0,0,0,0.15);
+  }
+  .topbar .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600;}
+  .topbar .badge{
+    width:32px;height:32px;border-radius:50%;
+    background:radial-gradient(circle at 32% 28%, var(--gold-light), var(--gold) 60%, #B4842A 100%);
+    display:flex;align-items:center;justify-content:center;color:var(--navy-deep);font-weight:800;font-size:0.84rem;
+  }
+  .logout-btn{
+    background:rgba(255,255,255,0.08);color:var(--ivory);border:1px solid rgba(255,255,255,0.25);
+    padding:9px 14px;border-radius:10px;font-size:0.82rem;font-weight:700;cursor:pointer;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 16px 60px;}
+
+  .stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px;}
+  .stat-card{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius-md);
+    padding:16px 14px;box-shadow:var(--shadow-sm);
+  }
+  .stat-val{font-family:var(--font-display);font-weight:700;font-size:1.5rem;color:var(--navy);}
+  .stat-lbl{font-size:0.78rem;color:var(--ink-soft);margin-top:2px;}
+
+  .toolbar{
+    display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;
+  }
+  .toolbar .input, .toolbar select{
+    flex:1;min-width:140px;padding:11px 14px;border:1.6px solid var(--line);
+    border-radius:var(--radius-sm);font-size:0.9rem;background:var(--white);color:var(--ink);
+  }
+  .toolbar-btn{
+    padding:11px 16px;border-radius:var(--radius-sm);border:1.6px solid var(--line);
+    background:var(--white);color:var(--navy);font-weight:700;font-size:0.85rem;cursor:pointer;white-space:nowrap;
+  }
+  .toolbar-btn.primary{background:var(--navy);color:var(--ivory);border-color:var(--navy);}
+
+  .app-list{display:flex;flex-direction:column;gap:10px;}
+  .app-card{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius-md);
+    padding:14px 16px;box-shadow:var(--shadow-sm);
+  }
+  .app-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+  .app-id{font-size:0.72rem;color:var(--teal);font-weight:700;}
+  .app-name{font-family:var(--font-display);font-weight:600;font-size:1.05rem;color:var(--navy);margin-top:2px;}
+  .app-time{font-size:0.72rem;color:var(--ink-soft);white-space:nowrap;}
+  .app-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+  .app-pill{
+    background:var(--ivory-dim);border:1px solid var(--line);border-radius:999px;
+    padding:4px 11px;font-size:0.78rem;font-weight:600;color:var(--navy);
+  }
+  .app-contact{margin-top:10px;font-size:0.84rem;color:var(--ink-soft);}
+  .app-contact a{color:var(--teal);text-decoration:none;font-weight:600;}
+
+  .empty-state, .loading-state{
+    text-align:center;padding:50px 20px;color:var(--ink-soft);font-size:0.9rem;
+  }
+  .toast{
+    position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);
+    background:var(--navy-deep);color:var(--ivory);padding:13px 20px;border-radius:12px;
+    font-size:0.88rem;font-weight:600;box-shadow:0 12px 30px -8px rgba(0,0,0,0.4);z-index:100;
+    opacity:0;pointer-events:none;transition:opacity .25s ease, transform .25s ease;max-width:88vw;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .toast.error{background:var(--error);}
+  .toast.ok{background:var(--ok);}
+
+  @media (min-width:640px){
+    .stat-grid{grid-template-columns:repeat(4,1fr);}
+  }
+  @media (min-width:820px){
+    .app-list{display:block;}
+    table{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);}
+    thead th{
+      text-align:left;font-size:0.74rem;letter-spacing:0.03em;color:var(--ink-soft);
+      background:var(--ivory-dim);padding:10px 14px;font-weight:700;
+    }
+    tbody td{padding:12px 14px;border-top:1px solid var(--line);font-size:0.86rem;vertical-align:top;}
+    tbody tr:hover{background:var(--ivory-dim);}
+    .app-card{display:none;}
+  }
+
+  /* ==========================================================
+     PAYMENTS MODULE (added)
+  ========================================================== */
+  .admin-tabs{
+    display:flex;gap:6px;background:var(--navy-deep);
+    padding:0 16px;position:sticky;top:58px;z-index:15;
+  }
+  .admin-tab{
+    background:transparent;border:none;color:rgba(251,248,241,0.65);
+    padding:12px 16px;font-weight:700;font-size:0.86rem;cursor:pointer;
+    border-bottom:2.5px solid transparent;
+  }
+  .admin-tab.active{color:var(--gold-light);border-bottom-color:var(--gold);}
+  .admin-tab-badge{
+    display:inline-block;background:var(--coral);color:var(--white);
+    border-radius:999px;font-size:0.68rem;padding:1px 6px;margin-left:4px;vertical-align:middle;
+  }
+
+  .pay-settings-card{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius-md);
+    padding:16px;margin-bottom:18px;box-shadow:var(--shadow-sm);
+  }
+  .pay-settings-title{font-weight:700;font-size:0.92rem;color:var(--navy);margin-bottom:10px;}
+  .pay-settings-row{display:flex;gap:12px;flex-wrap:wrap;}
+  .pay-settings-row .field{min-width:180px;}
+
+  .pay-admin-list{display:flex;flex-direction:column;gap:12px;}
+  .pay-admin-card{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius-md);
+    padding:14px 16px;box-shadow:var(--shadow-sm);
+  }
+  .pay-admin-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;}
+  .pay-admin-id{font-size:0.72rem;color:var(--teal);font-weight:700;}
+  .pay-admin-name{font-family:var(--font-display);font-weight:600;font-size:1.02rem;color:var(--navy);margin-top:2px;}
+  .pay-status-chip{
+    font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap;
+  }
+  .pay-status-chip.UNPAID{background:#FCF3F2;color:var(--error);}
+  .pay-status-chip.PENDING{background:#FFF6E6;color:#8A6417;}
+  .pay-status-chip.VERIFIED{background:#EEF8F2;color:var(--ok);}
+  .pay-status-chip.REJECTED{background:#FCF3F2;color:var(--error);}
+  .pay-admin-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+  .pay-admin-ocr{
+    margin-top:10px;background:var(--ivory-dim);border-radius:var(--radius-sm);
+    padding:10px 12px;font-size:0.82rem;color:var(--ink-soft);
+  }
+  .pay-admin-ocr .row{display:flex;justify-content:space-between;padding:2px 0;}
+  .pay-amount-check{font-weight:700;}
+  .pay-amount-check.match{color:var(--ok);}
+  .pay-amount-check.mismatch{color:var(--error);}
+  .pay-admin-actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;}
+  .pay-admin-actions .toolbar-btn{flex:1;min-width:120px;}
+  .pay-admin-note-field{margin-top:10px;}
+  .pay-admin-note-field input{
+    width:100%;padding:9px 12px;border:1.6px solid var(--line);border-radius:var(--radius-sm);
+    font-size:0.84rem;color:var(--ink);background:var(--ivory);
+  }
+
+  .pay-modal{
+    display:none;position:fixed;inset:0;background:rgba(8,21,39,0.86);
+    z-index:200;align-items:center;justify-content:center;padding:24px;
+  }
+  .pay-modal.show{display:flex;}
+  .pay-modal-inner{position:relative;max-width:92vw;max-height:88vh;}
+  .pay-modal-inner img{max-width:92vw;max-height:88vh;border-radius:10px;display:block;}
+  .pay-modal-close{
+    position:absolute;top:-14px;right:-14px;width:34px;height:34px;border-radius:50%;
+    background:var(--white);border:none;font-size:1.3rem;line-height:1;cursor:pointer;color:var(--navy);
+    box-shadow:0 6px 16px rgba(0,0,0,0.3);
+  }
+
+  /* ==========================================================
+     UPGRADE ADDITIONS: verification indicator, details modal,
+     overview / competition / school stats, advanced export,
+     audit log
+  ========================================================== */
+  .verify-indicator{
+    display:inline-flex;align-items:center;gap:6px;font-size:0.74rem;font-weight:800;
+    padding:4px 10px;border-radius:999px;margin-bottom:10px;letter-spacing:0.02em;
+  }
+  .verify-indicator.ready{background:#EEF8F2;color:var(--ok);}
+  .verify-indicator.review{background:#FFF6E6;color:#8A6417;}
+  .verify-indicator.issue{background:#FCF3F2;color:var(--error);}
+
+  .overview-wrap{margin-bottom:22px;}
+  .overview-title{font-weight:700;font-size:0.92rem;color:var(--navy);margin-bottom:10px;}
+
+  .subtab-row{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+  .subtab-btn{
+    background:var(--white);border:1.6px solid var(--line);color:var(--navy);
+    padding:8px 14px;border-radius:999px;font-size:0.8rem;font-weight:700;cursor:pointer;
+  }
+  .subtab-btn.active{background:var(--navy);color:var(--ivory);border-color:var(--navy);}
+
+  .data-table-wrap{overflow-x:auto;background:var(--white);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);border:1px solid var(--line);}
+  .data-table{width:100%;border-collapse:collapse;font-size:0.84rem;}
+  .data-table th{text-align:left;padding:10px 12px;background:var(--ivory-dim);color:var(--ink-soft);font-size:0.72rem;letter-spacing:0.03em;white-space:nowrap;}
+  .data-table td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top;}
+  .data-table input.school-search{width:100%;padding:9px 12px;border:1.6px solid var(--line);border-radius:var(--radius-sm);margin-bottom:12px;background:var(--white);}
+
+  .export-menu{position:relative;display:inline-block;}
+  .export-dropdown{
+    display:none;position:absolute;right:0;top:calc(100% + 6px);background:var(--white);
+    border:1px solid var(--line);border-radius:var(--radius-sm);box-shadow:0 12px 30px -10px rgba(0,0,0,0.25);
+    z-index:30;min-width:200px;overflow:hidden;
+  }
+  .export-dropdown.show{display:block;}
+  .export-dropdown button{
+    display:block;width:100%;text-align:left;padding:11px 14px;background:none;border:none;
+    font-size:0.84rem;font-weight:600;color:var(--navy);cursor:pointer;
+  }
+  .export-dropdown button:hover{background:var(--ivory-dim);}
+
+  .detail-modal{
+    display:none;position:fixed;inset:0;background:rgba(8,21,39,0.82);z-index:250;
+    align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;
+  }
+  .detail-modal.show{display:flex;}
+  .detail-card{
+    background:var(--white);border-radius:var(--radius-lg);max-width:560px;width:100%;
+    padding:22px;margin:20px 0;position:relative;
+  }
+  .detail-close{
+    position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;
+    background:var(--ivory-dim);border:none;font-size:1.2rem;cursor:pointer;color:var(--navy);
+  }
+  .detail-section{margin-bottom:16px;}
+  .detail-section-title{font-size:0.72rem;letter-spacing:0.05em;text-transform:uppercase;font-weight:800;color:var(--teal);margin-bottom:8px;}
+  .detail-row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:0.86rem;}
+  .detail-row span:first-child{color:var(--ink-soft);}
+  .detail-row span:last-child{font-weight:700;color:var(--navy);text-align:right;}
+  .detail-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+  .detail-actions .toolbar-btn{flex:1;min-width:120px;}
+
+  .audit-row{font-size:0.8rem;padding:8px 0;border-top:1px solid var(--line);}
+  .audit-row .a-top{display:flex;justify-content:space-between;color:var(--ink-soft);font-size:0.72rem;}
+  .audit-row .a-action{font-weight:700;color:var(--navy);}
+</style>
+</head>
+<body>
+
+<!-- ============ LOGIN SCREEN ============ -->
+<div class="login-wrap" id="loginScreen">
+  <div class="login-card">
+    <div class="login-badge">OA</div>
+    <h1 class="login-title">Admin sign in</h1>
+    <p class="login-sub">OSTREA AWARDS 2026 — Applications dashboard</p>
+    <div class="login-error" id="loginError"></div>
+    <form id="loginForm">
+      <div class="field">
+        <label for="loginEmail">Email</label>
+        <input class="input" type="email" id="loginEmail" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label for="loginPassword">Password</label>
+        <input class="input" type="password" id="loginPassword" autocomplete="current-password" required>
+      </div>
+      <button class="btn btn-primary" type="submit" id="loginBtn">Sign in</button>
+    </form>
+  </div>
+</div>
+
+<!-- ============ DASHBOARD ============ -->
+<div id="dashboard">
+  <header class="topbar">
+    <div class="brand">
+      <span class="badge">OA</span>
+      <span>OSTREA AWARDS — Admin</span>
+    </div>
+    <button class="logout-btn" id="logoutBtn">Sign out</button>
+  </header>
+
+  <!-- ============ OVERVIEW (added — Part 6, combined stats) ============ -->
+  <div class="wrap overview-wrap">
+    <div class="overview-title">Dashboard overview</div>
+    <div class="stat-grid" id="overviewStatGrid"></div>
+  </div>
+
+  <!-- ============ TABS (added — Applications is the original view) ============ -->
+  <div class="admin-tabs">
+    <button class="admin-tab active" id="tabBtnApplications" type="button">Applications</button>
+    <button class="admin-tab" id="tabBtnPayments" type="button">Payments <span id="tabPaymentsBadge" class="admin-tab-badge" style="display:none;">0</span></button>
+    <button class="admin-tab" id="tabBtnInsights" type="button">Insights</button>
+    <button class="admin-tab" id="tabBtnResults" type="button">Results</button>
+  </div>
+
+  <div class="wrap" id="tabPanelApplications">
+    <div class="stat-grid" id="statGrid"></div>
+
+    <div class="toolbar">
+      <input class="input" type="search" id="searchBox" placeholder="Search name, school, application ID, mobile...">
+      <select id="compFilter">
+        <option value="">All competitions</option>
+      </select>
+      <select id="districtFilter">
+        <option value="">All districts</option>
+      </select>
+      <select id="payStatusFilterOnApps">
+        <option value="">All payment statuses</option>
+        <option value="UNPAID">Payment pending</option>
+        <option value="PENDING">Under review</option>
+        <option value="NEEDS_REVIEW">Needs review</option>
+        <option value="VERIFIED">Verified</option>
+        <option value="REJECTED">Rejected</option>
+      </select>
+      <button class="toolbar-btn" id="clearFiltersBtn">Clear filters</button>
+      <button class="toolbar-btn" id="refreshBtn">Refresh</button>
+      <div class="export-menu">
+        <button class="toolbar-btn primary" id="exportBtn">Export CSV ▾</button>
+        <div class="export-dropdown" id="exportDropdown">
+          <button type="button" data-export="all">Export all</button>
+          <button type="button" data-export="verified">Export verified</button>
+          <button type="button" data-export="pending">Export pending</button>
+          <button type="button" data-export="rejected">Export rejected</button>
+          <button type="button" data-export="competition">Export by competition (current filter)</button>
+          <button type="button" data-export="school">Export by school (current filter)</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="loadingState" class="loading-state">Loading applications…</div>
+    <div id="emptyState" class="empty-state" style="display:none;">No applications found.</div>
+
+    <div class="app-list" id="appList"></div>
+
+    <div style="overflow-x:auto;">
+      <table id="appTable" style="display:none;">
+        <thead>
+          <tr>
+            <th>Application ID</th>
+            <th>Student</th>
+            <th>Class</th>
+            <th>School</th>
+            <th>Competition</th>
+            <th>Category</th>
+            <th>Parent / Mobile</th>
+            <th>Payment</th>
+            <th>Submitted</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="appTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ============ PAYMENTS TAB (added) ============ -->
+  <div class="wrap" id="tabPanelPayments" style="display:none;">
+
+    <div class="pay-settings-card">
+      <div class="pay-settings-title">Payment receiver (shown to participants)</div>
+
+      <div class="field">
+        <label for="cfgQrFile">Payment QR code image (e.g. your PhonePe/GPay "Scan &amp; Pay" QR)</label>
+        <input class="input" id="cfgQrFile" type="file" accept="image/jpeg,image/png,image/webp">
+        <p style="font-size:0.76rem;color:var(--ink-soft);margin:6px 0 0;">If you upload a QR image, it is shown to participants exactly as-is — no UPI ID needed. Leave empty to auto-generate a QR from the UPI ID below instead.</p>
+      </div>
+      <div id="cfgQrPreviewWrap" style="display:none;margin:10px 0;">
+        <img id="cfgQrPreview" alt="Current QR" style="width:140px;height:140px;object-fit:contain;border:1px solid var(--line);border-radius:var(--radius-sm);background:#fff;">
+        <button class="toolbar-btn" type="button" id="cfgQrRemoveBtn" style="margin-left:10px;">Remove QR image</button>
+      </div>
+
+      <div class="pay-settings-row">
+        <div class="field" style="flex:1;">
+          <label for="cfgUpiId">UPI ID (optional)</label>
+          <input class="input" id="cfgUpiId" placeholder="yourname@upi">
+        </div>
+        <div class="field" style="flex:1;">
+          <label for="cfgUpiName">Payee name (optional)</label>
+          <input class="input" id="cfgUpiName" placeholder="OSTREA AWARDS 2026">
+        </div>
+      </div>
+      <div class="field">
+        <label for="cfgInstructions">Instructions shown under the QR</label>
+        <input class="input" id="cfgInstructions" placeholder="Scan and pay using any UPI app.">
+      </div>
+      <button class="toolbar-btn primary" id="btnSaveSettings" type="button">Save payment details</button>
+    </div>
+
+    <div class="stat-grid" id="payStatGrid"></div>
+
+    <div class="toolbar">
+      <input class="input" type="search" id="paySearchBox" placeholder="Search Registration ID, name, school, UTR...">
+      <select id="payFilterStatus">
+        <option value="">All statuses</option>
+        <option value="UNPAID">Unpaid</option>
+        <option value="PENDING" selected>Pending</option>
+        <option value="NEEDS_REVIEW">Needs review</option>
+        <option value="VERIFIED">Verified</option>
+        <option value="REJECTED">Rejected</option>
+      </select>
+      <button class="toolbar-btn" id="payRefreshBtn">Refresh</button>
+    </div>
+
+    <div id="payLoadingState" class="loading-state">Loading payments…</div>
+    <div id="payEmptyState" class="empty-state" style="display:none;">No payment records found.</div>
+
+    <div class="pay-admin-list" id="payAdminList"></div>
+
+    <!-- ============ AUDIT LOG (added, Part 16) ============ -->
+    <div class="pay-settings-card" style="margin-top:22px;">
+      <div class="pay-settings-title">Recent admin activity (audit log)</div>
+      <div id="auditLogList"><div class="loading-state" id="auditLogLoading">Loading…</div></div>
+    </div>
+  </div>
+
+  <!-- ============ INSIGHTS TAB (added, Parts 7 & 8) ============ -->
+  <div class="wrap" id="tabPanelInsights" style="display:none;">
+    <div class="subtab-row">
+      <button class="subtab-btn active" id="subtabCompetitions" type="button">Competition-wise</button>
+      <button class="subtab-btn" id="subtabSchools" type="button">School-wise</button>
+    </div>
+
+    <div id="insightsCompetitionsPanel">
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Competition</th><th>Total</th><th>Verified</th><th>Pending</th><th>Rejected</th></tr>
+          </thead>
+          <tbody id="compStatsBody"><tr><td colspan="5">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="insightsSchoolsPanel" style="display:none;">
+      <input class="input school-search" id="schoolSearchBox" type="search" placeholder="Search school name...">
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>School</th><th>Total Students</th><th>Verified</th><th>Pending</th><th>Rejected</th></tr>
+          </thead>
+          <tbody id="schoolStatsBody"><tr><td colspan="5">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ RESULTS TAB (added, Part 13) ============ -->
+  <div class="wrap" id="tabPanelResults" style="display:none;">
+    <div class="pay-settings-card">
+      <div class="pay-settings-title">Add a result</div>
+      <div class="pay-settings-row">
+        <div class="field" style="flex:1;">
+          <label for="resAppId">Application ID</label>
+          <input class="input" id="resAppId" placeholder="OSTREA-2026-00125">
+        </div>
+        <div class="field" style="flex:1;">
+          <label for="resPosition">Position</label>
+          <select class="input" id="resPosition">
+            <option>1st Prize</option>
+            <option>2nd Prize</option>
+            <option>3rd Prize</option>
+            <option>Special Mention</option>
+          </select>
+        </div>
+      </div>
+      <div class="pay-settings-row">
+        <div class="field" style="flex:1;">
+          <label for="resRound">Round</label>
+          <select class="input" id="resRound">
+            <option value="FINAL">Final (central)</option>
+            <option value="SCHOOL">School round</option>
+          </select>
+        </div>
+      </div>
+      <p style="font-size:0.8rem;color:var(--ink-soft);margin:0 0 10px;">Competition, category, student name and school are filled in automatically from the Application ID when it matches an existing application.</p>
+      <button class="toolbar-btn primary" id="btnAddResult" type="button">Add result</button>
+    </div>
+
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Position</th><th>Application ID</th><th>Student</th><th>School</th><th>Competition</th><th>Category</th><th>Round</th></tr>
+        </thead>
+        <tbody id="resultsBody"><tr><td colspan="7">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ============ APPLICATION DETAIL MODAL (added, Part 5) ============ -->
+<div class="detail-modal" id="detailModal">
+  <div class="detail-card">
+    <button class="detail-close" id="detailModalClose" type="button" aria-label="Close">&times;</button>
+
+    <div class="detail-section">
+      <div class="detail-section-title">Application</div>
+      <div class="detail-row"><span>Application ID</span><span id="dApplicationId">—</span></div>
+      <div class="detail-row"><span>Submitted</span><span id="dSubmitted">—</span></div>
+    </div>
+
+    <div class="detail-section">
+      <div class="detail-section-title">Student</div>
+      <div class="detail-row"><span>Name</span><span id="dStudentName">—</span></div>
+      <div class="detail-row"><span>Class / Section</span><span id="dClass">—</span></div>
+      <div class="detail-row"><span>School</span><span id="dSchool">—</span></div>
+      <div class="detail-row"><span>District</span><span id="dDistrict">—</span></div>
+    </div>
+
+    <div class="detail-section">
+      <div class="detail-section-title">Parent / Contact</div>
+      <div class="detail-row"><span>Parent Name</span><span id="dParentName">—</span></div>
+      <div class="detail-row"><span>Parent Mobile</span><span id="dParentMobile">—</span></div>
+      <div class="detail-row"><span>Student Mobile</span><span id="dStudentMobile">—</span></div>
+    </div>
+
+    <div class="detail-section">
+      <div class="detail-section-title">Competition</div>
+      <div class="detail-row"><span>Competition</span><span id="dCompetition">—</span></div>
+      <div class="detail-row"><span>Category</span><span id="dCategory">—</span></div>
+    </div>
+
+    <div class="detail-section">
+      <div class="detail-section-title">Payment</div>
+      <div class="detail-row"><span>Expected Amount</span><span id="dExpected">—</span></div>
+      <div class="detail-row"><span>Paid Amount (OCR)</span><span id="dPaid">—</span></div>
+      <div class="detail-row"><span>UTR</span><span id="dUtr">—</span></div>
+      <div class="detail-row"><span>Payment Date</span><span id="dPayDate">—</span></div>
+      <div class="detail-row"><span>Payment Time</span><span id="dPayTime">—</span></div>
+      <div class="detail-row"><span>Status</span><span id="dPayStatus">—</span></div>
+    </div>
+
+    <div class="detail-section">
+      <div class="detail-section-title">Admin</div>
+      <div class="detail-row"><span>Admin Note</span><span id="dAdminNote">—</span></div>
+      <div class="detail-row"><span>Verified By</span><span id="dVerifiedBy">—</span></div>
+      <div class="detail-row"><span>Verified At</span><span id="dVerifiedAt">—</span></div>
+    </div>
+
+    <div class="field" id="dNoteFieldWrap" style="display:none;">
+      <label for="dAdminNoteInput">Admin note</label>
+      <input class="input" id="dAdminNoteInput" placeholder="Optional note (shown to participant if rejected)">
+    </div>
+
+    <div class="detail-actions" id="dActions"></div>
+  </div>
+</div>
+
+<!-- ============ SCREENSHOT VIEWER MODAL (added) ============ -->
+<div class="pay-modal" id="payModal">
+  <div class="pay-modal-inner">
+    <button class="pay-modal-close" id="payModalClose" type="button" aria-label="Close">&times;</button>
+    <img id="payModalImg" alt="Payment screenshot">
+    <div id="payModalLoading" class="loading-state">Loading screenshot…</div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ==========================================================
+     CONFIG — same Supabase project as the main application site
+  ========================================================== */
+  var SUPABASE_URL = "https://zjmteojnlgewdzdyrydh.supabase.co";
+  var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqbXRlb2pubGdld2R6ZHlyeWRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgyNTU0NTEsImV4cCI6MjEwMzgzMTQ1MX0.y3TENUGETRDwR3GTNp71dso1WaGmo5VO5O7cccBqitU";
+  var SESSION_KEY = "ostrea2026_admin_session";
+
+  function $(sel, ctx){ return (ctx||document).querySelector(sel); }
+  function $all(sel, ctx){ return Array.prototype.slice.call((ctx||document).querySelectorAll(sel)); }
+
+  function showToast(msg, type){
+    var t = $("#toast");
+    t.textContent = msg;
+    t.className = "toast show" + (type ? " " + type : "");
+    clearTimeout(showToast._tm);
+    showToast._tm = setTimeout(function(){ t.classList.remove("show"); }, 2800);
+  }
+
+  function escapeHtml(str){
+    return String(str == null ? "" : str).replace(/[&<>"']/g, function(m){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m];
+    });
+  }
+
+  /* ==========================================================
+     SESSION
+  ========================================================== */
+  function saveSession(session){
+    try{ localStorage.setItem(SESSION_KEY, JSON.stringify(session)); }catch(e){}
+  }
+  function loadSession(){
+    try{
+      var raw = localStorage.getItem(SESSION_KEY);
+      return raw ? JSON.parse(raw) : null;
+    }catch(e){ return null; }
+  }
+  function clearSession(){
+    try{ localStorage.removeItem(SESSION_KEY); }catch(e){}
+  }
+
+  /* ==========================================================
+     AUTH
+  ========================================================== */
+  function login(email, password){
+    return fetch(SUPABASE_URL + "/auth/v1/token?grant_type=password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_ANON_KEY
+      },
+      body: JSON.stringify({ email: email, password: password })
+    }).then(function(res){
+      return res.json().then(function(data){
+        if (!res.ok) throw new Error(data.error_description || data.msg || "Sign in failed.");
+        return data;
+      });
+    });
+  }
+
+  function refreshSession(refreshToken){
+    return fetch(SUPABASE_URL + "/auth/v1/token?grant_type=refresh_token", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_ANON_KEY
+      },
+      body: JSON.stringify({ refresh_token: refreshToken })
+    }).then(function(res){
+      return res.json().then(function(data){
+        if (!res.ok) throw new Error("Session expired.");
+        return data;
+      });
+    });
+  }
+
+  function showDashboard(){
+    $("#loginScreen").style.display = "none";
+    $("#dashboard").style.display = "block";
+    loadApplications();
+    window.OstreaDashboardVisible = true;
+    if (window.OstreaPaymentsModule && window.OstreaPaymentsModule.loadAll) window.OstreaPaymentsModule.loadAll();
+  }
+
+  function showLogin(){
+    $("#dashboard").style.display = "none";
+    $("#loginScreen").style.display = "flex";
+  }
+
+  $("#loginForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var email = $("#loginEmail").value.trim();
+    var password = $("#loginPassword").value;
+    var btn = $("#loginBtn");
+    var errBox = $("#loginError");
+    errBox.classList.remove("show");
+
+    btn.disabled = true;
+    btn.textContent = "Signing in…";
+
+    login(email, password).then(function(data){
+      saveSession({
+        access_token: data.access_token,
+        refresh_token: data.refresh_token,
+        expires_at: Date.now() + (data.expires_in * 1000)
+      });
+      btn.disabled = false;
+      btn.textContent = "Sign in";
+      showDashboard();
+    }).catch(function(err){
+      btn.disabled = false;
+      btn.textContent = "Sign in";
+      errBox.textContent = err.message || "Sign in failed. Check your email and password.";
+      errBox.classList.add("show");
+    });
+  });
+
+  $("#logoutBtn").addEventListener("click", function(){
+    clearSession();
+    showLogin();
+  });
+
+  function getValidAccessToken(){
+    var session = loadSession();
+    if (!session) return Promise.reject(new Error("no session"));
+
+    if (session.expires_at - 30000 > Date.now()){
+      return Promise.resolve(session.access_token);
+    }
+    return refreshSession(session.refresh_token).then(function(data){
+      saveSession({
+        access_token: data.access_token,
+        refresh_token: data.refresh_token,
+        expires_at: Date.now() + (data.expires_in * 1000)
+      });
+      return data.access_token;
+    });
+  }
+
+  /* ==========================================================
+     DATA
+  ========================================================== */
+  var allApplications = [];
+
+  function loadApplications(){
+    $("#loadingState").style.display = "block";
+    $("#emptyState").style.display = "none";
+    $("#appList").innerHTML = "";
+    $("#appTable").style.display = "none";
+
+    getValidAccessToken().then(function(token){
+      return fetch(SUPABASE_URL + "/rest/v1/applications?select=*&order=submitted_at.desc", {
+        headers: {
+          "apikey": SUPABASE_ANON_KEY,
+          "Authorization": "Bearer " + token
+        }
+      });
+    }).then(function(res){
+      if (res.status === 401){ throw new Error("unauthorized"); }
+      if (!res.ok){ throw new Error("Could not load applications."); }
+      return res.json();
+    }).then(function(rows){
+      allApplications = rows || [];
+      populateCompFilter(allApplications);
+      populateDistrictFilter(allApplications);
+      renderStats(allApplications);
+      renderApplications(getFilteredRows());
+      $("#loadingState").style.display = "none";
+      renderOverview();
+    }).catch(function(err){
+      $("#loadingState").style.display = "none";
+      if (err.message === "unauthorized" || err.message === "no session"){
+        clearSession();
+        showLogin();
+        showToast("Session expired. Please sign in again.", "error");
+      } else {
+        $("#emptyState").style.display = "block";
+        $("#emptyState").textContent = "Could not load applications. Check your connection and try again.";
+        showToast(err.message || "Something went wrong.", "error");
+      }
+    });
+  }
+
+  function populateCompFilter(rows){
+    var select = $("#compFilter");
+    var current = select.value;
+    var names = [];
+    rows.forEach(function(r){
+      if (r.competition_name && names.indexOf(r.competition_name) === -1) names.push(r.competition_name);
+    });
+    names.sort();
+    select.innerHTML = '<option value="">All competitions</option>' +
+      names.map(function(n){ return '<option value="' + escapeHtml(n) + '">' + escapeHtml(n) + '</option>'; }).join("");
+    select.value = current;
+  }
+
+  /* ---------------- District filter (added, Part 9) ---------------- */
+  function populateDistrictFilter(rows){
+    var select = $("#districtFilter");
+    if (!select) return;
+    var current = select.value;
+    var names = [];
+    rows.forEach(function(r){
+      if (r.district && names.indexOf(r.district) === -1) names.push(r.district);
+    });
+    names.sort();
+    select.innerHTML = '<option value="">All districts</option>' +
+      names.map(function(n){ return '<option value="' + escapeHtml(n) + '">' + escapeHtml(n) + '</option>'; }).join("");
+    select.value = current;
+  }
+
+  /* ---------------- Overview stats (added, Part 6) ---------------- */
+  function renderOverview(){
+    var grid = $("#overviewStatGrid");
+    if (!grid) return;
+
+    var total = allApplications.length;
+    var todayStr = new Date().toDateString();
+    var todayCount = allApplications.filter(function(r){
+      if (!r.submitted_at) return false;
+      try{ return new Date(r.submitted_at).toDateString() === todayStr; }catch(e){ return false; }
+    }).length;
+
+    var pm = (window.OstreaPaymentsModule && window.OstreaPaymentsModule.getPayments) ? window.OstreaPaymentsModule.getPayments() : null;
+
+    var html = '<div class="stat-card"><div class="stat-val">' + total + '</div><div class="stat-lbl">Total applications</div></div>' +
+      '<div class="stat-card"><div class="stat-val">' + todayCount + '</div><div class="stat-lbl">Today\'s applications</div></div>';
+
+    if (pm){
+      var counts = { UNPAID:0, PENDING:0, NEEDS_REVIEW:0, VERIFIED:0, REJECTED:0 };
+      var revenue = 0;
+      pm.forEach(function(p){
+        if (counts[p.payment_status] != null) counts[p.payment_status]++;
+        if (p.payment_status === "VERIFIED"){ revenue += Number(p.amount || 0); }
+      });
+      html +=
+        '<div class="stat-card"><div class="stat-val">' + (counts.UNPAID + counts.PENDING) + '</div><div class="stat-lbl">Payment pending</div></div>' +
+        '<div class="stat-card"><div class="stat-val">' + counts.NEEDS_REVIEW + '</div><div class="stat-lbl">Under review</div></div>' +
+        '<div class="stat-card"><div class="stat-val">' + counts.VERIFIED + '</div><div class="stat-lbl">Payment verified</div></div>' +
+        '<div class="stat-card"><div class="stat-val">' + counts.REJECTED + '</div><div class="stat-lbl">Payment rejected</div></div>' +
+        '<div class="stat-card"><div class="stat-val">₹' + revenue.toLocaleString("en-IN") + '</div><div class="stat-lbl">Total verified revenue</div></div>';
+    }
+    grid.innerHTML = html;
+  }
+
+  function renderStats(rows){
+    var total = rows.length;
+    var byComp = {};
+    rows.forEach(function(r){
+      var name = r.competition_name || "Unspecified";
+      byComp[name] = (byComp[name] || 0) + 1;
+    });
+    var topComps = Object.keys(byComp).sort(function(a,b){ return byComp[b]-byComp[a]; }).slice(0,3);
+
+    var html = '<div class="stat-card"><div class="stat-val">' + total + '</div><div class="stat-lbl">Total applications</div></div>';
+    topComps.forEach(function(name){
+      html += '<div class="stat-card"><div class="stat-val">' + byComp[name] + '</div><div class="stat-lbl">' + escapeHtml(name) + '</div></div>';
+    });
+    $("#statGrid").innerHTML = html;
+  }
+
+  function getFilteredRows(){
+    var q = $("#searchBox").value.trim().toLowerCase();
+    var comp = $("#compFilter").value;
+    var districtEl = $("#districtFilter");
+    var district = districtEl ? districtEl.value : "";
+    var payStatusEl = $("#payStatusFilterOnApps");
+    var payStatus = payStatusEl ? payStatusEl.value : "";
+
+    return allApplications.filter(function(r){
+      if (comp && r.competition_name !== comp) return false;
+      if (district && r.district !== district) return false;
+      if (payStatus){
+        var st = (window.OstreaPaymentsModule && window.OstreaPaymentsModule.getStatus) ?
+          window.OstreaPaymentsModule.getStatus(r.application_id) : "UNPAID";
+        if (st !== payStatus) return false;
+      }
+      if (!q) return true;
+      var hay = [r.application_id, r.student_name, r.school_name, r.district, r.parent_name, r.parent_mobile]
+        .map(function(v){ return (v || "").toLowerCase(); }).join(" ");
+      return hay.indexOf(q) !== -1;
+    });
+  }
+
+  function fmtDate(iso){
+    if (!iso) return "—";
+    try{
+      var d = new Date(iso);
+      return d.toLocaleString("en-IN", { day:"2-digit", month:"short", year:"numeric", hour:"2-digit", minute:"2-digit" });
+    }catch(e){ return iso; }
+  }
+
+  function renderApplications(rows){
+    if (!rows.length){
+      $("#emptyState").style.display = "block";
+      $("#emptyState").textContent = "No applications found.";
+      $("#appList").innerHTML = "";
+      $("#appTableBody").innerHTML = "";
+      $("#appTable").style.display = "none";
+      return;
+    }
+    $("#emptyState").style.display = "none";
+    $("#appTable").style.display = "table";
+
+    var cardHtml = "";
+    var rowHtml = "";
+
+    rows.forEach(function(r){
+      var classLine = escapeHtml(r.student_class || "") + (r.student_section ? " - " + escapeHtml(r.student_section) : "");
+      var compLine = escapeHtml(r.competition_name || "—") + (r.category ? " (" + escapeHtml(r.category) + ")" : "");
+      var payStatus = (window.OstreaPaymentsModule && window.OstreaPaymentsModule.getStatus) ?
+        window.OstreaPaymentsModule.getStatus(r.application_id) : "UNPAID";
+      var payPillHtml = '<span class="pay-status-chip ' + payStatus + '" style="font-size:0.68rem;">' + payStatus.replace("_"," ") + '</span>';
+
+      cardHtml +=
+        '<div class="app-card">' +
+          '<div class="app-card-top">' +
+            '<div><div class="app-id">' + escapeHtml(r.application_id) + '</div>' +
+            '<div class="app-name">' + escapeHtml(r.student_name) + '</div></div>' +
+            '<div class="app-time">' + fmtDate(r.submitted_at) + '</div>' +
+          '</div>' +
+          '<div class="app-meta">' +
+            '<span class="app-pill">' + classLine + '</span>' +
+            '<span class="app-pill">' + escapeHtml(r.school_name) + '</span>' +
+            '<span class="app-pill">' + compLine + '</span>' +
+            payPillHtml +
+          '</div>' +
+          '<div class="app-contact">' + escapeHtml(r.parent_name) + ' · <a href="tel:' + escapeHtml(r.parent_mobile) + '">' + escapeHtml(r.parent_mobile) + '</a></div>' +
+          '<button class="toolbar-btn" type="button" data-view-app="' + escapeHtml(r.application_id) + '" style="margin-top:10px;width:100%;">VIEW DETAILS</button>' +
+        '</div>';
+
+      rowHtml +=
+        '<tr>' +
+          '<td>' + escapeHtml(r.application_id) + '</td>' +
+          '<td>' + escapeHtml(r.student_name) + '</td>' +
+          '<td>' + classLine + '</td>' +
+          '<td>' + escapeHtml(r.school_name) + '</td>' +
+          '<td>' + escapeHtml(r.competition_name || "—") + '</td>' +
+          '<td>' + escapeHtml(r.category || "—") + '</td>' +
+          '<td>' + escapeHtml(r.parent_name) + '<br>' + escapeHtml(r.parent_mobile) + '</td>' +
+          '<td>' + payPillHtml + '</td>' +
+          '<td>' + fmtDate(r.submitted_at) + '</td>' +
+          '<td><button class="toolbar-btn" type="button" data-view-app="' + escapeHtml(r.application_id) + '">VIEW</button></td>' +
+        '</tr>';
+    });
+
+    $("#appList").innerHTML = cardHtml;
+    $("#appTableBody").innerHTML = rowHtml;
+  }
+
+  $("#searchBox").addEventListener("input", function(){ renderApplications(getFilteredRows()); });
+  $("#compFilter").addEventListener("change", function(){ renderApplications(getFilteredRows()); });
+  var districtFilterEl = $("#districtFilter");
+  if (districtFilterEl) districtFilterEl.addEventListener("change", function(){ renderApplications(getFilteredRows()); });
+  var payStatusFilterEl = $("#payStatusFilterOnApps");
+  if (payStatusFilterEl) payStatusFilterEl.addEventListener("change", function(){ renderApplications(getFilteredRows()); });
+  var clearFiltersBtnEl = $("#clearFiltersBtn");
+  if (clearFiltersBtnEl) clearFiltersBtnEl.addEventListener("click", function(){
+    $("#searchBox").value = "";
+    $("#compFilter").value = "";
+    if (districtFilterEl) districtFilterEl.value = "";
+    if (payStatusFilterEl) payStatusFilterEl.value = "";
+    renderApplications(getFilteredRows());
+  });
+  $("#refreshBtn").addEventListener("click", function(){
+    loadApplications();
+    if (window.OstreaPaymentsModule && window.OstreaPaymentsModule.loadAll) window.OstreaPaymentsModule.loadAll();
+  });
+
+  /* ---------------- Advanced export (added, Part 10) ---------------- */
+  $("#exportBtn").addEventListener("click", function(e){
+    e.stopPropagation();
+    $("#exportDropdown").classList.toggle("show");
+  });
+  document.addEventListener("click", function(){ $("#exportDropdown").classList.remove("show"); });
+
+  function paymentInfoFor(appId){
+    var pm = (window.OstreaPaymentsModule && window.OstreaPaymentsModule.getPaymentRecord) ?
+      window.OstreaPaymentsModule.getPaymentRecord(appId) : null;
+    return pm || {};
+  }
+
+  function exportCsv(rows, filenameSuffix){
+    if (!rows.length){ showToast("No rows to export.", "error"); return; }
+
+    var headers = ["Application ID","Student Name","Class","Section","School","District","Competition","Category",
+      "Parent Name","Parent Mobile","Student Mobile","Expected Amount","Paid Amount","UTR","Payment Date","Payment Time",
+      "Payment Status","Submitted At","Verified At","Admin Note"];
+    var lines = [headers.join(",")];
+
+    rows.forEach(function(r){
+      var p = paymentInfoFor(r.application_id);
+      var vals = [
+        r.application_id, r.student_name, r.student_class, r.student_section,
+        r.school_name, r.district, r.competition_name, r.category,
+        r.parent_name, r.parent_mobile, r.student_mobile,
+        p.amount, p.ocr_amount, p.ocr_utr, p.ocr_date, p.ocr_time,
+        p.payment_status || "UNPAID", r.submitted_at, p.verified_at, p.admin_note
+      ].map(function(v){
+        v = (v == null ? "" : String(v)).replace(/"/g,'""');
+        return '"' + v + '"';
+      });
+      lines.push(vals.join(","));
+    });
+
+    var blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8;" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "ostrea-2026-applications-" + filenameSuffix + "-" + new Date().toISOString().slice(0,10) + ".csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  $("#exportDropdown").addEventListener("click", function(e){
+    var btn = e.target.closest("[data-export]");
+    if (!btn) return;
+    var kind = btn.getAttribute("data-export");
+    var base = getFilteredRows();
+
+    if (kind === "all"){
+      exportCsv(allApplications, "all");
+    } else if (kind === "verified" || kind === "pending" || kind === "rejected"){
+      var wanted = kind === "verified" ? "VERIFIED" : (kind === "pending" ? ["UNPAID","PENDING","NEEDS_REVIEW"] : "REJECTED");
+      var rows = allApplications.filter(function(r){
+        var st = (window.OstreaPaymentsModule && window.OstreaPaymentsModule.getStatus) ?
+          window.OstreaPaymentsModule.getStatus(r.application_id) : "UNPAID";
+        return Array.isArray(wanted) ? wanted.indexOf(st) !== -1 : st === wanted;
+      });
+      exportCsv(rows, kind);
+    } else if (kind === "competition" || kind === "school"){
+      exportCsv(base, kind === "competition" ? "by-competition" : "by-school");
+    }
+    $("#exportDropdown").classList.remove("show");
+  });
+
+  /* ==========================================================
+     INIT
+  ========================================================== */
+  function init(){
+    var session = loadSession();
+    if (session){
+      showDashboard();
+    } else {
+      showLogin();
+    }
+  }
+
+  init();
+
+  /* Expose the minimum needed for the Payments module below — read-only
+     helpers, nothing that lets it bypass auth or touch application data. */
+  window.OstreaAdminCore = {
+    getValidAccessToken: getValidAccessToken,
+    showToast: showToast,
+    escapeHtml: escapeHtml,
+    clearSession: clearSession,
+    showLogin: showLogin,
+    fmtDate: fmtDate,
+    renderOverview: renderOverview
+  };
+})();
+</script>
+
+<!-- ==========================================================
+     PAYMENTS ADMIN MODULE (added)
+     Uses the same authenticated Supabase session as the
+     Applications tab above (see window.OstreaAdminCore).
+     Verify/Reject call a SECURITY DEFINER RPC on the server,
+     so even a compromised browser session can't silently
+     rewrite verification history — see supabase_setup_payments.sql.
+========================================================== -->
+<script>
+(function(){
+  "use strict";
+
+  var SUPABASE_URL = "https://zjmteojnlgewdzdyrydh.supabase.co";
+  var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqbXRlb2pubGdld2R6ZHlyeWRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgyNTU0NTEsImV4cCI6MjEwMzgzMTQ1MX0.y3TENUGETRDwR3GTNp71dso1WaGmo5VO5O7cccBqitU";
+  var FEE_AMOUNT = 75;
+
+  function $(sel){ return document.querySelector(sel); }
+  function core(){ return window.OstreaAdminCore || {}; }
+  function escapeHtml(s){ return core().escapeHtml ? core().escapeHtml(s) : String(s == null ? "" : s); }
+  function fmtDate(s){ return core().fmtDate ? core().fmtDate(s) : (s || "—"); }
+  function showToast(msg, type){ if (core().showToast) core().showToast(msg, type); }
+
+  var allPayments = [];
+  var appsById = {}; /* application_id -> application row, for showing name/school/competition */
+  var paymentsLoadedOnce = false;
+
+  /* ---------------- Tabs ---------------- */
+  function activateTab(name){
+    var tabs = { applications: "tabBtnApplications", payments: "tabBtnPayments", insights: "tabBtnInsights", results: "tabBtnResults" };
+    var panels = { applications: "tabPanelApplications", payments: "tabPanelPayments", insights: "tabPanelInsights", results: "tabPanelResults" };
+    Object.keys(tabs).forEach(function(key){
+      $("#" + tabs[key]).classList.toggle("active", key === name);
+      $("#" + panels[key]).style.display = key === name ? "block" : "none";
+    });
+  }
+
+  $("#tabBtnApplications").addEventListener("click", function(){ activateTab("applications"); });
+  $("#tabBtnPayments").addEventListener("click", function(){
+    activateTab("payments");
+    if (!paymentsLoadedOnce){
+      paymentsLoadedOnce = true;
+      loadSettings();
+      loadApplicationsIndex().then(loadPayments);
+    }
+    loadAuditLog();
+  });
+  $("#tabBtnInsights").addEventListener("click", function(){
+    activateTab("insights");
+    renderCompetitionStats();
+    renderSchoolStats();
+  });
+  $("#tabBtnResults").addEventListener("click", function(){
+    activateTab("results");
+    loadResults();
+  });
+
+  $("#subtabCompetitions").addEventListener("click", function(){
+    $("#subtabCompetitions").classList.add("active");
+    $("#subtabSchools").classList.remove("active");
+    $("#insightsCompetitionsPanel").style.display = "block";
+    $("#insightsSchoolsPanel").style.display = "none";
+  });
+  $("#subtabSchools").addEventListener("click", function(){
+    $("#subtabSchools").classList.add("active");
+    $("#subtabCompetitions").classList.remove("active");
+    $("#insightsCompetitionsPanel").style.display = "none";
+    $("#insightsSchoolsPanel").style.display = "block";
+    renderSchoolStats();
+  });
+
+  var schoolSearchEl = $("#schoolSearchBox");
+  if (schoolSearchEl) schoolSearchEl.addEventListener("input", function(){ renderSchoolStats(); });
+
+  /* ---------------- Insights: competition-wise & school-wise (Parts 7 & 8) ---------------- */
+  function applicationsList(){
+    var vals = [];
+    for (var k in appsById){ if (appsById.hasOwnProperty(k)) vals.push(appsById[k]); }
+    return vals;
+  }
+
+  function statusFor(appId){
+    var latest = null;
+    allPayments.forEach(function(p){
+      if (p.registration_id === appId){
+        if (!latest || new Date(p.created_at) > new Date(latest.created_at)) latest = p;
+      }
+    });
+    return latest ? latest.payment_status : "UNPAID";
+  }
+
+  function renderCompetitionStats(){
+    var tbody = $("#compStatsBody");
+    if (!tbody) return;
+    var apps = applicationsList();
+    if (!apps.length){ tbody.innerHTML = '<tr><td colspan="5">No data yet — open the Applications tab first.</td></tr>'; return; }
+
+    var byComp = {};
+    apps.forEach(function(a){
+      var name = a.competition_name || "Unspecified";
+      if (!byComp[name]) byComp[name] = { total:0, verified:0, pending:0, rejected:0 };
+      byComp[name].total++;
+      var st = statusFor(a.application_id);
+      if (st === "VERIFIED") byComp[name].verified++;
+      else if (st === "REJECTED") byComp[name].rejected++;
+      else byComp[name].pending++;
+    });
+
+    var names = Object.keys(byComp).sort();
+    tbody.innerHTML = names.map(function(name){
+      var c = byComp[name];
+      return '<tr><td>' + escapeHtml(name) + '</td><td>' + c.total + '</td><td>' + c.verified + '</td><td>' + c.pending + '</td><td>' + c.rejected + '</td></tr>';
+    }).join("") || '<tr><td colspan="5">No data.</td></tr>';
+  }
+
+  function renderSchoolStats(){
+    var tbody = $("#schoolStatsBody");
+    if (!tbody) return;
+    var apps = applicationsList();
+    if (!apps.length){ tbody.innerHTML = '<tr><td colspan="5">No data yet — open the Applications tab first.</td></tr>'; return; }
+
+    var q = (schoolSearchEl ? schoolSearchEl.value : "").trim().toLowerCase();
+    var bySchool = {};
+    apps.forEach(function(a){
+      var name = a.school_name || "Unspecified";
+      if (q && name.toLowerCase().indexOf(q) === -1) return;
+      if (!bySchool[name]) bySchool[name] = { total:0, verified:0, pending:0, rejected:0 };
+      bySchool[name].total++;
+      var st = statusFor(a.application_id);
+      if (st === "VERIFIED") bySchool[name].verified++;
+      else if (st === "REJECTED") bySchool[name].rejected++;
+      else bySchool[name].pending++;
+    });
+
+    var names = Object.keys(bySchool).sort(function(a,b){ return bySchool[b].total - bySchool[a].total; });
+    tbody.innerHTML = names.map(function(name){
+      var c = bySchool[name];
+      return '<tr><td>' + escapeHtml(name) + '</td><td>' + c.total + '</td><td>' + c.verified + '</td><td>' + c.pending + '</td><td>' + c.rejected + '</td></tr>';
+    }).join("") || '<tr><td colspan="5">No matching schools.</td></tr>';
+  }
+
+  /* ---------------- Results management (Part 13) ---------------- */
+  function loadResults(){
+    var tbody = $("#resultsBody");
+    tbody.innerHTML = '<tr><td colspan="7">Loading…</td></tr>';
+    authFetch(SUPABASE_URL + "/rest/v1/results?select=*&order=created_at.desc")
+      .then(function(res){ return res.json(); })
+      .then(function(rows){
+        if (!rows || !rows.length){ tbody.innerHTML = '<tr><td colspan="7">No results added yet.</td></tr>'; return; }
+        tbody.innerHTML = rows.map(function(r){
+          return '<tr><td>' + escapeHtml(r.position) + '</td><td>' + escapeHtml(r.application_id) + '</td><td>' +
+            escapeHtml(r.student_name || "—") + '</td><td>' + escapeHtml(r.school_name || "—") + '</td><td>' +
+            escapeHtml(r.competition_name || "—") + '</td><td>' + escapeHtml(r.category || "—") + '</td><td>' +
+            escapeHtml(r.round) + '</td></tr>';
+        }).join("");
+      })
+      .catch(function(){ tbody.innerHTML = '<tr><td colspan="7">Could not load results.</td></tr>'; });
+  }
+
+  var btnAddResult = $("#btnAddResult");
+  if (btnAddResult) btnAddResult.addEventListener("click", function(){
+    var appId = ($("#resAppId").value || "").trim().toUpperCase();
+    var position = $("#resPosition").value;
+    var round = $("#resRound").value;
+    if (!appId){ showToast("Enter an Application ID.", "error"); return; }
+
+    var app = appsById[appId];
+    if (!app){
+      showToast("Application ID not found in the loaded index. Open the Applications tab once first, or check the ID.", "error");
+      return;
+    }
+
+    btnAddResult.disabled = true;
+    authFetch(SUPABASE_URL + "/rest/v1/results", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Prefer": "return=minimal" },
+      body: JSON.stringify({
+        application_id: appId,
+        competition_name: app.competition_name || null,
+        category: app.category || null,
+        student_name: app.student_name || null,
+        school_name: app.school_name || null,
+        position: position,
+        round: round
+      })
+    }).then(function(res){
+      btnAddResult.disabled = false;
+      if (!res.ok) throw new Error("Could not add result.");
+      showToast("Result added.", "ok");
+      $("#resAppId").value = "";
+      loadResults();
+    }).catch(function(err){
+      btnAddResult.disabled = false;
+      showToast(err.message || "Could not add result.", "error");
+    });
+  });
+
+  /* ---------------- Audit log (Part 16) ---------------- */
+  function loadAuditLog(){
+    var list = $("#auditLogList");
+    if (!list) return;
+    list.innerHTML = '<div class="loading-state">Loading…</div>';
+    authFetch(SUPABASE_URL + "/rest/v1/payment_audit_log?select=*&order=created_at.desc&limit=30")
+      .then(function(res){ return res.json(); })
+      .then(function(rows){
+        if (!rows || !rows.length){ list.innerHTML = '<div class="empty-state">No admin actions logged yet.</div>'; return; }
+        list.innerHTML = rows.map(function(r){
+          return '<div class="audit-row">' +
+            '<div class="a-top"><span>' + escapeHtml(r.registration_id || "—") + '</span><span>' + fmtDate(r.created_at) + '</span></div>' +
+            '<div class="a-action">' + escapeHtml(r.action) + '</div>' +
+            '<div style="color:var(--ink-soft);">' + escapeHtml(r.admin_user || "—") +
+              (r.previous_status ? ' · ' + escapeHtml(r.previous_status) + ' → ' + escapeHtml(r.new_status) : '') + '</div>' +
+            (r.admin_note ? '<div style="color:var(--ink-soft);font-style:italic;">"' + escapeHtml(r.admin_note) + '"</div>' : '') +
+          '</div>';
+        }).join("");
+      })
+      .catch(function(){ list.innerHTML = '<div class="empty-state">Could not load audit log (run supabase-migration-v2.sql if this table is missing).</div>'; });
+  }
+
+  /* ---------------- Settings (payment receiver: QR image + optional UPI ID) ---------------- */
+  var pendingQrImageData = undefined; /* undefined = no change, null = removed, string = new image */
+
+  function loadSettings(){
+    authFetch(SUPABASE_URL + "/rest/v1/payment_settings?select=*&id=eq.1")
+      .then(function(res){ return res.json(); })
+      .then(function(rows){
+        var s = rows && rows[0];
+        if (!s) return;
+        $("#cfgUpiId").value = s.upi_id || "";
+        $("#cfgUpiName").value = s.upi_payee_name || "";
+        $("#cfgInstructions").value = s.instructions || "";
+        pendingQrImageData = undefined;
+        showQrPreview(s.qr_image_data || null);
+      })
+      .catch(function(){ /* silent — settings card just stays empty */ });
+  }
+
+  function showQrPreview(dataUrl){
+    var wrap = $("#cfgQrPreviewWrap");
+    var img = $("#cfgQrPreview");
+    if (dataUrl){
+      img.src = dataUrl;
+      wrap.style.display = "block";
+    } else {
+      img.src = "";
+      wrap.style.display = "none";
+    }
+  }
+
+  /* Resize/compress the uploaded QR photo client-side so it stays a
+     small, fast-loading text payload in the database (no Storage
+     bucket/policy needed — it rides along with the public settings row). */
+  function fileToResizedDataUrl(file, maxDim, quality){
+    return new Promise(function(resolve, reject){
+      var reader = new FileReader();
+      reader.onerror = function(){ reject(new Error("Could not read the image file.")); };
+      reader.onload = function(){
+        var img = new Image();
+        img.onerror = function(){ reject(new Error("Could not read the image file.")); };
+        img.onload = function(){
+          var scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+          var w = Math.round(img.width * scale);
+          var h = Math.round(img.height * scale);
+          var canvas = document.createElement("canvas");
+          canvas.width = w; canvas.height = h;
+          var ctx = canvas.getContext("2d");
+          ctx.fillStyle = "#ffffff";
+          ctx.fillRect(0, 0, w, h);
+          ctx.drawImage(img, 0, 0, w, h);
+          resolve(canvas.toDataURL("image/jpeg", quality));
+        };
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  var cfgQrFileEl = $("#cfgQrFile");
+  if (cfgQrFileEl) cfgQrFileEl.addEventListener("change", function(){
+    var file = cfgQrFileEl.files && cfgQrFileEl.files[0];
+    if (!file) return;
+    if (file.size > 8 * 1024 * 1024){
+      showToast("Image too large — please choose a photo under 8 MB.", "error");
+      cfgQrFileEl.value = "";
+      return;
+    }
+    fileToResizedDataUrl(file, 640, 0.85).then(function(dataUrl){
+      pendingQrImageData = dataUrl;
+      showQrPreview(dataUrl);
+      showToast("QR image ready — click \"Save payment details\" to publish it.", "ok");
+    }).catch(function(err){
+      showToast(err.message || "Could not process image.", "error");
+    });
+  });
+
+  var cfgQrRemoveBtnEl = $("#cfgQrRemoveBtn");
+  if (cfgQrRemoveBtnEl) cfgQrRemoveBtnEl.addEventListener("click", function(){
+    pendingQrImageData = null;
+    showQrPreview(null);
+    if (cfgQrFileEl) cfgQrFileEl.value = "";
+    showToast("QR image will be removed when you save.", "ok");
+  });
+
+  $("#btnSaveSettings").addEventListener("click", function(){
+    var btn = $("#btnSaveSettings");
+    btn.disabled = true;
+    var payload = {
+      upi_id: $("#cfgUpiId").value.trim() || null,
+      upi_payee_name: $("#cfgUpiName").value.trim() || null,
+      instructions: $("#cfgInstructions").value.trim()
+    };
+    if (pendingQrImageData !== undefined){
+      payload.qr_image_data = pendingQrImageData; /* string = new image, null = removed */
+    }
+    authFetch(SUPABASE_URL + "/rest/v1/payment_settings?id=eq.1", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json", "Prefer": "return=minimal" },
+      body: JSON.stringify(payload)
+    }).then(function(res){
+      btn.disabled = false;
+      if (!res.ok){
+        return res.json().catch(function(){ return {}; }).then(function(data){
+          throw new Error((data && data.message) || "Could not save. Run supabase-migration-v3-qr.sql if this is the first time you're uploading a QR image.");
+        });
+      }
+      pendingQrImageData = undefined;
+      showToast("Payment details updated.", "ok");
+    }).catch(function(err){
+      btn.disabled = false;
+      showToast(err.message || "Could not save payment details.", "error");
+    });
+  });
+
+  /* ---------------- Auth-aware fetch (reuses Applications tab's session) ---------------- */
+  function authFetch(url, opts){
+    opts = opts || {};
+    var getToken = core().getValidAccessToken;
+    if (!getToken){
+      return Promise.reject(new Error("Not signed in."));
+    }
+    return getToken().then(function(token){
+      opts.headers = opts.headers || {};
+      opts.headers["apikey"] = SUPABASE_ANON_KEY;
+      opts.headers["Authorization"] = "Bearer " + token;
+      return fetch(url, opts);
+    }).then(function(res){
+      if (res.status === 401){
+        if (core().clearSession) core().clearSession();
+        if (core().showLogin) core().showLogin();
+        showToast("Session expired. Please sign in again.", "error");
+        throw new Error("unauthorized");
+      }
+      return res;
+    });
+  }
+
+  /* ---------------- Load application index (for name/school/competition lookup) ---------------- */
+  function loadApplicationsIndex(){
+    return authFetch(SUPABASE_URL + "/rest/v1/applications?select=application_id,student_name,school_name,competition_name,category,registration_status")
+      .then(function(res){ return res.json(); })
+      .then(function(rows){
+        appsById = {};
+        (rows || []).forEach(function(r){ appsById[r.application_id] = r; });
+      })
+      .catch(function(){ appsById = {}; });
+  }
+
+  /* ---------------- Load payments ---------------- */
+  function loadPayments(){
+    $("#payLoadingState").style.display = "block";
+    $("#payEmptyState").style.display = "none";
+    $("#payAdminList").innerHTML = "";
+
+    authFetch(SUPABASE_URL + "/rest/v1/payments?select=*&order=created_at.desc")
+      .then(function(res){
+        if (!res.ok) throw new Error("Could not load payments.");
+        return res.json();
+      })
+      .then(function(rows){
+        allPayments = rows || [];
+        $("#payLoadingState").style.display = "none";
+        updatePendingBadge();
+        renderPayStats();
+        renderPayments(getFilteredPayments());
+        if (window.OstreaAdminCore && window.OstreaAdminCore.renderOverview) window.OstreaAdminCore.renderOverview();
+      })
+      .catch(function(err){
+        $("#payLoadingState").style.display = "none";
+        if (err.message !== "unauthorized"){
+          $("#payEmptyState").style.display = "block";
+          $("#payEmptyState").textContent = "Could not load payments. Check your connection and try again.";
+          showToast(err.message || "Something went wrong.", "error");
+        }
+      });
+  }
+
+  function updatePendingBadge(){
+    var pending = allPayments.filter(function(p){ return p.payment_status === "PENDING"; }).length;
+    var badge = $("#tabPaymentsBadge");
+    if (pending > 0){
+      badge.style.display = "inline-block";
+      badge.textContent = pending;
+    } else {
+      badge.style.display = "none";
+    }
+  }
+
+  function renderPayStats(){
+    var counts = { UNPAID:0, PENDING:0, NEEDS_REVIEW:0, VERIFIED:0, REJECTED:0 };
+    allPayments.forEach(function(p){ if (counts[p.payment_status] != null) counts[p.payment_status]++; });
+    var html = "";
+    ["PENDING","NEEDS_REVIEW","VERIFIED","REJECTED","UNPAID"].forEach(function(k){
+      var lbl = k === "NEEDS_REVIEW" ? "Needs review" : (k.charAt(0) + k.slice(1).toLowerCase());
+      html += '<div class="stat-card"><div class="stat-val">' + counts[k] + '</div><div class="stat-lbl">' + lbl + '</div></div>';
+    });
+    $("#payStatGrid").innerHTML = html;
+  }
+
+  function getFilteredPayments(){
+    var q = ($("#paySearchBox").value || "").trim().toLowerCase();
+    var statusFilter = $("#payFilterStatus").value;
+    return allPayments.filter(function(p){
+      if (statusFilter && p.payment_status !== statusFilter) return false;
+      if (!q) return true;
+      var app = appsById[p.registration_id] || {};
+      var hay = [p.registration_id, app.student_name, app.school_name, p.ocr_utr]
+        .map(function(v){ return (v || "").toLowerCase(); }).join(" ");
+      return hay.indexOf(q) !== -1;
+    });
+  }
+
+  $("#paySearchBox").addEventListener("input", function(){ renderPayments(getFilteredPayments()); });
+  $("#payFilterStatus").addEventListener("change", function(){ renderPayments(getFilteredPayments()); });
+  $("#payRefreshBtn").addEventListener("click", function(){ loadApplicationsIndex().then(loadPayments); });
+
+  /* ---------------- Verification indicator (Part 4) ---------------- */
+  function computeIndicator(p){
+    var hasUtr = !!p.ocr_utr;
+    var hasScreenshot = !!p.screenshot_path;
+    var amountOk = p.ocr_amount != null;
+    var isMatch = amountOk && Math.abs(Number(p.ocr_amount) - Number(p.amount || FEE_AMOUNT)) < 0.01;
+
+    if (!hasScreenshot){
+      return { cls:"issue", label:"POSSIBLE ISSUE — missing screenshot" };
+    }
+    if (amountOk && !isMatch){
+      return { cls:"issue", label:"POSSIBLE ISSUE — amount mismatch" };
+    }
+    if (!hasUtr || !amountOk){
+      return { cls:"review", label:"NEEDS REVIEW — incomplete OCR data" };
+    }
+    return { cls:"ready", label:"READY TO VERIFY" };
+  }
+
+  /* ---------------- Render list ---------------- */
+  function renderPayments(rows){
+    if (!rows.length){
+      $("#payEmptyState").style.display = "block";
+      $("#payEmptyState").textContent = "No payment records found for this filter.";
+      $("#payAdminList").innerHTML = "";
+      return;
+    }
+    $("#payEmptyState").style.display = "none";
+
+    var html = rows.map(function(p){
+      var app = appsById[p.registration_id] || {};
+      var amountOk = p.ocr_amount != null;
+      var isMatch = amountOk && Math.abs(Number(p.ocr_amount) - Number(p.amount || FEE_AMOUNT)) < 0.01;
+      var indicator = computeIndicator(p);
+
+      var ocrHtml = '<div class="pay-admin-ocr">' +
+        (p.ocr_utr ? '<div class="row"><span>OCR UTR</span><span>' + escapeHtml(p.ocr_utr) + '</span></div>' : '<div class="row"><span colspan="2">OCR DATA INCOMPLETE</span></div>') +
+        (amountOk ? '<div class="row"><span>OCR amount</span><span class="pay-amount-check ' + (isMatch?'match':'mismatch') + '">₹' + p.ocr_amount + ' ' + (isMatch?'✅':'⚠️') + '</span></div>' : '') +
+        (p.ocr_date ? '<div class="row"><span>Date</span><span>' + escapeHtml(p.ocr_date) + '</span></div>' : '') +
+        (p.ocr_time ? '<div class="row"><span>Time</span><span>' + escapeHtml(p.ocr_time) + '</span></div>' : '') +
+      '</div>';
+
+      var actionsHtml = "";
+      if (p.payment_status === "PENDING" || p.payment_status === "UNPAID" || p.payment_status === "NEEDS_REVIEW"){
+        actionsHtml =
+          '<div class="verify-indicator ' + indicator.cls + '">' + indicator.label + '</div>' +
+          '<div class="pay-admin-note-field"><input type="text" placeholder="Admin note (optional, shown to participant if rejected)" data-note-for="' + p.id + '"></div>' +
+          '<div class="pay-admin-actions">' +
+            '<button class="toolbar-btn" type="button" data-view="' + p.screenshot_path + '">VIEW SCREENSHOT</button>' +
+            '<button class="toolbar-btn" type="button" data-view-app="' + escapeHtml(p.registration_id) + '">VIEW DETAILS</button>' +
+          '</div>' +
+          '<div class="pay-admin-actions">' +
+            '<button class="toolbar-btn primary" type="button" data-verify="' + p.id + '">✅ VERIFY PAYMENT</button>' +
+            '<button class="toolbar-btn" type="button" style="color:var(--error);border-color:var(--error);" data-reject="' + p.id + '">❌ REJECT</button>' +
+          '</div>' +
+          (p.payment_status !== "NEEDS_REVIEW" ?
+            '<div class="pay-admin-actions"><button class="toolbar-btn" type="button" data-needsreview="' + p.id + '">🔎 MARK NEEDS REVIEW</button></div>' : '');
+      } else {
+        actionsHtml =
+          '<div class="pay-admin-actions">' +
+            '<button class="toolbar-btn" type="button" data-view="' + p.screenshot_path + '">VIEW SCREENSHOT</button>' +
+            '<button class="toolbar-btn" type="button" data-view-app="' + escapeHtml(p.registration_id) + '">VIEW DETAILS</button>' +
+          '</div>' +
+          (p.admin_note ? '<div class="pay-admin-ocr" style="margin-top:8px;">Admin note: ' + escapeHtml(p.admin_note) + '</div>' : '');
+      }
+
+      return '<div class="pay-admin-card" data-payment-id="' + p.id + '">' +
+        '<div class="pay-admin-top">' +
+          '<div><div class="pay-admin-id">' + escapeHtml(p.registration_id) + '</div>' +
+          '<div class="pay-admin-name">' + escapeHtml(app.student_name || "Unknown participant") + '</div></div>' +
+          '<span class="pay-status-chip ' + p.payment_status + '">' + p.payment_status.replace("_"," ") + '</span>' +
+        '</div>' +
+        '<div class="pay-admin-meta">' +
+          '<span class="app-pill">' + escapeHtml(app.school_name || "—") + '</span>' +
+          '<span class="app-pill">' + escapeHtml(app.competition_name || "—") + (app.category ? " (" + escapeHtml(app.category) + ")" : "") + '</span>' +
+          '<span class="app-pill">Expected ₹' + (p.amount || FEE_AMOUNT) + '</span>' +
+          '<span class="app-pill">' + fmtDate(p.created_at) + '</span>' +
+        '</div>' +
+        ocrHtml +
+        actionsHtml +
+      '</div>';
+    }).join("");
+
+    $("#payAdminList").innerHTML = html;
+  }
+
+  /* ---------------- Actions: view / verify / reject / needs-review / details ---------------- */
+  $("#payAdminList").addEventListener("click", function(e){
+    var viewBtn = e.target.closest("[data-view]");
+    var verifyBtn = e.target.closest("[data-verify]");
+    var rejectBtn = e.target.closest("[data-reject]");
+    var needsReviewBtn = e.target.closest("[data-needsreview]");
+    var viewAppBtn = e.target.closest("[data-view-app]");
+
+    if (viewAppBtn){
+      openDetailModal(viewAppBtn.getAttribute("data-view-app"));
+    } else if (viewBtn){
+      var path = viewBtn.getAttribute("data-view");
+      if (!path){ showToast("No screenshot on file for this record.", "error"); return; }
+      openScreenshot(path);
+    } else if (verifyBtn){
+      setPaymentStatus(verifyBtn.getAttribute("data-verify"), "VERIFIED", verifyBtn);
+    } else if (rejectBtn){
+      setPaymentStatus(rejectBtn.getAttribute("data-reject"), "REJECTED", rejectBtn);
+    } else if (needsReviewBtn){
+      setPaymentStatus(needsReviewBtn.getAttribute("data-needsreview"), "NEEDS_REVIEW", needsReviewBtn);
+    }
+  });
+
+  /* Applications tab "VIEW DETAILS" buttons live in a different DOM
+     subtree (#appList / #appTableBody), rendered by the first script.
+     Delegate from document so it works regardless of load order. */
+  document.addEventListener("click", function(e){
+    var btn = e.target.closest("[data-view-app]");
+    if (!btn) return;
+    if (btn.closest("#payAdminList")) return; /* already handled above */
+    openDetailModal(btn.getAttribute("data-view-app"));
+  });
+
+  function getNoteFor(paymentId){
+    var input = document.querySelector('[data-note-for="' + paymentId + '"]');
+    return input ? input.value.trim() : "";
+  }
+
+  function setPaymentStatus(paymentId, status, triggerBtn){
+    var card = triggerBtn ? triggerBtn.closest(".pay-admin-card") : null;
+    var buttons = card ? card.querySelectorAll("button") : (triggerBtn ? [triggerBtn] : []);
+    buttons.forEach(function(b){ b.disabled = true; });
+
+    var note = getNoteFor(paymentId);
+
+    core().getValidAccessToken().then(function(token){
+      return fetch(SUPABASE_URL + "/rest/v1/rpc/admin_set_payment_status", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": SUPABASE_ANON_KEY,
+          "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({
+          p_payment_id: paymentId,
+          p_status: status,
+          p_admin_note: note || null,
+          p_verified_by: null /* server can also derive this from the JWT if you want a stricter audit trail */
+        })
+      });
+    }).then(function(res){
+      if (!res.ok){
+        return res.json().catch(function(){ return {}; }).then(function(data){
+          throw new Error((data && data.message) || "Could not update payment.");
+        });
+      }
+      var msgs = { VERIFIED: "Payment verified. Registration confirmed.", REJECTED: "Payment rejected.", NEEDS_REVIEW: "Marked as needs review." };
+      showToast(msgs[status] || "Payment updated.", "ok");
+      closeDetailModal();
+      return loadApplicationsIndex().then(loadPayments).then(function(){
+        renderCompetitionStats();
+        renderSchoolStats();
+        loadAuditLog();
+        if (window.OstreaAdminCore && window.OstreaAdminCore.renderOverview) window.OstreaAdminCore.renderOverview();
+      });
+    }).catch(function(err){
+      buttons.forEach(function(b){ b.disabled = false; });
+      showToast(err.message || "Could not update payment.", "error");
+    });
+  }
+
+  /* ---------------- Application detail modal (Part 5) ---------------- */
+  function paymentRecordFor(appId){
+    var latest = null;
+    allPayments.forEach(function(p){
+      if (p.registration_id === appId){
+        if (!latest || new Date(p.created_at) > new Date(latest.created_at)) latest = p;
+      }
+    });
+    return latest;
+  }
+
+  function openDetailModal(appId){
+    var app = appsById[appId];
+    var p = paymentRecordFor(appId);
+
+    $("#dApplicationId").textContent = appId || "—";
+    $("#dSubmitted").textContent = app && app.submitted_at ? fmtDate(app.submitted_at) : "—";
+    $("#dStudentName").textContent = (app && app.student_name) || "—";
+    $("#dClass").textContent = app ? ((app.student_class || "") + (app.student_section ? " - " + app.student_section : "")) || "—" : "—";
+    $("#dSchool").textContent = (app && app.school_name) || "—";
+    $("#dDistrict").textContent = (app && app.district) || "—";
+    $("#dParentName").textContent = (app && app.parent_name) || "—";
+    $("#dParentMobile").textContent = (app && app.parent_mobile) || "—";
+    $("#dStudentMobile").textContent = (app && app.student_mobile) || "—";
+    $("#dCompetition").textContent = (app && app.competition_name) || "—";
+    $("#dCategory").textContent = (app && app.category) || "—";
+
+    $("#dExpected").textContent = "₹" + (p ? (p.amount || FEE_AMOUNT) : FEE_AMOUNT);
+    $("#dPaid").textContent = p && p.ocr_amount != null ? "₹" + p.ocr_amount : "—";
+    $("#dUtr").textContent = (p && p.ocr_utr) || "—";
+    $("#dPayDate").textContent = (p && p.ocr_date) || "—";
+    $("#dPayTime").textContent = (p && p.ocr_time) || "—";
+    $("#dPayStatus").textContent = p ? p.payment_status.replace("_"," ") : "UNPAID";
+    $("#dAdminNote").textContent = (p && p.admin_note) || "—";
+    $("#dVerifiedBy").textContent = (p && p.verified_by) || "—";
+    $("#dVerifiedAt").textContent = p && p.verified_at ? fmtDate(p.verified_at) : "—";
+
+    var noteWrap = $("#dNoteFieldWrap");
+    var noteInput = $("#dAdminNoteInput");
+    var actions = $("#dActions");
+    actions.innerHTML = "";
+    noteInput.setAttribute("data-note-for", p ? p.id : "");
+
+    if (p && (p.payment_status === "PENDING" || p.payment_status === "UNPAID" || p.payment_status === "NEEDS_REVIEW")){
+      noteWrap.style.display = "block";
+      var verifyBtn = document.createElement("button");
+      verifyBtn.className = "toolbar-btn primary";
+      verifyBtn.type = "button";
+      verifyBtn.textContent = "✅ Verify Payment";
+      verifyBtn.addEventListener("click", function(){ setPaymentStatus(p.id, "VERIFIED", verifyBtn); });
+
+      var rejectBtn = document.createElement("button");
+      rejectBtn.className = "toolbar-btn";
+      rejectBtn.style.color = "var(--error)";
+      rejectBtn.style.borderColor = "var(--error)";
+      rejectBtn.type = "button";
+      rejectBtn.textContent = "❌ Reject Payment";
+      rejectBtn.addEventListener("click", function(){ setPaymentStatus(p.id, "REJECTED", rejectBtn); });
+
+      actions.appendChild(verifyBtn);
+      actions.appendChild(rejectBtn);
+
+      if (p.payment_status !== "NEEDS_REVIEW"){
+        var nrBtn = document.createElement("button");
+        nrBtn.className = "toolbar-btn";
+        nrBtn.type = "button";
+        nrBtn.textContent = "🔎 Add Admin Note / Mark Needs Review";
+        nrBtn.addEventListener("click", function(){ setPaymentStatus(p.id, "NEEDS_REVIEW", nrBtn); });
+        actions.appendChild(nrBtn);
+      }
+    } else {
+      noteWrap.style.display = "none";
+    }
+
+    if (p && p.screenshot_path){
+      var viewBtn = document.createElement("button");
+      viewBtn.className = "toolbar-btn";
+      viewBtn.type = "button";
+      viewBtn.textContent = "VIEW SCREENSHOT";
+      viewBtn.addEventListener("click", function(){ openScreenshot(p.screenshot_path); });
+      actions.appendChild(viewBtn);
+    }
+
+    var printBtn = document.createElement("button");
+    printBtn.className = "toolbar-btn";
+    printBtn.type = "button";
+    printBtn.textContent = "PRINT";
+    printBtn.addEventListener("click", function(){ window.print(); });
+    actions.appendChild(printBtn);
+
+    $("#detailModal").classList.add("show");
+  }
+
+  function closeDetailModal(){
+    $("#detailModal").classList.remove("show");
+  }
+
+  var detailModalCloseEl = $("#detailModalClose");
+  if (detailModalCloseEl) detailModalCloseEl.addEventListener("click", closeDetailModal);
+  var detailModalEl = $("#detailModal");
+  if (detailModalEl) detailModalEl.addEventListener("click", function(e){ if (e.target.id === "detailModal") closeDetailModal(); });
+
+  /* ---------------- Screenshot viewer (private — via signed URL) ---------------- */
+  function openScreenshot(path){
+    var modal = $("#payModal");
+    var img = $("#payModalImg");
+    var loading = $("#payModalLoading");
+    img.style.display = "none";
+    loading.style.display = "block";
+    modal.classList.add("show");
+
+    core().getValidAccessToken().then(function(token){
+      return fetch(SUPABASE_URL + "/storage/v1/object/sign/payment-proofs/" + path, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": SUPABASE_ANON_KEY,
+          "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({ expiresIn: 120 })
+      });
+    }).then(function(res){
+      if (!res.ok) throw new Error("Could not load screenshot.");
+      return res.json();
+    }).then(function(data){
+      var signedUrl = data.signedURL || data.signedUrl;
+      img.src = SUPABASE_URL + "/storage/v1" + signedUrl;
+      img.onload = function(){ loading.style.display = "none"; img.style.display = "block"; };
+    }).catch(function(err){
+      loading.textContent = err.message || "Could not load screenshot.";
+      showToast(err.message || "Could not load screenshot.", "error");
+    });
+  }
+
+  $("#payModalClose").addEventListener("click", function(){ $("#payModal").classList.remove("show"); });
+  $("#payModal").addEventListener("click", function(e){
+    if (e.target.id === "payModal") $("#payModal").classList.remove("show");
+  });
+
+  /* ---------------- Expose module + auto-load (added) ---------------- */
+  window.OstreaPaymentsModule = {
+    loadAll: function(){
+      loadSettings();
+      loadApplicationsIndex().then(loadPayments).then(function(){
+        loadAuditLog();
+      });
+      paymentsLoadedOnce = true;
+    },
+    getStatus: function(appId){
+      var p = paymentRecordFor(appId);
+      return p ? p.payment_status : "UNPAID";
+    },
+    getPayments: function(){ return allPayments; },
+    getPaymentRecord: function(appId){ return paymentRecordFor(appId) || {}; }
+  };
+
+  if (window.OstreaDashboardVisible){
+    window.OstreaPaymentsModule.loadAll();
+  }
+
+})();
+</script>
+
+</body>
+</html>
