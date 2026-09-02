@@ -1,0 +1,3519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>OSTREA AWARDS 2026 — Student Application</title>
+<meta name="description" content="Student application for OSTREA AWARDS 2026 — Inter-School Competition & Children's Day Celebration 2026">
+<meta name="theme-color" content="#0B1F3A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --navy:#0B1F3A;
+    --navy-deep:#081527;
+    --royal:#1E4FBF;
+    --teal:#0E8C8C;
+    --gold:#D8A83C;
+    --gold-light:#F0CE7D;
+    --coral:#E8603C;
+    --ivory:#FBF8F1;
+    --ivory-dim:#F1ECDF;
+    --ink:#152238;
+    --ink-soft:#4B5A72;
+    --line:#E4DFD1;
+    --white:#FFFFFF;
+    --error:#C23A2E;
+    --ok:#1E8A5F;
+
+    --radius-lg:22px;
+    --radius-md:16px;
+    --radius-sm:10px;
+    --shadow:0 10px 30px -12px rgba(11,31,58,0.25);
+    --shadow-sm:0 4px 14px -6px rgba(11,31,58,0.18);
+
+    --font-display:'Fraunces', Georgia, serif;
+    --font-body:'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    --header-h:64px;
+    --safe-b:env(safe-area-inset-bottom, 0px);
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    background:var(--ivory);
+    color:var(--ink);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    min-height:100vh;
+  }
+  h1,h2,h3{font-family:var(--font-display);color:var(--navy);margin:0;}
+  p{margin:0;}
+  button{font-family:inherit;}
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;}
+
+  :focus-visible{
+    outline:3px solid var(--gold);
+    outline-offset:2px;
+    border-radius:6px;
+  }
+
+  .visually-hidden{
+    position:absolute!important;
+    width:1px;height:1px;
+    padding:0;margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;border:0;
+  }
+
+  .container{
+    max-width:640px;
+    margin:0 auto;
+    padding:0 20px;
+  }
+
+  /* ============ APP CHROME ============ */
+  #app{min-height:100vh;display:flex;flex-direction:column;}
+
+  .topbar{
+    position:relative;z-index:5;
+    border-radius:var(--radius-lg) var(--radius-lg) 0 0;
+    background:var(--navy);
+    color:var(--ivory);
+    padding:14px 20px;
+    display:flex;align-items:center;justify-content:space-between;
+    box-shadow:0 2px 12px rgba(0,0,0,0.15);
+  }
+  .topbar .brand{
+    display:flex;align-items:center;gap:10px;
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:1.05rem;
+    letter-spacing:0.02em;
+  }
+  .topbar .brand .badge{
+    width:34px;height:34px;
+    border-radius:50%;
+    background:radial-gradient(circle at 32% 28%, var(--gold-light), var(--gold) 60%, #B4842A 100%);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--navy-deep);
+    font-weight:800;font-size:0.9rem;
+    flex-shrink:0;
+  }
+  .topbar .year-pill{
+    font-size:0.72rem;
+    background:rgba(216,168,60,0.18);
+    border:1px solid rgba(216,168,60,0.4);
+    color:var(--gold-light);
+    padding:4px 10px;
+    border-radius:999px;
+    font-weight:600;
+    letter-spacing:0.03em;
+  }
+
+  main{flex:1;width:100%;}
+
+  .screen{
+    display:none;
+    animation:fadeSlide .38s ease both;
+  }
+  .screen.active{display:block;}
+  @keyframes fadeSlide{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .screen{animation:none;}
+    *{scroll-behavior:auto!important;}
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(1100px 500px at 15% -10%, rgba(216,168,60,0.16), transparent 60%),
+      radial-gradient(900px 500px at 110% 10%, rgba(14,140,140,0.28), transparent 55%),
+      linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color:var(--ivory);
+    padding:52px 20px 64px;
+    overflow:hidden;
+  }
+  .hero-deco{
+    position:absolute;inset:0;
+    pointer-events:none;
+    opacity:0.55;
+  }
+  .hero-deco svg{width:100%;height:100%;}
+
+  .hero-inner{position:relative;max-width:640px;margin:0 auto;text-align:center;}
+
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:0.78rem;
+    color:var(--gold-light);
+    font-weight:600;
+    letter-spacing:0.04em;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(216,168,60,0.35);
+    padding:6px 14px;
+    border-radius:999px;
+    margin-bottom:22px;
+  }
+
+  .hero-title{
+    font-size:clamp(2.6rem, 11vw, 3.6rem);
+    font-weight:700;
+    line-height:1.02;
+    color:var(--ivory);
+    letter-spacing:-0.01em;
+  }
+  .hero-title .accent{
+    display:block;
+    background:linear-gradient(100deg, var(--gold-light), var(--gold) 55%, var(--coral));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  .hero-sub{
+    margin-top:14px;
+    font-size:1.02rem;
+    color:rgba(251,248,241,0.82);
+    font-weight:500;
+    max-width:440px;
+    margin-left:auto;margin-right:auto;
+  }
+
+  .hero-tagline{
+    margin-top:26px;
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:1.28rem;
+    color:var(--gold-light);
+  }
+
+  .hero-gold-rule{
+    width:64px;height:3px;
+    margin:24px auto;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    border-radius:2px;
+  }
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    min-height:52px;
+    padding:14px 26px;
+    border-radius:14px;
+    font-weight:700;
+    font-size:1rem;
+    border:none;
+    cursor:pointer;
+    text-decoration:none;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .btn:active{transform:scale(0.97);}
+  .btn-primary{
+    background:linear-gradient(135deg, var(--coral), #D14E30);
+    color:var(--ivory);
+    box-shadow:0 12px 24px -8px rgba(232,96,60,0.55);
+    width:100%;
+  }
+  .btn-primary:hover{box-shadow:0 14px 28px -8px rgba(232,96,60,0.65);}
+  .btn-gold{
+    background:linear-gradient(135deg, var(--gold-light), var(--gold));
+    color:var(--navy-deep);
+    box-shadow:0 10px 22px -8px rgba(216,168,60,0.55);
+  }
+  .btn-outline{
+    background:transparent;
+    color:var(--navy);
+    border:1.6px solid var(--line);
+  }
+  .btn-outline:hover{border-color:var(--navy);}
+  .btn-ghost{
+    background:rgba(255,255,255,0.08);
+    color:var(--ivory);
+    border:1px solid rgba(255,255,255,0.25);
+  }
+  .btn-block{width:100%;}
+  .btn[disabled]{opacity:0.5;cursor:not-allowed;transform:none!important;}
+
+  .hero-note{
+    margin-top:22px;
+    font-size:0.88rem;
+    color:rgba(251,248,241,0.68);
+    font-weight:500;
+  }
+  .hero-note strong{color:var(--gold-light);font-weight:700;}
+
+  /* ============ SECTIONS / CARDS ============ */
+  .section-pad{padding:28px 0 40px;}
+  .card{
+    background:var(--white);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-sm);
+    border:1px solid var(--line);
+    padding:22px 20px;
+    margin-bottom:18px;
+  }
+  .card-title{
+    font-size:1.15rem;
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .card-title-row{
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:16px;
+  }
+  .title-icon{
+    width:38px;height:38px;flex-shrink:0;
+    border-radius:11px;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg, var(--teal), #0A6E6E);
+    color:var(--ivory);
+  }
+  .title-icon svg{width:19px;height:19px;}
+
+  /* ============ PROGRESS ============ */
+  .progress-wrap{
+    background:var(--ivory);
+    padding:16px 20px 6px;
+    position:relative;
+    z-index:5;
+    border-bottom:1px solid var(--line);
+  }
+  .progress-track{
+    display:flex;align-items:center;
+    max-width:640px;margin:0 auto;
+  }
+  .p-step{
+    display:flex;flex-direction:column;align-items:center;
+    flex:1;position:relative;
+    font-size:0.72rem;
+    color:var(--ink-soft);
+    font-weight:600;
+  }
+  .p-dot{
+    width:30px;height:30px;
+    border-radius:50%;
+    background:var(--white);
+    border:2px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:0.82rem;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+    transition:all .25s ease;
+    z-index:2;
+  }
+  .p-step.done .p-dot{
+    background:var(--teal);
+    border-color:var(--teal);
+    color:var(--white);
+  }
+  .p-step.current .p-dot{
+    background:var(--gold);
+    border-color:var(--gold);
+    color:var(--navy-deep);
+    box-shadow:0 0 0 5px rgba(216,168,60,0.22);
+  }
+  .p-step.done .p-label,.p-step.current .p-label{color:var(--navy);}
+  .p-line{
+    position:absolute;
+    top:15px;left:calc(-50% + 15px);right:calc(50% + 15px);
+    height:2px;background:var(--line);
+    z-index:1;
+  }
+  .p-step:first-child .p-line{display:none;}
+  .p-step.done .p-line{background:var(--teal);}
+
+  /* ============ FORM ============ */
+  .field{margin-bottom:16px;}
+  .field label{
+    display:block;
+    font-size:0.86rem;
+    font-weight:700;
+    color:var(--navy);
+    margin-bottom:6px;
+  }
+  .field label .req{color:var(--coral);margin-left:2px;}
+  .field label .opt{
+    font-weight:500;color:var(--ink-soft);
+    font-size:0.78rem;margin-left:4px;
+  }
+  .input,select.input{
+    width:100%;
+    min-height:50px;
+    padding:12px 14px;
+    border-radius:var(--radius-sm);
+    border:1.6px solid var(--line);
+    background:var(--ivory);
+    font-size:1rem;
+    font-family:inherit;
+    color:var(--ink);
+    transition:border-color .15s ease, box-shadow .15s ease;
+    appearance:none;
+    -webkit-appearance:none;
+  }
+  select.input{
+    background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234B5A72' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e");
+    background-repeat:no-repeat;
+    background-position:right 14px center;
+    background-size:18px;
+    padding-right:42px;
+  }
+  .input:focus{
+    outline:none;
+    border-color:var(--teal);
+    box-shadow:0 0 0 4px rgba(14,140,140,0.14);
+  }
+  .input.error{border-color:var(--error); background:#FCF3F2;}
+  .error-msg{
+    display:none;
+    color:var(--error);
+    font-size:0.8rem;
+    font-weight:600;
+    margin-top:6px;
+    align-items:center;gap:5px;
+  }
+  .error-msg.show{display:flex;}
+  .field-hint{
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    margin-top:5px;
+  }
+
+  .step-actions{
+    display:flex;gap:12px;
+    margin-top:6px;
+  }
+  .step-actions .btn{flex:1;}
+
+  /* ============ COMPETITION CARDS ============ */
+  .comp-list{display:flex;flex-direction:column;gap:14px;}
+  .comp-card{
+    border:1.8px solid var(--line);
+    border-radius:var(--radius-md);
+    padding:18px 16px;
+    background:var(--white);
+    cursor:pointer;
+    position:relative;
+    transition:border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+  }
+  .comp-card:active{transform:scale(0.99);}
+  .comp-card.selected{
+    border-color:var(--gold);
+    box-shadow:0 0 0 4px rgba(216,168,60,0.15);
+  }
+  .comp-card.disabled{
+    opacity:0.55;
+    cursor:not-allowed;
+    background:var(--ivory-dim);
+  }
+  .comp-card.disabled .comp-radio{display:none;}
+  .comp-card-top{
+    display:flex;align-items:flex-start;justify-content:space-between;
+    gap:10px;
+  }
+  .comp-num{
+    font-size:0.72rem;
+    font-weight:700;
+    color:var(--teal);
+    letter-spacing:0.04em;
+    margin-bottom:4px;
+  }
+  .comp-name{
+    font-family:var(--font-display);
+    font-size:1.15rem;
+    font-weight:600;
+    color:var(--navy);
+    line-height:1.25;
+  }
+  .comp-radio{
+    width:24px;height:24px;flex-shrink:0;
+    border-radius:50%;
+    border:2px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    margin-top:2px;
+    transition:all .15s ease;
+  }
+  .comp-card.selected .comp-radio{
+    border-color:var(--gold);
+    background:var(--gold);
+  }
+  .comp-radio svg{width:13px;height:13px;opacity:0;transition:opacity .15s ease;color:var(--navy-deep);}
+  .comp-card.selected .comp-radio svg{opacity:1;}
+
+  .comp-meta{
+    display:flex;flex-wrap:wrap;gap:8px;
+    margin-top:12px;
+  }
+  .pill{
+    font-size:0.76rem;
+    font-weight:600;
+    padding:5px 10px;
+    border-radius:999px;
+    background:var(--ivory-dim);
+    color:var(--ink-soft);
+    border:1px solid var(--line);
+  }
+  .pill.class-pill{color:var(--royal); border-color:rgba(30,79,191,0.25); background:rgba(30,79,191,0.06);}
+  .pill.pill-not-eligible{color:var(--error); border-color:rgba(194,58,46,0.25); background:rgba(194,58,46,0.06);}
+
+  .comp-theme{
+    margin-top:12px;
+    font-size:0.92rem;
+    color:var(--ink);
+    background:var(--ivory-dim);
+    border-left:3px solid var(--gold);
+    padding:10px 12px;
+    border-radius:0 8px 8px 0;
+  }
+  .comp-theme strong{color:var(--navy);}
+
+  .comp-extra{
+    margin-top:10px;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+  }
+
+  .category-wrap{
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px dashed var(--line);
+  }
+  .category-wrap .field label{margin-bottom:8px;}
+  .cat-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  .cat-option{
+    border:1.6px solid var(--line);
+    border-radius:var(--radius-sm);
+    padding:12px 10px;
+    text-align:center;
+    font-size:0.84rem;
+    font-weight:600;
+    color:var(--ink);
+    cursor:pointer;
+    background:var(--ivory);
+    transition:all .15s ease;
+    min-height:44px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .cat-option.selected{
+    border-color:var(--teal);
+    background:rgba(14,140,140,0.08);
+    color:var(--teal);
+  }
+
+  .eligibility-msg{
+    margin-top:14px;
+    padding:12px 14px;
+    border-radius:var(--radius-sm);
+    font-size:0.88rem;
+    font-weight:600;
+    display:none;
+    align-items:flex-start;gap:8px;
+  }
+  .eligibility-msg.show{display:flex;}
+  .eligibility-msg.warn{
+    background:#FCF3F2;
+    color:var(--error);
+    border:1px solid rgba(194,58,46,0.25);
+  }
+  .eligibility-msg.ok{
+    background:#EEF8F2;
+    color:var(--ok);
+    border:1px solid rgba(30,138,95,0.25);
+  }
+
+  /* ============ INFO CARDS ============ */
+  .info-card{
+    border-radius:var(--radius-lg);
+    padding:20px;
+    margin-bottom:18px;
+    position:relative;
+    overflow:hidden;
+  }
+  .info-card.reg{
+    background:linear-gradient(150deg, #EFF4FF, #F7F9FF);
+    border:1px solid rgba(30,79,191,0.18);
+  }
+  .info-card.reg .info-row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:10px 0;
+    border-bottom:1px dashed rgba(30,79,191,0.2);
+    font-size:0.92rem;
+  }
+  .info-card.reg .info-row:last-child{border-bottom:none;}
+  .info-card.reg .info-row .val{font-weight:700;color:var(--royal);}
+
+  .recog-card{
+    background:linear-gradient(150deg, var(--navy), var(--navy-deep));
+    color:var(--ivory);
+    border-radius:var(--radius-lg);
+    padding:26px 20px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    margin-bottom:18px;
+  }
+  .recog-card::before{
+    content:"";
+    position:absolute;inset:0;
+    background:radial-gradient(500px 250px at 50% -20%, rgba(216,168,60,0.25), transparent 60%);
+  }
+  .recog-medal{
+    width:64px;height:64px;
+    margin:0 auto 14px;
+    position:relative;
+  }
+  .recog-title{
+    font-family:var(--font-display);
+    font-size:1.2rem;
+    font-weight:600;
+    color:var(--gold-light);
+    position:relative;
+  }
+  .recog-text{
+    margin-top:8px;
+    font-size:0.92rem;
+    color:rgba(251,248,241,0.85);
+    position:relative;
+  }
+
+  /* ============ SUMMARY ============ */
+  .summary-list{display:flex;flex-direction:column;}
+  .summary-row{
+    display:flex;justify-content:space-between;gap:14px;
+    padding:12px 0;
+    border-bottom:1px solid var(--ivory-dim);
+  }
+  .summary-row:last-child{border-bottom:none;}
+  .summary-row .k{font-size:0.84rem;color:var(--ink-soft);font-weight:600;}
+  .summary-row .v{font-size:0.92rem;color:var(--navy);font-weight:700;text-align:right;}
+
+  /* ============ CONFIRMATION ============ */
+  .confirm-wrap{
+    text-align:center;
+    padding:20px 0 10px;
+  }
+  .confirm-badge{
+    width:88px;height:88px;
+    margin:0 auto 22px;
+    border-radius:50%;
+    background:linear-gradient(150deg, var(--teal), #0A6E6E);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 16px 30px -10px rgba(14,140,140,0.5);
+    animation:pop .5s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  @keyframes pop{
+    0%{transform:scale(0.4); opacity:0;}
+    100%{transform:scale(1); opacity:1;}
+  }
+  .confirm-badge svg{width:42px;height:42px;color:var(--white);}
+  @media (prefers-reduced-motion: reduce){.confirm-badge{animation:none;}}
+
+  .app-id-card{
+    background:linear-gradient(135deg, var(--navy), var(--navy-deep));
+    color:var(--ivory);
+    border-radius:var(--radius-md);
+    padding:18px;
+    margin:22px 0;
+    text-align:center;
+  }
+  .app-id-label{font-size:0.76rem; color:rgba(251,248,241,0.7); font-weight:600; letter-spacing:0.03em;}
+  .app-id-value{
+    font-family:var(--font-display);
+    font-size:1.5rem;
+    font-weight:700;
+    color:var(--gold-light);
+    margin-top:6px;
+    letter-spacing:0.02em;
+    word-break:break-all;
+  }
+
+  .confirm-actions{
+    display:flex;flex-direction:column;gap:12px;
+    margin-top:24px;
+  }
+
+  /* ============ STICKY BOTTOM (mobile) ============ */
+  .sticky-bar{
+    position:sticky;
+    bottom:0;
+    background:linear-gradient(180deg, rgba(251,248,241,0), var(--ivory) 22%);
+    padding:14px 20px calc(16px + var(--safe-b));
+    z-index:20;
+  }
+  .sticky-bar-inner{
+    max-width:640px;margin:0 auto;
+    display:flex;gap:12px;
+  }
+  .sticky-bar-inner .btn{flex:1;}
+
+  /* ============ TOAST ============ */
+  .toast{
+    position:fixed;
+    left:50%;bottom:24px;
+    transform:translateX(-50%) translateY(20px);
+    background:var(--navy-deep);
+    color:var(--ivory);
+    padding:13px 20px;
+    border-radius:12px;
+    font-size:0.88rem;
+    font-weight:600;
+    box-shadow:0 12px 30px -8px rgba(0,0,0,0.4);
+    z-index:100;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;
+    display:flex;align-items:center;gap:10px;
+    max-width:88vw;
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+  .toast.error{background:var(--error);}
+  .toast.ok{background:var(--ok);}
+
+  /* ============ FOOTER NOTE ============ */
+  .privacy-note{
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    text-align:center;
+    padding:18px 20px 34px;
+    line-height:1.6;
+  }
+
+  .disclaimer-strip{
+    background:var(--ivory-dim);
+    border:1px dashed var(--line);
+    border-radius:var(--radius-sm);
+    padding:12px 14px;
+    font-size:0.8rem;
+    color:var(--ink-soft);
+    display:flex;gap:9px;
+    margin-top:4px;
+  }
+  .disclaimer-strip svg{width:16px;height:16px;flex-shrink:0;margin-top:2px;color:var(--gold);}
+
+  /* ============ PRINT ============ */
+  .print-only{display:none;}
+
+  @media print{
+    .topbar,.progress-wrap,.sticky-bar,.step-actions,.confirm-actions,
+    .hero,.no-print,.toast{display:none!important;}
+    .screen{display:none!important;}
+    #screen-print{display:block!important;}
+    body{background:#fff;color:#000;}
+    .print-only{display:block;}
+    .container{max-width:100%;padding:0;}
+    .print-sheet{padding:0 8mm;}
+  }
+
+  @media (min-width:560px){
+    .cat-grid{grid-template-columns:1fr 1fr 1fr;}
+  }
+
+  /* ============================================================
+     SITE NAV (marketing wrapper)
+  ============================================================ */
+  .site-nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--navy);
+    border-bottom:1px solid rgba(216,168,60,0.25);
+  }
+  .site-nav-inner{
+    max-width:1080px;margin:0 auto;
+    padding:14px 20px;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px;
+  }
+  .site-logo{
+    display:flex;align-items:center;gap:10px;
+    color:var(--ivory);
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:1.02rem;
+    text-decoration:none;
+    flex-shrink:0;
+  }
+  .site-logo .badge{
+    width:32px;height:32px;border-radius:50%;
+    background:radial-gradient(circle at 32% 28%, var(--gold-light), var(--gold) 60%, #B4842A 100%);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--navy-deep);font-weight:800;font-size:0.84rem;flex-shrink:0;
+  }
+  .nav-links{
+    display:none;
+    align-items:center;gap:26px;
+  }
+  .nav-links a{
+    color:rgba(251,248,241,0.82);
+    text-decoration:none;
+    font-size:0.92rem;
+    font-weight:600;
+  }
+  .nav-links a:hover{color:var(--gold-light);}
+  .nav-apply-btn{
+    display:none;
+    background:linear-gradient(135deg, var(--coral), #D14E30);
+    color:var(--ivory);
+    padding:10px 18px;
+    border-radius:11px;
+    font-weight:700;
+    font-size:0.88rem;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .nav-toggle{
+    background:none;border:none;color:var(--ivory);
+    width:44px;height:44px;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+  }
+  .nav-toggle svg{width:24px;height:24px;}
+  .nav-drawer{
+    display:none;
+    background:var(--navy-deep);
+    border-top:1px solid rgba(216,168,60,0.2);
+    padding:8px 20px 18px;
+  }
+  .nav-drawer.open{display:block;}
+  .nav-drawer a{
+    display:block;
+    color:rgba(251,248,241,0.85);
+    text-decoration:none;
+    font-weight:600;
+    font-size:0.98rem;
+    padding:13px 4px;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .nav-drawer .nav-drawer-apply{
+    display:block;text-align:center;
+    margin-top:12px;
+    background:linear-gradient(135deg, var(--coral), #D14E30);
+    color:var(--ivory);
+    padding:13px;border-radius:11px;
+    font-weight:700;
+    border-bottom:none;
+  }
+  @media (min-width:820px){
+    .nav-links{display:flex;}
+    .nav-apply-btn{display:inline-flex;align-items:center;}
+    .nav-toggle{display:none;}
+  }
+
+  /* ============================================================
+     MARKETING SECTIONS
+  ============================================================ */
+  .msection{padding:56px 20px;}
+  .msection-inner{max-width:640px;margin:0 auto;}
+  .msection-alt{background:var(--ivory-dim);}
+  .msection-dark{
+    background:linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color:var(--ivory);
+  }
+  .msection-head{margin-bottom:30px;}
+  .msection-title{
+    font-family:var(--font-display);
+    font-size:clamp(1.7rem, 6vw, 2.2rem);
+    font-weight:600;
+    color:var(--navy);
+    line-height:1.15;
+  }
+  .msection-dark .msection-title{color:var(--ivory);}
+  .msection-lede{
+    margin-top:12px;
+    font-size:1rem;
+    color:var(--ink-soft);
+    line-height:1.65;
+    max-width:52ch;
+  }
+  .msection-dark .msection-lede{color:rgba(251,248,241,0.78);}
+
+  /* home hero (site-wide) */
+  .site-hero{
+    position:relative;
+    background:
+      radial-gradient(1100px 500px at 15% -10%, rgba(216,168,60,0.16), transparent 60%),
+      radial-gradient(900px 500px at 110% 10%, rgba(14,140,140,0.28), transparent 55%),
+      linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color:var(--ivory);
+    padding:56px 20px 48px;
+    overflow:hidden;
+    text-align:center;
+  }
+  .site-hero-inner{position:relative;max-width:640px;margin:0 auto;}
+  .site-hero .hero-title{margin-bottom:6px;}
+  .site-hero-actions{
+    display:flex;flex-direction:column;gap:12px;
+    margin-top:30px;max-width:340px;margin-left:auto;margin-right:auto;
+  }
+  .hero-stats{
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;
+    margin-top:36px;
+  }
+  .hero-stat{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(216,168,60,0.25);
+    border-radius:var(--radius-md);
+    padding:14px 10px;
+  }
+  .hero-stat-val{font-family:var(--font-display);font-weight:700;font-size:1.15rem;color:var(--gold-light);}
+  .hero-stat-lbl{font-size:0.76rem;color:rgba(251,248,241,0.7);margin-top:3px;}
+
+  /* about */
+  .about-points{
+    display:flex;flex-wrap:wrap;gap:10px;
+    margin-top:22px;
+  }
+  .about-point{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:9px 16px;
+    font-size:0.88rem;
+    font-weight:600;
+    color:var(--navy);
+  }
+
+  /* theme */
+  .theme-card{
+    background:linear-gradient(150deg, var(--navy), var(--navy-deep));
+    border-radius:var(--radius-lg);
+    padding:36px 26px;
+    text-align:center;
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
+  }
+  .theme-card::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(500px 260px at 50% 0%, rgba(216,168,60,0.22), transparent 60%);
+  }
+  .theme-quote{
+    position:relative;
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:clamp(1.5rem, 6vw, 2rem);
+    color:var(--gold-light);
+    line-height:1.25;
+  }
+  .theme-body{
+    position:relative;margin-top:16px;
+    color:rgba(251,248,241,0.82);
+    font-size:0.95rem;line-height:1.65;
+  }
+
+  /* dates timeline */
+  .dates-timeline{position:relative;padding-left:28px;}
+  .dates-timeline::before{
+    content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;
+    background:linear-gradient(var(--gold), var(--teal));
+  }
+  .date-node{position:relative;padding-bottom:30px;}
+  .date-node:last-child{padding-bottom:0;}
+  .date-node::before{
+    content:"";position:absolute;left:-28px;top:2px;
+    width:18px;height:18px;border-radius:50%;
+    background:var(--white);border:3px solid var(--gold);
+  }
+  .date-node.date-final::before{border-color:var(--teal);}
+  .date-day{
+    font-family:var(--font-display);font-weight:700;
+    font-size:1.05rem;color:var(--navy);
+  }
+  .date-label{font-size:0.88rem;color:var(--ink-soft);margin-top:2px;font-weight:600;}
+  .date-context{font-size:0.84rem;color:var(--ink-soft);margin-top:8px;line-height:1.55;}
+  .day-schedule{margin-top:14px;display:flex;flex-direction:column;gap:8px;}
+  .day-schedule-row{
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;
+    background:var(--white);border:1px solid var(--line);
+    border-radius:var(--radius-sm);padding:10px 14px;
+    font-size:0.86rem;color:var(--ink);
+  }
+  .schedule-time{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--navy);}
+  .status-pill{
+    font-size:0.68rem;font-weight:700;letter-spacing:0.02em;
+    padding:3px 9px;border-radius:999px;white-space:nowrap;
+  }
+  .status-pill.confirmed{background:rgba(30,138,95,0.12);color:var(--ok);}
+  .status-pill.soon{background:rgba(216,168,60,0.16);color:#9C7418;}
+
+  /* competitions overview */
+  .comp-overview-grid{display:flex;flex-direction:column;gap:12px;margin-top:8px;}
+  .comp-overview-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:var(--radius-md);
+    padding:16px 18px;
+    text-decoration:none;
+    display:block;
+    box-shadow:var(--shadow-sm);
+  }
+  .comp-overview-num{font-size:0.75rem;color:var(--teal);font-weight:700;letter-spacing:0.02em;}
+  .comp-overview-name{font-family:var(--font-display);font-weight:600;font-size:1.12rem;color:var(--navy);margin-top:2px;}
+  .comp-overview-meta{font-size:0.84rem;color:var(--ink-soft);margin-top:6px;}
+
+  .comp-detail-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    padding:24px 20px;
+    margin-bottom:16px;
+    box-shadow:var(--shadow-sm);
+    scroll-margin-top:80px;
+  }
+  .comp-detail-num{font-size:0.78rem;color:var(--teal);font-weight:700;letter-spacing:0.02em;}
+  .comp-detail-name{font-family:var(--font-display);font-weight:600;font-size:1.35rem;color:var(--navy);margin-top:4px;}
+  .comp-detail-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .comp-detail-pill{
+    background:var(--ivory-dim);border:1px solid var(--line);
+    border-radius:999px;padding:6px 13px;font-size:0.8rem;font-weight:600;color:var(--navy);
+  }
+  .comp-detail-theme{
+    margin-top:14px;font-size:0.92rem;color:var(--ink);
+  }
+  .comp-detail-theme strong{color:var(--navy);}
+  .comp-detail-rules{margin-top:12px;padding-left:20px;color:var(--ink-soft);font-size:0.9rem;line-height:1.7;}
+  .comp-detail-rules li{margin-bottom:2px;}
+
+  .artfest-grid{
+    display:grid;grid-template-columns:1fr;gap:10px;margin-top:18px;
+  }
+  .artfest-item{
+    background:var(--ivory-dim);
+    border:1px solid var(--line);
+    border-radius:var(--radius-md);
+    padding:14px 16px;
+    text-align:left;
+  }
+  .artfest-num{font-size:0.72rem;color:var(--teal);font-weight:700;}
+  .artfest-name{font-family:var(--font-display);font-weight:600;font-size:0.98rem;color:var(--navy);margin-top:2px;}
+  .artfest-note{font-size:0.82rem;color:var(--ink-soft);margin-top:4px;line-height:1.5;}
+
+  /* rules */
+  .rules-list{display:flex;flex-direction:column;gap:10px;margin-top:8px;}
+  .rule-item{
+    display:flex;gap:12px;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:var(--radius-md);
+    padding:14px 16px;
+  }
+  .rule-item svg{width:18px;height:18px;color:var(--gold);flex-shrink:0;margin-top:2px;}
+  .rule-item p{font-size:0.9rem;color:var(--ink);line-height:1.55;}
+  .rule-item strong{color:var(--navy);}
+  .rule-note{
+    margin-top:16px;font-size:0.82rem;color:var(--ink-soft);
+    font-style:italic;
+  }
+
+  /* registration + QR */
+  .reg-fee-row{display:flex;gap:12px;margin-top:8px;}
+  .reg-fee-card{
+    flex:1;background:var(--white);border:1px solid var(--line);
+    border-radius:var(--radius-md);padding:18px 14px;text-align:center;
+  }
+  .reg-fee-val{font-family:var(--font-display);font-weight:700;font-size:1.3rem;color:var(--navy);}
+  .reg-fee-lbl{font-size:0.78rem;color:var(--ink-soft);margin-top:4px;}
+
+  .qr-card{
+    margin-top:24px;
+    background:linear-gradient(150deg, var(--navy), var(--navy-deep));
+    border-radius:var(--radius-lg);
+    padding:30px 22px;
+    text-align:center;
+    color:var(--ivory);
+  }
+  .qr-card-title{font-family:var(--font-display);font-weight:600;font-size:1.25rem;color:var(--gold-light);}
+  .qr-card-sub{margin-top:8px;font-size:0.88rem;color:rgba(251,248,241,0.78);line-height:1.55;}
+  .qr-image-box{
+    width:180px;height:180px;margin:20px auto 0;
+    background:var(--ivory);
+    border-radius:var(--radius-md);
+    display:flex;align-items:center;justify-content:center;
+    padding:10px;
+  }
+  .qr-image-box img{width:100%;height:100%;object-fit:contain;}
+  .qr-placeholder-note{
+    margin-top:10px;font-size:0.74rem;color:rgba(251,248,241,0.55);
+  }
+  .qr-or{margin:18px 0 6px;font-size:0.78rem;color:rgba(251,248,241,0.55);letter-spacing:0.03em;}
+
+  /* recognition */
+  .recognition-grid{display:flex;gap:12px;margin-top:22px;}
+  .recognition-item{
+    flex:1;background:var(--white);border:1px solid var(--line);
+    border-radius:var(--radius-md);padding:20px 12px;text-align:center;
+  }
+  .recognition-item svg{width:30px;height:30px;color:var(--gold);margin:0 auto 10px;}
+  .recognition-item span{display:block;font-weight:700;color:var(--navy);font-size:0.92rem;}
+  .prize-block{margin-top:30px;}
+  .prize-tiers{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+  .prize-tier{
+    background:rgba(255,255,255,0.06);border:1px solid rgba(216,168,60,0.25);
+    border-radius:var(--radius-sm);padding:9px 14px;font-size:0.86rem;font-weight:600;color:var(--gold-light);
+  }
+
+  /* faq */
+  .faq-item{
+    border-bottom:1px solid var(--line);
+  }
+  .faq-item summary{
+    padding:16px 4px;
+    font-weight:600;color:var(--navy);
+    cursor:pointer;
+    list-style:none;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;
+    font-size:0.96rem;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{
+    content:"+";
+    font-size:1.3rem;color:var(--gold);flex-shrink:0;
+    transition:transform .2s ease;
+  }
+  .faq-item[open] summary::after{transform:rotate(45deg);}
+  .faq-item p{
+    padding:0 4px 18px;
+    color:var(--ink-soft);font-size:0.9rem;line-height:1.6;
+  }
+
+  /* contact */
+  .coordinator-item{
+    display:flex;align-items:center;justify-content:space-between;
+    background:var(--white);border:1px solid var(--line);
+    border-radius:var(--radius-md);padding:14px 16px;margin-bottom:10px;
+  }
+  .coordinator-name{font-weight:700;color:var(--navy);font-size:0.94rem;}
+  .coordinator-phone{
+    color:var(--teal);text-decoration:none;font-weight:600;font-size:0.9rem;
+    display:flex;align-items:center;gap:6px;
+  }
+  .coordinator-phone svg{width:16px;height:16px;}
+  .address-card{
+    margin-top:18px;background:var(--white);border:1px solid var(--line);
+    border-radius:var(--radius-md);padding:16px 18px;font-size:0.9rem;color:var(--ink);line-height:1.6;
+  }
+  .address-card strong{display:block;color:var(--navy);margin-bottom:4px;}
+
+  /* final CTA */
+  .final-cta{
+    text-align:center;
+  }
+  .affirmation-grid{
+    display:flex;flex-direction:column;gap:12px;
+    margin:26px 0;
+  }
+  .affirmation-item{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(216,168,60,0.25);
+    border-radius:var(--radius-md);
+    padding:14px;
+  }
+  .affirmation-en{color:var(--gold-light);font-weight:700;font-size:0.94rem;}
+  .affirmation-ta{color:rgba(251,248,241,0.75);font-size:0.88rem;margin-top:3px;}
+  .final-cta-btn{max-width:320px;margin:0 auto;}
+
+  /* footer */
+  .site-footer{
+    background:var(--navy-deep);
+    color:rgba(251,248,241,0.6);
+    text-align:center;
+    padding:32px 20px 40px;
+    font-size:0.82rem;
+    line-height:1.7;
+  }
+  .site-footer .site-logo{justify-content:center;margin-bottom:14px;color:var(--ivory);}
+
+  /* apply section wrapper */
+  .apply-section-head{
+    max-width:640px;margin:0 auto;padding:44px 20px 0;text-align:center;
+  }
+
+  @media (min-width:640px){
+    .hero-stats{grid-template-columns:repeat(4,1fr);}
+    .comp-overview-grid{display:grid;grid-template-columns:1fr 1fr;}
+    .artfest-grid{grid-template-columns:1fr 1fr;}
+  }
+
+  /* ==========================================================
+     PAYMENT MODULE (added — does not alter any styles above)
+  ========================================================== */
+  .pay-card{
+    background:var(--white);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-sm);
+    border:1px solid var(--line);
+    padding:22px 20px;
+    margin-top:22px;
+    text-align:left;
+  }
+  .pay-card-title{
+    font-family:var(--font-display);
+    font-size:1.15rem;font-weight:600;color:var(--navy);
+    margin-bottom:4px;
+  }
+  .pay-card-sub{font-size:0.86rem;color:var(--ink-soft);margin-bottom:16px;}
+  .pay-amount-row{
+    display:flex;justify-content:space-between;align-items:center;
+    background:var(--ivory-dim);
+    border-radius:var(--radius-sm);
+    padding:12px 14px;
+    margin-bottom:16px;
+  }
+  .pay-amount-row .k{font-size:0.86rem;color:var(--ink-soft);font-weight:600;}
+  .pay-amount-row .v{font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--navy);}
+  .pay-qr-wrap{
+    display:flex;flex-direction:column;align-items:center;
+    padding:18px 14px;background:var(--ivory);
+    border:1.6px dashed var(--line);border-radius:var(--radius-md);
+    margin-bottom:16px;
+  }
+  #payQrCode{
+    background:var(--white);padding:10px;border-radius:12px;
+    box-shadow:var(--shadow-sm);
+  }
+  #payQrCode img{image-rendering:pixelated;}
+  .pay-upi-id{
+    margin-top:12px;font-weight:700;color:var(--royal);font-size:0.94rem;
+    text-align:center;word-break:break-all;
+  }
+  .pay-instructions{font-size:0.82rem;color:var(--ink-soft);text-align:center;margin-top:6px;}
+  .pay-upload-wrap{margin-bottom:14px;}
+  .pay-upload-label{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    min-height:52px;border-radius:14px;
+    border:1.8px dashed var(--teal);
+    background:rgba(14,140,140,0.06);
+    color:var(--teal);font-weight:700;font-size:0.94rem;
+    cursor:pointer;text-align:center;padding:12px;
+  }
+  .pay-upload-label input{display:none;}
+  .pay-preview{margin-top:12px;text-align:center;}
+  .pay-preview img{
+    max-width:220px;max-height:220px;border-radius:12px;
+    border:1px solid var(--line);margin:0 auto;box-shadow:var(--shadow-sm);
+  }
+  .pay-status-badge{
+    display:flex;align-items:center;gap:10px;
+    padding:12px 14px;border-radius:var(--radius-sm);
+    font-weight:700;font-size:0.9rem;margin-bottom:14px;
+  }
+  .pay-status-badge.unpaid{background:#FCF3F2;color:var(--error);border:1px solid rgba(194,58,46,0.25);}
+  .pay-status-badge.pending{background:#FFF6E6;color:#8A6417;border:1px solid rgba(216,168,60,0.4);}
+  .pay-status-badge.verified{background:#EEF8F2;color:var(--ok);border:1px solid rgba(30,138,95,0.25);}
+  .pay-status-badge.rejected{background:#FCF3F2;color:var(--error);border:1px solid rgba(194,58,46,0.25);}
+  .pay-ocr-box{
+    background:var(--ivory-dim);border-radius:var(--radius-sm);
+    padding:12px 14px;font-size:0.82rem;color:var(--ink-soft);margin-bottom:14px;
+    display:none;
+  }
+  .pay-ocr-box.show{display:block;}
+  .pay-ocr-box .row{display:flex;justify-content:space-between;padding:3px 0;}
+  .pay-note{
+    font-size:0.82rem;color:var(--ink-soft);margin-top:10px;text-align:center;
+  }
+  .pay-spinner{
+    display:inline-block;width:16px;height:16px;
+    border:2px solid rgba(255,255,255,0.4);border-top-color:currentColor;
+    border-radius:50%;animation:paySpin 0.7s linear infinite;
+  }
+  @keyframes paySpin{to{transform:rotate(360deg);}}
+
+  /* ============ CHECK STATUS MODAL (added) ============ */
+  .status-modal{
+    display:none;position:fixed;inset:0;z-index:300;
+    background:rgba(8,21,39,0.72);
+    align-items:flex-end;justify-content:center;
+    padding:0;
+  }
+  .status-modal.show{display:flex;}
+  .status-modal-card{
+    background:var(--white);width:100%;max-width:480px;
+    border-radius:22px 22px 0 0;
+    padding:24px 20px calc(24px + var(--safe-b));
+    max-height:88vh;overflow-y:auto;
+    animation:statusSlideUp .28s ease both;
+  }
+  @keyframes statusSlideUp{from{transform:translateY(24px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+  @media (min-width:640px){
+    .status-modal{align-items:center;}
+    .status-modal-card{border-radius:var(--radius-lg);max-height:80vh;}
+  }
+  .status-modal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+  .status-modal-title{font-family:var(--font-display);font-size:1.15rem;font-weight:600;color:var(--navy);}
+  .status-modal-close{
+    background:var(--ivory-dim);border:none;width:34px;height:34px;border-radius:50%;
+    font-size:1.3rem;line-height:1;cursor:pointer;color:var(--navy);flex-shrink:0;
+  }
+  .status-check-result{margin-top:16px;}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     SITE NAVIGATION
+============================================================ -->
+<header class="site-nav no-print">
+  <div class="site-nav-inner">
+    <a href="#home" class="site-logo">
+      <span class="badge" aria-hidden="true">OA</span>
+      <span>OSTREA AWARDS</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#competitions">Competitions</a>
+      <a href="#rules">Rules</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#apply" class="nav-apply-btn">Apply Online</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="nav-drawer" id="navDrawer">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#competitions">Competitions</a>
+    <a href="#rules">Rules</a>
+    <a href="#registration">Registration</a>
+    <a href="#contact">Contact</a>
+    <a href="#apply" class="nav-drawer-apply">Apply Online</a>
+  </div>
+</header>
+
+<main class="site-main">
+
+  <!-- ============================================================
+       HOME / HERO
+  ============================================================ -->
+  <section class="site-hero" id="home">
+    <div class="hero-deco" aria-hidden="true">
+      <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
+        <circle cx="360" cy="40" r="110" fill="none" stroke="#D8A83C" stroke-width="1" opacity="0.25"/>
+        <circle cx="20" cy="360" r="140" fill="none" stroke="#0E8C8C" stroke-width="1" opacity="0.3"/>
+      </svg>
+    </div>
+    <div class="site-hero-inner">
+      <span class="hero-eyebrow">Inter-School Competition &amp; Children's Day Celebration 2026</span>
+      <h1 class="hero-title">OSTREA<span class="accent">AWARDS 2026</span></h1>
+      <p class="hero-tagline">"The World I Dream Of"</p>
+      <div class="hero-gold-rule"></div>
+      <p class="hero-sub">Your talent. Your voice. Your moment.</p>
+      <div class="site-hero-actions">
+        <button class="btn btn-primary" onclick="ostreaScrollToApply()">Start Application</button>
+        <a href="#competitions" class="btn btn-ghost">Explore Competitions</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-val">LKG–12</div><div class="hero-stat-lbl">Eligible classes</div></div>
+        <div class="hero-stat"><div class="hero-stat-val">₹75</div><div class="hero-stat-lbl">Per competition</div></div>
+        <div class="hero-stat"><div class="hero-stat-val">12 Sep</div><div class="hero-stat-lbl">Registration closes</div></div>
+        <div class="hero-stat"><div class="hero-stat-val">16 Oct</div><div class="hero-stat-lbl">Final competition</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT
+  ============================================================ -->
+  <section class="msection" id="about">
+    <div class="msection-inner">
+      <div class="msection-head">
+        <h2 class="msection-title">A stage for every young dreamer</h2>
+        <p class="msection-lede">OSTREA Awards 2026 gives students from LKG to Class 12 a platform to express their creativity, confidence, imagination, talent and voice — all under one theme, "The World I Dream Of." Students from all District Matriculation Schools are welcome to take part.</p>
+      </div>
+      <div class="about-points">
+        <span class="about-point">Creativity</span>
+        <span class="about-point">Confidence</span>
+        <span class="about-point">Imagination</span>
+        <span class="about-point">Talent</span>
+        <span class="about-point">Expression</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EVENT THEME
+  ============================================================ -->
+  <section class="msection msection-alt" id="theme">
+    <div class="msection-inner">
+      <div class="theme-card">
+        <p class="theme-quote">"The World I Dream Of"</p>
+        <p class="theme-body">Every painting, speech, dance and drawing this year is a window into the world each student imagines — hopeful, fearless and entirely their own.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       IMPORTANT DATES
+  ============================================================ -->
+  <section class="msection" id="dates">
+    <div class="msection-inner">
+      <div class="msection-head">
+        <h2 class="msection-title">Important dates</h2>
+      </div>
+      <div class="dates-timeline">
+        <div class="date-node">
+          <div class="date-day">12 September 2026</div>
+          <div class="date-label">Registration closes</div>
+        </div>
+        <div class="date-node date-final">
+          <div class="date-day">16 October 2026</div>
+          <div class="date-label">Final competition day</div>
+          <p class="date-context">The school / Children's Day programme takes place first; OSTREA Awards competitions follow after.</p>
+          <div class="day-schedule">
+            <div class="day-schedule-row">
+              <span>Student reporting time</span>
+              <span class="schedule-time">9:00 AM <span class="status-pill confirmed">Confirmed</span></span>
+            </div>
+            <div class="day-schedule-row">
+              <span>Registration / check-in</span>
+              <span class="schedule-time">9:30 AM <span class="status-pill confirmed">Confirmed</span></span>
+            </div>
+            <div class="day-schedule-row">
+              <span>Competition starting time</span>
+              <span class="schedule-time">To be announced <span class="status-pill soon">Coming soon</span></span>
+            </div>
+            <div class="day-schedule-row">
+              <span>Results</span>
+              <span class="schedule-time">Same day <span class="status-pill soon">Timing TBA</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="rule-note">Competition timing will be announced soon. Prize distribution timing will be confirmed by the Organisers.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COMPETITIONS AT A GLANCE
+  ============================================================ -->
+  <section class="msection msection-alt" id="competitions">
+    <div class="msection-inner">
+      <div class="msection-head">
+        <h2 class="msection-title">Six competitions, six ways to shine</h2>
+        <p class="msection-lede">Every student can enter any competition their class is eligible for. Full rules for each are below.</p>
+      </div>
+      <div class="comp-overview-grid">
+        <a class="comp-overview-card" href="#comp-01">
+          <div class="comp-overview-num">Competition 01</div>
+          <div class="comp-overview-name">Painting</div>
+          <div class="comp-overview-meta">LKG, UKG, Class 1–2</div>
+        </a>
+        <a class="comp-overview-card" href="#comp-02">
+          <div class="comp-overview-num">Competition 02</div>
+          <div class="comp-overview-name">Drawing</div>
+          <div class="comp-overview-meta">Class 3–12 · "My World in the Hand of AI"</div>
+        </a>
+        <a class="comp-overview-card" href="#comp-03">
+          <div class="comp-overview-num">Competition 03</div>
+          <div class="comp-overview-name">Handwriting</div>
+          <div class="comp-overview-meta">LKG–12</div>
+        </a>
+        <a class="comp-overview-card" href="#comp-04">
+          <div class="comp-overview-num">Competition 04</div>
+          <div class="comp-overview-name">Speech</div>
+          <div class="comp-overview-meta">Class 5–12 · "World of Fearless Dream"</div>
+        </a>
+        <a class="comp-overview-card" href="#comp-05">
+          <div class="comp-overview-num">Competition 05</div>
+          <div class="comp-overview-name">Solo Dance</div>
+          <div class="comp-overview-meta">Class 5–12 · "Break the Chain"</div>
+        </a>
+        <a class="comp-overview-card" href="#comp-06">
+          <div class="comp-overview-num">Competition 06</div>
+          <div class="comp-overview-name">Students Art Festival</div>
+          <div class="comp-overview-meta">Class 3–12 · "The Five Forces of Nature"</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COMPETITION DETAILS
+  ============================================================ -->
+  <section class="msection" id="competition-details" aria-label="Competition details">
+    <div class="msection-inner">
+
+      <div class="comp-detail-card" id="comp-01">
+        <div class="comp-detail-num">Competition 01</div>
+        <h3 class="comp-detail-name">Painting</h3>
+        <div class="comp-detail-row">
+          <span class="comp-detail-pill">LKG, UKG, Class 1–2</span>
+          <span class="comp-detail-pill">60 minutes</span>
+        </div>
+        <ul class="comp-detail-rules">
+          <li>No specific theme for this competition.</li>
+          <li>Use the paper provided by the organisers.</li>
+          <li>Use colours neatly.</li>
+          <li>Be creative.</li>
+        </ul>
+      </div>
+
+      <div class="comp-detail-card" id="comp-02">
+        <div class="comp-detail-num">Competition 02</div>
+        <h3 class="comp-detail-name">Drawing</h3>
+        <div class="comp-detail-row">
+          <span class="comp-detail-pill">Class 3–12</span>
+          <span class="comp-detail-pill">60 minutes</span>
+        </div>
+        <p class="comp-detail-theme"><strong>Theme:</strong> "My World in the Hand of AI"</p>
+        <ul class="comp-detail-rules">
+          <li>Use the paper provided by the organisers.</li>
+          <li>Colours may also be used.</li>
+          <li>Be neat and creative.</li>
+        </ul>
+      </div>
+
+      <div class="comp-detail-card" id="comp-03">
+        <div class="comp-detail-num">Competition 03</div>
+        <h3 class="comp-detail-name">Handwriting</h3>
+        <div class="comp-detail-row">
+          <span class="comp-detail-pill">LKG–12</span>
+          <span class="comp-detail-pill">30 minutes</span>
+        </div>
+        <ul class="comp-detail-rules">
+          <li>Use the paper provided by the organisers.</li>
+          <li>Neat and legible handwriting.</li>
+          <li>Blue or black ink pen only.</li>
+        </ul>
+      </div>
+
+      <div class="comp-detail-card" id="comp-04">
+        <div class="comp-detail-num">Competition 04</div>
+        <h3 class="comp-detail-name">Speech</h3>
+        <div class="comp-detail-row">
+          <span class="comp-detail-pill">Class 5–12</span>
+          <span class="comp-detail-pill">3 minutes</span>
+        </div>
+        <p class="comp-detail-theme"><strong>Theme:</strong> "World of Fearless Dream"</p>
+        <ul class="comp-detail-rules">
+          <li>Performance must be within 3 minutes.</li>
+          <li>Cue cards / short notes are allowed.</li>
+          <li>Focus on clear articulation and pronunciation.</li>
+          <li>Speech must be theme-related.</li>
+        </ul>
+      </div>
+
+      <div class="comp-detail-card" id="comp-05">
+        <div class="comp-detail-num">Competition 05</div>
+        <h3 class="comp-detail-name">Solo Dance</h3>
+        <div class="comp-detail-row">
+          <span class="comp-detail-pill">Class 5–12</span>
+          <span class="comp-detail-pill">3–5 minutes</span>
+        </div>
+        <p class="comp-detail-theme"><strong>Theme:</strong> "Break the Chain"</p>
+        <ul class="comp-detail-rules">
+          <li>Performance must be 3–5 minutes.</li>
+          <li>Any dance style may be chosen.</li>
+          <li>No cine songs allowed.</li>
+          <li>Music: phone. (Submission procedure will be announced soon.)</li>
+        </ul>
+      </div>
+
+      <div class="comp-detail-card" id="comp-06">
+        <div class="comp-detail-num">Competition 06</div>
+        <h3 class="comp-detail-name">Students Art Festival</h3>
+        <div class="comp-detail-row">
+          <span class="comp-detail-pill">Class 3–12</span>
+          <span class="comp-detail-pill">60 minutes per category</span>
+        </div>
+        <p class="comp-detail-theme"><strong>Theme:</strong> "The Five Forces of Nature" — applies to all five categories</p>
+        <div class="artfest-grid">
+          <div class="artfest-item">
+            <div class="artfest-num">01</div>
+            <div class="artfest-name">Vegetable Carving</div>
+            <div class="artfest-note">Knife/blade allowed under organiser supervision. Bring your own materials.</div>
+          </div>
+          <div class="artfest-item">
+            <div class="artfest-num">02</div>
+            <div class="artfest-name">Fireless Cooking</div>
+            <div class="artfest-note">Bring your own ingredients and utensils.</div>
+          </div>
+          <div class="artfest-item">
+            <div class="artfest-num">03</div>
+            <div class="artfest-name">Clay Modeling</div>
+            <div class="artfest-note">Bring your own clay and materials.</div>
+          </div>
+          <div class="artfest-item">
+            <div class="artfest-num">04</div>
+            <div class="artfest-name">Recycled Art</div>
+            <div class="artfest-note">Bring your own materials.</div>
+          </div>
+          <div class="artfest-item">
+            <div class="artfest-num">05</div>
+            <div class="artfest-name">T-Shirt Painting</div>
+            <div class="artfest-note">Bring your own T-shirt, paints and brushes.</div>
+          </div>
+        </div>
+        <ul class="comp-detail-rules">
+          <li>Focus on beauty and neatness.</li>
+          <li>Hazardous materials are not allowed, except knife/blade use for Vegetable Carving, which must be under organiser supervision.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GENERAL RULES
+  ============================================================ -->
+  <section class="msection msection-alt" id="rules">
+    <div class="msection-inner">
+      <div class="msection-head">
+        <h2 class="msection-title">General rules</h2>
+      </div>
+      <div class="rules-list">
+        <div class="rule-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <p><strong>Eligibility:</strong> LKG to Class 12, open to all District Matriculation Schools.</p>
+        </div>
+        <div class="rule-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <p><strong>Registration:</strong> Through the respective School Coordinator. Closes 12 September 2026.</p>
+        </div>
+        <div class="rule-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <p><strong>Fee:</strong> ₹75 per student, per competition entered.</p>
+        </div>
+        <div class="rule-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <p><strong>Participation:</strong> Every registered student receives a participation certificate and a medal. Additional 1st / 2nd / 3rd prizes are awarded competition-wise / category-wise.</p>
+        </div>
+        <div class="rule-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <p><strong>Students Art Festival:</strong> Hazardous materials are not allowed, except knife/blade use for Vegetable Carving, which is permitted under organiser supervision.</p>
+        </div>
+        <div class="rule-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <p><strong>Venue:</strong> OSTREA Awards, 23 Periyamannara Street, London School Campus, Eral – 628801, Thoothukudi District.</p>
+        </div>
+        <div class="rule-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12.5"/><circle cx="12" cy="16" r="0.5" fill="currentColor"/></svg>
+          <p><strong>Judges &amp; final decision authority:</strong> To be announced. <span class="status-pill soon">Coming soon</span></p>
+        </div>
+      </div>
+      <p class="rule-note">Any detail not listed above will be confirmed by the Organisers.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       REGISTRATION + SCAN TO APPLY
+  ============================================================ -->
+  <section class="msection" id="registration">
+    <div class="msection-inner">
+      <div class="msection-head">
+        <h2 class="msection-title">Registration</h2>
+        <p class="msection-lede">Registration through the respective School Coordinator. You can also apply online below.</p>
+      </div>
+      <div class="reg-fee-row">
+        <div class="reg-fee-card">
+          <div class="reg-fee-val">₹75</div>
+          <div class="reg-fee-lbl">Per student, per competition</div>
+        </div>
+        <div class="reg-fee-card">
+          <div class="reg-fee-val">12 Sep 2026</div>
+          <div class="reg-fee-lbl">Registration closes</div>
+        </div>
+      </div>
+
+      <div class="qr-card" id="scan-to-apply">
+        <div class="qr-card-title">Scan to Apply</div>
+        <p class="qr-card-sub">Scan the QR code to access the OSTREA AWARDS 2026 student application.</p>
+        <div class="qr-image-box">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAAChElEQVR4nO2bTYrcMBCFX0WGWUqQA/RR5BvkSGGOlBtYR+kDDFjLAZmXhUq2M2EyPcRjLKhamG7rWzwoSqofWYjPWPr2KRww3njjjTfeeOPf40VtAFJYBCkAMmIRILe18UQ9xh/FgySJSJKcHQFfQM5tOc6OO2S6mn7jH+OzRignOIoEx+raCUAN7HP1GP9VfB7ACYtwwiIX0GP8kbz85Ksgzo5I4QJ6jP8/vm28ngAyQOQApB9lx+xbIFfTb/wHVpMnNT11/3i0NcuveuSrf3c2+QIAjoBfE+tt9Wr6jX+ElzEP9VEtzvv8SsYt07qmfuPfs+pRpgABWuhWZ8YZlCSuMIWZEqcz9Bh/LF/9KwDAJADifShMNwLI3zXLive1ULqafuM/sF1+tTWxIkvtdNRfrA87f/vjm3+9urbmV7G+0/Dd3pl/++S1DXl7FRnzAD6HRQA41iCu6fSJeow/il/jt6BtzaTOFzy1CIbFb/d8Gx09BwAprAHrS41uTufqMf4Qvs0HZ6dRu/3SM9nO3575tf51EG1CL0IAIPJQkEZXgPykNfHl9Bv/b9P6N1IdKvBsngYg8C/CSOtfdcq3utYX1A15Alp9BMda+k7e6t9O+Ra/90HjN84BBJZdY0viDKuPeuY5+X1DQyRo6GokZ7tf1ym/C1MArrCO8+tJ/DLUJnS6lTZZupp+4x/id12NLIIUFtGCd2tSnqnH+IP5tgOL3Aq0awVHJJF6HUvGU/UY/zU8pzbklxGL6MGcxeqjPvnhzX+JXAYBHBB/PVHglwHpRlh/o0v+7fcLmjXPetO9XcKy+rdT/q/7k+tUsG7N63zf+s9d8mLfdxtvvPHGG2/86fxvHHfQ5owBfMEAAAAASUVORK5CYII=" alt="OSTREA Awards 2026 official application QR code">
+        </div>
+        <p class="qr-or">OR</p>
+        <button class="btn btn-gold" onclick="ostreaScrollToApply()">Apply Online</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PARTICIPATION RECOGNITION
+  ============================================================ -->
+  <section class="msection msection-dark" id="recognition">
+    <div class="msection-inner">
+      <div class="msection-head">
+        <h2 class="msection-title">Every participant is recognised</h2>
+        <p class="msection-lede">Every registered student receives:</p>
+      </div>
+      <div class="recognition-grid">
+        <div class="recognition-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18" stroke-linecap="round"/></svg>
+          <span>Participation certificate</span>
+        </div>
+        <div class="recognition-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg>
+          <span>Medal</span>
+        </div>
+      </div>
+
+      <div class="prize-block">
+        <p class="msection-lede" style="color:rgba(251,248,241,0.78);">Additional prizes, awarded competition-wise / category-wise:</p>
+        <div class="prize-tiers">
+          <div class="prize-tier">🥇 1st Prize</div>
+          <div class="prize-tier">🥈 2nd Prize</div>
+          <div class="prize-tier">🥉 3rd Prize</div>
+        </div>
+        <p class="rule-note" style="color:rgba(251,248,241,0.55);">Prize details will be announced / updated soon. <span class="status-pill soon">Coming soon</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FAQ
+  ============================================================ -->
+  <section class="msection" id="faq">
+    <div class="msection-inner">
+      <div class="msection-head">
+        <h2 class="msection-title">Frequently asked questions</h2>
+      </div>
+      <div>
+        <details class="faq-item">
+          <summary>Who can participate?</summary>
+          <p>Students from LKG to Class 12, from any District Matriculation School, are welcome to take part.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is the registration fee?</summary>
+          <p>₹75 per student, per competition entered.</p>
+        </details>
+        <details class="faq-item">
+          <summary>When does registration close?</summary>
+          <p>Registration closes on 12 September 2026.</p>
+        </details>
+        <details class="faq-item">
+          <summary>When is the final competition?</summary>
+          <p>The final competition is on 16 October 2026.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What competitions are available?</summary>
+          <p>Painting, Drawing, Handwriting, Speech, Solo Dance, and Students Art Festival.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What are the Students Art Festival categories?</summary>
+          <p>Vegetable Carving, Fireless Cooking, Clay Modeling, Recycled Art, and T-Shirt Painting.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What does every registered student receive?</summary>
+          <p>A participation certificate and a medal.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How do I apply?</summary>
+          <p>Registration is through your respective School Coordinator. You can also scan the official QR code or tap "Apply Online" to fill in the student application on this page.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What if my class is not eligible for a competition?</summary>
+          <p>The application will disable competitions that don't match the selected class. Please choose another competition. For anything else, please contact the Organisers.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What time should students report on competition day?</summary>
+          <p>Student reporting time is 9:00 AM, with registration / check-in at 9:30 AM. The school programme runs first, followed by the OSTREA Awards competitions. The exact competition starting time will be announced soon.</p>
+        </details>
+        <details class="faq-item">
+          <summary>When will results be announced?</summary>
+          <p>Results will be announced on the same day. The exact timing is not yet confirmed.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What prizes are given?</summary>
+          <p>Every registered student receives a participation certificate and a medal. 1st, 2nd, and 3rd prizes are also awarded competition-wise / category-wise; exact prize details will be announced soon.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+  ============================================================ -->
+  <section class="msection msection-alt" id="contact">
+    <div class="msection-inner">
+      <div class="msection-head">
+        <h2 class="msection-title">Program coordinators</h2>
+      </div>
+      <div class="coordinator-item">
+        <span class="coordinator-name">Mrs. Padma</span>
+        <a class="coordinator-phone" href="tel:9080196984">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          9080196984
+        </a>
+      </div>
+      <div class="coordinator-item">
+        <span class="coordinator-name">Mrs. Kayathri</span>
+        <a class="coordinator-phone" href="tel:8489183055">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          8489183055
+        </a>
+      </div>
+      <div class="coordinator-item">
+        <span class="coordinator-name">Mrs. Magin</span>
+        <a class="coordinator-phone" href="tel:7539967593">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          7539967593
+        </a>
+      </div>
+      <div class="address-card">
+        <strong>OSTREA Awards</strong>
+        23, Periyamannara Street,<br>
+        London School Campus,<br>
+        Eral – 628801,<br>
+        Thoothukudi District.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FINAL MOTIVATIONAL SECTION
+  ============================================================ -->
+  <section class="msection msection-dark final-cta">
+    <div class="msection-inner">
+      <h2 class="msection-title">The World I Dream Of</h2>
+      <p class="hero-tagline">Dream · Believe · Achieve</p>
+      <div class="affirmation-grid">
+        <div class="affirmation-item">
+          <div class="affirmation-en">I am the best</div>
+          <div class="affirmation-ta">நான் சிறந்தவன்</div>
+        </div>
+        <div class="affirmation-item">
+          <div class="affirmation-en">I can do it</div>
+          <div class="affirmation-ta">என்னால் முடியும்</div>
+        </div>
+        <div class="affirmation-item">
+          <div class="affirmation-en">God is always with me</div>
+          <div class="affirmation-ta">கடவுள் எப்போதும் என்னுடன் இருக்கிறார்</div>
+        </div>
+        <div class="affirmation-item">
+          <div class="affirmation-en">I am a winner</div>
+          <div class="affirmation-ta">நான் ஒரு வெற்றியாளர்</div>
+        </div>
+        <div class="affirmation-item">
+          <div class="affirmation-en">Today is my day</div>
+          <div class="affirmation-ta">இன்று எனது நாள்</div>
+        </div>
+      </div>
+      <button class="btn btn-primary final-cta-btn" onclick="ostreaScrollToApply()">Start Application</button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STUDENT APPLICATION (existing app, preserved)
+  ============================================================ -->
+  <section id="apply" aria-label="Student application">
+    <div class="apply-section-head">
+      <h2 class="msection-title">Student application</h2>
+      <p class="msection-lede" style="margin-left:auto;margin-right:auto;">Complete the steps below to register a student for OSTREA AWARDS 2026.</p>
+    </div>
+<div id="app">
+
+  <!-- ============ TOP BAR ============ -->
+  <header class="topbar no-print" id="topbar" style="display:none;">
+    <div class="brand">
+      <span class="badge" aria-hidden="true">OA</span>
+      <span>OSTREA AWARDS</span>
+    </div>
+    <span class="year-pill">2026</span>
+  </header>
+
+  <!-- ============ PROGRESS ============ -->
+  <nav class="progress-wrap no-print" id="progressWrap" style="display:none;" aria-label="Application progress">
+    <div class="progress-track" id="progressTrack">
+      <div class="p-step" data-p="1"><span class="p-line"></span><span class="p-dot">1</span><span class="p-label">Student</span></div>
+      <div class="p-step" data-p="2"><span class="p-line"></span><span class="p-dot">2</span><span class="p-label">Competition</span></div>
+      <div class="p-step" data-p="3"><span class="p-line"></span><span class="p-dot">3</span><span class="p-label">Review</span></div>
+      <div class="p-step" data-p="4"><span class="p-line"></span><span class="p-dot">4</span><span class="p-label">Done</span></div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ============ SCREEN 0: WELCOME ============ -->
+    <section class="screen active" id="screen-welcome">
+      <div class="hero">
+        <div class="hero-deco" aria-hidden="true">
+          <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
+            <circle cx="360" cy="40" r="110" fill="none" stroke="#D8A83C" stroke-width="1" opacity="0.25"/>
+            <circle cx="20" cy="360" r="140" fill="none" stroke="#0E8C8C" stroke-width="1" opacity="0.3"/>
+            <path d="M40 70 L45 82 L58 82 L48 90 L52 103 L40 95 L28 103 L32 90 L22 82 L35 82 Z" fill="#D8A83C" opacity="0.55"/>
+            <path d="M330 300 L334 309 L344 309 L336 315 L339 324 L330 318 L321 324 L324 315 L316 309 L326 309 Z" fill="#D8A83C" opacity="0.4"/>
+            <path d="M370 200 L373 207 L381 207 L375 212 L377 219 L370 214 L363 219 L365 212 L359 207 L367 207 Z" fill="#F0CE7D" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="hero-inner">
+          <span class="hero-eyebrow">Children's Day Celebration 2026</span>
+          <h1 class="hero-title">OSTREA<span class="accent">AWARDS 2026</span></h1>
+          <p class="hero-sub">Inter-School Competition &amp; Children's Day Celebration 2026 — Student Application</p>
+          <div class="hero-gold-rule" aria-hidden="true"></div>
+          <p class="hero-tagline">"Your Talent. Your Voice. Your Moment."</p>
+
+          <div style="margin-top:34px;">
+            <button class="btn btn-primary" id="btnStart" style="max-width:340px;margin:0 auto;">
+              START APPLICATION
+            </button>
+          </div>
+
+          <p class="hero-note">Open to all students from <strong>LKG to Class 12</strong>.</p>
+
+          <!-- ============ CHECK STATUS LINK (added) ============ -->
+          <p style="margin-top:18px;">
+            <button type="button" id="btnOpenStatusCheck" style="background:none;border:none;color:var(--gold-light);font-weight:700;font-size:0.86rem;text-decoration:underline;cursor:pointer;padding:6px;">
+              Already registered? Check your payment status
+            </button>
+          </p>
+        </div>
+      </div>
+
+      <div class="container section-pad">
+        <div class="card">
+          <div class="card-title-row">
+            <span class="title-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </span>
+            <h3 class="card-title">About this application</h3>
+          </div>
+          <p style="color:var(--ink-soft); font-size:0.92rem;">
+            Fill in student details, choose a competition, review your entry, and submit — all in a few simple steps. All District Matriculation Schools are welcome to participate.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SCREEN 1: STUDENT DETAILS ============ -->
+    <section class="screen" id="screen-student">
+      <div class="container section-pad">
+        <div class="card">
+          <div class="card-title-row">
+            <span class="title-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </span>
+            <h3 class="card-title">Student details</h3>
+          </div>
+
+          <form id="formStudent" novalidate>
+            <div class="field">
+              <label for="studentName">Student full name<span class="req">*</span></label>
+              <input class="input" type="text" id="studentName" name="studentName" autocomplete="name" required aria-required="true" aria-describedby="err-studentName">
+              <div class="error-msg" id="err-studentName">Please enter the student's full name.</div>
+            </div>
+
+            <div class="field">
+              <label for="studentClass">Class<span class="req">*</span></label>
+              <select class="input" id="studentClass" name="studentClass" required aria-required="true" aria-describedby="err-studentClass">
+                <option value="">Select class</option>
+                <option>LKG</option>
+                <option>UKG</option>
+                <option>Class 1</option>
+                <option>Class 2</option>
+                <option>Class 3</option>
+                <option>Class 4</option>
+                <option>Class 5</option>
+                <option>Class 6</option>
+                <option>Class 7</option>
+                <option>Class 8</option>
+                <option>Class 9</option>
+                <option>Class 10</option>
+                <option>Class 11</option>
+                <option>Class 12</option>
+              </select>
+              <div class="error-msg" id="err-studentClass">Please select the student's class.</div>
+            </div>
+
+            <div class="field">
+              <label for="studentSection">Section<span class="req">*</span></label>
+              <input class="input" type="text" id="studentSection" name="studentSection" placeholder="e.g. A" required aria-required="true" aria-describedby="err-studentSection">
+              <div class="error-msg" id="err-studentSection">Please enter the section.</div>
+            </div>
+
+            <div class="field">
+              <label for="schoolName">School name<span class="req">*</span></label>
+              <input class="input" type="text" id="schoolName" name="schoolName" required aria-required="true" aria-describedby="err-schoolName">
+              <div class="error-msg" id="err-schoolName">Please enter the school name.</div>
+            </div>
+
+            <div class="field">
+              <label for="district">District<span class="req">*</span></label>
+              <input class="input" type="text" id="district" name="district" required aria-required="true" aria-describedby="err-district">
+              <div class="error-msg" id="err-district">Please enter the district.</div>
+            </div>
+
+            <div class="field">
+              <label for="parentName">Parent / guardian name<span class="req">*</span></label>
+              <input class="input" type="text" id="parentName" name="parentName" autocomplete="name" required aria-required="true" aria-describedby="err-parentName">
+              <div class="error-msg" id="err-parentName">Please enter the parent / guardian name.</div>
+            </div>
+
+            <div class="field">
+              <label for="parentMobile">Parent / guardian mobile number<span class="req">*</span></label>
+              <input class="input" type="tel" id="parentMobile" name="parentMobile" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number" autocomplete="tel" required aria-required="true" aria-describedby="err-parentMobile">
+              <div class="error-msg" id="err-parentMobile">Please enter a valid 10-digit mobile number.</div>
+            </div>
+
+            <div class="field" style="margin-bottom:4px;">
+              <label for="studentMobile">Student mobile number<span class="opt">(optional)</span></label>
+              <input class="input" type="tel" id="studentMobile" name="studentMobile" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number" autocomplete="tel" aria-describedby="err-studentMobile">
+              <div class="error-msg" id="err-studentMobile">Please enter a valid 10-digit mobile number.</div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="sticky-bar no-print">
+        <div class="sticky-bar-inner">
+          <button class="btn btn-outline" id="btnStudentBack">BACK</button>
+          <button class="btn btn-primary" id="btnStudentNext">NEXT</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SCREEN 2: COMPETITION ============ -->
+    <section class="screen" id="screen-competition">
+      <div class="container section-pad">
+
+        <div class="card">
+          <div class="card-title-row">
+            <span class="title-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3a2 2 0 0 1-2 4h-1M7 5H4a2 2 0 0 0 2 4h1"/></svg>
+            </span>
+            <h3 class="card-title">Select your competition</h3>
+          </div>
+          <p style="color:var(--ink-soft); font-size:0.88rem; margin-bottom:16px;">
+            Choose the competition your child wishes to participate in. Eligibility is checked automatically against the selected class.
+          </p>
+
+          <div class="comp-list" id="compList" role="radiogroup" aria-label="Select a competition"></div>
+
+          <div class="eligibility-msg" id="eligibilityMsg" role="alert"></div>
+
+          <div class="category-wrap" id="categoryWrap" style="display:none;">
+            <div class="field">
+              <label id="categoryLabel">Select category<span class="req">*</span></label>
+              <div class="cat-grid" id="catGrid" role="radiogroup" aria-labelledby="categoryLabel"></div>
+              <div class="error-msg" id="err-category">Please select a category.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Registration info -->
+        <div class="info-card reg">
+          <div class="card-title-row" style="margin-bottom:10px;">
+            <span class="title-icon" aria-hidden="true" style="background:linear-gradient(135deg, var(--royal), #16368C);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </span>
+            <h3 class="card-title" style="font-size:1.05rem;">Registration</h3>
+          </div>
+          <div class="info-row"><span>Registration closes on</span><span class="val">12 September 2026</span></div>
+          <div class="info-row"><span>Registration fee</span><span class="val">₹75 / competition</span></div>
+          <div class="info-row"><span>Eligible schools</span><span class="val">All District Matriculation Schools</span></div>
+        </div>
+
+        <!-- Recognition -->
+        <div class="recog-card">
+          <div class="recog-medal" aria-hidden="true">
+            <svg viewBox="0 0 64 64" width="64" height="64" fill="none">
+              <path d="M22 6 L14 24 L26 24 Z" fill="#E8603C"/>
+              <path d="M42 6 L50 24 L38 24 Z" fill="#0E8C8C"/>
+              <circle cx="32" cy="40" r="18" fill="url(#g1)" stroke="#F0CE7D" stroke-width="2"/>
+              <circle cx="32" cy="40" r="12" fill="none" stroke="#8A6A22" stroke-width="1.4" opacity="0.6"/>
+              <path d="M32 33 L34 38 L39.5 38.5 L35.3 42 L36.6 47.5 L32 44.5 L27.4 47.5 L28.7 42 L24.5 38.5 L30 38 Z" fill="#8A6A22"/>
+              <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#F0CE7D"/>
+                  <stop offset="1" stop-color="#D8A83C"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <h3 class="recog-title">Every participant is recognised</h3>
+          <p class="recog-text">Every registered student receives a participation certificate and a medal.</p>
+        </div>
+
+      </div>
+
+      <div class="sticky-bar no-print">
+        <div class="sticky-bar-inner">
+          <button class="btn btn-outline" id="btnCompBack">BACK</button>
+          <button class="btn btn-primary" id="btnCompNext">NEXT</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SCREEN 3: REVIEW ============ -->
+    <section class="screen" id="screen-review">
+      <div class="container section-pad">
+        <div class="card">
+          <div class="card-title-row">
+            <span class="title-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </span>
+            <h3 class="card-title">Application summary</h3>
+          </div>
+          <div class="summary-list" id="summaryList"></div>
+        </div>
+
+        <div class="disclaimer-strip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>Please review carefully. You can edit your application before final submission.</span>
+        </div>
+      </div>
+
+      <div class="sticky-bar no-print">
+        <div class="sticky-bar-inner">
+          <button class="btn btn-outline" id="btnEditApp">EDIT APPLICATION</button>
+          <button class="btn btn-primary" id="btnSubmitApp">SUBMIT APPLICATION</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SCREEN 4: CONFIRMATION ============ -->
+    <section class="screen" id="screen-confirm">
+      <div class="container section-pad">
+        <div class="confirm-wrap">
+          <div class="confirm-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h2 style="font-size:1.5rem;">APPLICATION SUBMITTED</h2>
+          <p style="margin-top:10px; color:var(--ink-soft);">Thank you for registering for OSTREA AWARDS 2026.</p>
+
+          <div class="app-id-card">
+            <div class="app-id-label">APPLICATION ID</div>
+            <div class="app-id-value" id="confirmAppId">—</div>
+          </div>
+
+          <div class="card" style="text-align:left;">
+            <div class="summary-list" id="confirmSummary"></div>
+          </div>
+
+          <!-- ============ PAYMENT MODULE (added) ============ -->
+          <div class="pay-card" id="payCard">
+
+            <div class="pay-status-badge unpaid" id="payStatusBadge">
+              <span id="payStatusIcon">⏳</span>
+              <span id="payStatusText">UNPAID</span>
+            </div>
+
+            <div id="payBeforeProof">
+              <div class="pay-card-title">Complete your payment</div>
+              <p class="pay-card-sub">Scan the QR code using any UPI app and complete the payment for this registration.</p>
+
+              <div class="pay-amount-row">
+                <span class="k">Registration fee</span>
+                <span class="v" id="payAmountVal">₹75</span>
+              </div>
+
+              <div class="pay-qr-wrap">
+                <div id="payQrCode"></div>
+                <div class="pay-upi-id" id="payUpiIdText">Loading UPI details…</div>
+                <div class="pay-instructions" id="payInstructionsText"></div>
+              </div>
+
+              <div class="pay-upload-wrap">
+                <label class="pay-upload-label" for="payScreenshotInput">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  <span id="payUploadLabelText">UPLOAD PAYMENT SCREENSHOT</span>
+                  <input type="file" id="payScreenshotInput" accept="image/jpeg,image/png,image/webp">
+                </label>
+              </div>
+
+              <div class="pay-preview" id="payPreviewWrap" style="display:none;">
+                <img id="payPreviewImg" alt="Payment screenshot preview">
+              </div>
+
+              <div class="pay-ocr-box" id="payOcrBox"></div>
+
+              <button class="btn btn-primary btn-block" id="btnSubmitProof" disabled style="margin-top:6px;">
+                SUBMIT PAYMENT PROOF
+              </button>
+
+              <p class="pay-note">You don't need to type your UTR — it will be read from the screenshot automatically when possible. Your payment will still be checked manually before it is marked verified.</p>
+            </div>
+
+            <div id="payAfterProof" style="display:none;">
+              <p class="pay-card-sub" id="payAfterProofText"></p>
+              <button class="btn btn-outline btn-block" id="btnReplaceProof" style="display:none;">REPLACE PAYMENT SCREENSHOT</button>
+            </div>
+          </div>
+          <!-- ============ END PAYMENT MODULE ============ -->
+
+          <div class="confirm-actions">
+            <button class="btn btn-gold" id="btnShareWA">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.2-.4.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.5-1.2l-.3-.2-3 .9.9-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+              SHARE APPLICATION
+            </button>
+            <button class="btn btn-outline" id="btnPrintApp">PRINT / SAVE</button>
+            <button class="btn btn-outline" id="btnNewApp">START NEW APPLICATION</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRINT-ONLY SHEET ============ -->
+    <section id="screen-print" style="display:none;">
+      <div class="print-sheet">
+        <h1 style="font-size:1.6rem;">OSTREA AWARDS 2026</h1>
+        <p style="margin:4px 0 18px;">Student Application</p>
+        <hr>
+        <div id="printBody" style="margin-top:16px; font-size:0.95rem;"></div>
+        <p style="margin-top:24px; font-size:0.8rem; color:#555;">
+          OSTREA AWARDS 2026 — Inter-School Competition &amp; Children's Day Celebration.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <p class="privacy-note no-print" id="footerNote" style="display:none;">
+    Your details are used only for OSTREA AWARDS 2026 registration. No payment is collected through this app.
+  </p>
+
+</div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer">
+    <div class="site-logo">
+      <span class="badge" aria-hidden="true">OA</span>
+      <span>OSTREA AWARDS 2026</span>
+    </div>
+    <p>Inter-School Competition &amp; Children's Day Celebration 2026 · "The World I Dream Of"</p>
+    <p>23, Periyamannara Street, London School Campus, Eral – 628801, Thoothukudi District.</p>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var toggle = document.getElementById("navToggle");
+  var drawer = document.getElementById("navDrawer");
+  if (toggle && drawer){
+    toggle.addEventListener("click", function(){
+      var open = drawer.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    drawer.querySelectorAll("a").forEach(function(a){
+      a.addEventListener("click", function(){
+        drawer.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  window.ostreaScrollToApply = function(){
+    var el = document.getElementById("apply");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+})();
+</script>
+
+
+<!-- ============ CHECK STATUS MODAL (added) — independent of the
+     registration screens above; works for any past registration ============ -->
+<div class="status-modal" id="statusModal">
+  <div class="status-modal-card">
+    <div class="status-modal-top">
+      <span class="status-modal-title">Check payment status</span>
+      <button class="status-modal-close" id="statusModalClose" type="button" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="field">
+      <label for="statusRegIdInput">Registration ID</label>
+      <input class="input" id="statusRegIdInput" placeholder="OSTREA-2026-00125" autocomplete="off">
+    </div>
+    <button class="btn btn-primary btn-block" id="statusCheckBtn" type="button">CHECK STATUS</button>
+
+    <div class="status-check-result" id="statusCheckResult"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- Payment module: QR generation + on-device OCR (loaded once, used below) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/4.1.1/tesseract.min.js" defer></script>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ==========================================================
+     DATA — DO NOT INVENT. Only confirmed OSTREA AWARDS 2026 info.
+     Structured so more competitions can be added later.
+  ========================================================== */
+  var CLASS_ORDER = ["LKG","UKG","Class 1","Class 2","Class 3","Class 4","Class 5","Class 6","Class 7","Class 8","Class 9","Class 10","Class 11","Class 12"];
+
+  var COMPETITIONS = [
+    {
+      id: "comp01",
+      number: "COMPETITION 01",
+      name: "Painting",
+      classMin: "LKG",
+      classMax: "Class 2",
+      classLabel: "LKG – Class 2",
+      theme: "",
+      duration: "60 minutes",
+      extra: "Use the paper provided by the organisers. Use colours neatly. Be creative.",
+      categories: null
+    },
+    {
+      id: "comp02",
+      number: "COMPETITION 02",
+      name: "Drawing",
+      classMin: "Class 3",
+      classMax: "Class 12",
+      classLabel: "Class 3–12",
+      theme: "My World in the Hand of AI",
+      duration: "60 minutes",
+      extra: "Use the paper provided by the organisers. Colours may also be used. Be neat and creative.",
+      categories: null
+    },
+    {
+      id: "comp03",
+      number: "COMPETITION 03",
+      name: "Handwriting",
+      classMin: "LKG",
+      classMax: "Class 12",
+      classLabel: "LKG – Class 12",
+      theme: "",
+      duration: "30 minutes",
+      extra: "Use the paper provided by the organisers. Neat and legible handwriting. Blue or Black ink pen only.",
+      categories: null
+    },
+    {
+      id: "comp04",
+      number: "COMPETITION 04",
+      name: "Speech",
+      classMin: "Class 5",
+      classMax: "Class 12",
+      classLabel: "Class 5–12",
+      theme: "World of Fearless Dream",
+      duration: "3 minutes",
+      extra: "Performance must be within 3 minutes. Cue cards / short notes are allowed. Focus on clear articulation. Pronunciation is key. Theme-related speech only.",
+      categories: null
+    },
+    {
+      id: "comp05",
+      number: "COMPETITION 05",
+      name: "Solo Dance Competition",
+      classMin: "Class 5",
+      classMax: "Class 12",
+      classLabel: "Class 5–12",
+      theme: "Break the Chain",
+      duration: "3–5 minutes",
+      extra: "Any dance style. No Cine Songs. Music: Phone.",
+      categories: null
+    },
+    {
+      id: "comp06",
+      number: "COMPETITION 06",
+      name: "Students Art Festival",
+      classMin: "Class 3",
+      classMax: "Class 12",
+      classLabel: "Class 3–12",
+      theme: "The Five Forces of Nature",
+      duration: "60 minutes per category",
+      extra: "Students must bring their own materials for their chosen category. Vegetable Carving involves knife/blade use under organiser supervision.",
+      categories: [
+        "Vegetable Carving",
+        "Fireless Cooking",
+        "Clay Modeling",
+        "Recycled Art",
+        "T-Shirt Painting"
+      ]
+    }
+  ];
+
+  var REG_FEE = "₹75 per student, per competition entered";
+  var REG_CLOSE = "12 September 2026";
+
+  /* ==========================================================
+     STATE
+  ========================================================== */
+  var STORAGE_KEY = "ostrea2026_applications";
+  var DRAFT_KEY = "ostrea2026_draft";
+
+  /* ==========================================================
+     GOOGLE SHEET SYNC (Apps Script Web App)
+     Paste your deployed Apps Script /exec URL below.
+     Leave empty ("") to disable sheet sync — app still works
+     fully offline with localStorage only.
+  ========================================================== */
+  var SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyDQyIaJr7goSHAtyDslcDaIt31t-CIE8zFIpBWqTZL0sBtA0EN8uKLJcLl82QPBRv3/exec";
+
+  /* ==========================================================
+     SUPABASE SYNC (database backend for the Admin Panel)
+     Runs alongside the Google Sheet sync above — both fire on
+     every submission. Uses direct REST calls (PostgREST), no
+     extra library needed. anon key is safe to expose client-side;
+     it can only INSERT into applications, per the table's RLS
+     policy (see supabase_setup.sql).
+  ========================================================== */
+  var SUPABASE_URL = "https://zjmteojnlgewdzdyrydh.supabase.co";
+  var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqbXRlb2pubGdld2R6ZHlyeWRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgyNTU0NTEsImV4cCI6MjEwMzgzMTQ1MX0.y3TENUGETRDwR3GTNp71dso1WaGmo5VO5O7cccBqitU";
+
+  var state = {
+    studentName:"", studentClass:"", studentSection:"", schoolName:"",
+    district:"", parentName:"", parentMobile:"", studentMobile:"",
+    competitionId:"", category:"",
+    applicationId:"", submittedAt:""
+  };
+
+  var currentScreen = "welcome";
+  var currentStep = 1;
+
+  /* ==========================================================
+     UTIL
+  ========================================================== */
+  function $(sel, ctx){ return (ctx||document).querySelector(sel); }
+  function $all(sel, ctx){ return Array.prototype.slice.call((ctx||document).querySelectorAll(sel)); }
+
+  function showToast(msg, type){
+    var t = $("#toast");
+    t.textContent = msg;
+    t.className = "toast show" + (type ? " " + type : "");
+    clearTimeout(showToast._tm);
+    showToast._tm = setTimeout(function(){ t.classList.remove("show"); }, 2600);
+  }
+
+  function isValidMobile(v){
+    return /^[6-9]\d{9}$/.test(String(v).trim());
+  }
+
+  function classIndex(name){
+    return CLASS_ORDER.indexOf(name);
+  }
+
+  function getCompetition(id){
+    for (var i=0;i<COMPETITIONS.length;i++){ if (COMPETITIONS[i].id === id) return COMPETITIONS[i]; }
+    return null;
+  }
+
+  function saveDraft(){
+    try{ localStorage.setItem(DRAFT_KEY, JSON.stringify(state)); }catch(e){}
+  }
+  function loadDraft(){
+    try{
+      var raw = localStorage.getItem(DRAFT_KEY);
+      if (raw){
+        var parsed = JSON.parse(raw);
+        for (var k in parsed){ if (k in state) state[k] = parsed[k]; }
+      }
+    }catch(e){}
+  }
+  function clearDraft(){
+    try{ localStorage.removeItem(DRAFT_KEY); }catch(e){}
+  }
+
+  /* ==========================================================
+     SCREEN / STEP NAVIGATION
+  ========================================================== */
+  var screenOrder = ["welcome","student","competition","review","confirm"];
+
+  function goToScreen(name, opts){
+    var skipScroll = opts && opts.skipScroll;
+
+    screenOrder.forEach(function(s){
+      var el = $("#screen-" + s);
+      if (!el) return;
+      el.classList.toggle("active", s === name);
+    });
+    currentScreen = name;
+
+    var chromeVisible = (name !== "welcome");
+    $("#topbar").style.display = chromeVisible ? "flex" : "none";
+    $("#footerNote").style.display = chromeVisible ? "block" : "none";
+
+    var progressVisible = ["student","competition","review"].indexOf(name) !== -1;
+    $("#progressWrap").style.display = progressVisible ? "block" : "none";
+
+    var stepMap = { student:1, competition:2, review:3, confirm:4 };
+    if (stepMap[name]) setProgress(stepMap[name], name === "confirm");
+
+    if (skipScroll) return;
+
+    var applySection = document.getElementById("apply");
+    if (applySection){
+      applySection.scrollIntoView({top:0, behavior:"auto", block:"start"});
+    } else {
+      window.scrollTo({top:0, behavior:"auto"});
+    }
+  }
+
+  function setProgress(step, allDone){
+    currentStep = step;
+    $all(".p-step").forEach(function(el){
+      var n = parseInt(el.getAttribute("data-p"), 10);
+      el.classList.remove("done","current");
+      if (allDone || n < step) el.classList.add("done");
+      else if (n === step) el.classList.add("current");
+    });
+  }
+
+  /* ==========================================================
+     STEP 1 — STUDENT DETAILS
+  ========================================================== */
+  var studentFields = ["studentName","studentClass","studentSection","schoolName","district","parentName","parentMobile"];
+
+  function validateStudentForm(){
+    var valid = true;
+
+    studentFields.forEach(function(id){
+      var el = $("#" + id);
+      var val = el.value.trim();
+      var bad = false;
+
+      if (!val) bad = true;
+      if ((id === "parentMobile") && val && !isValidMobile(val)) bad = true;
+
+      toggleFieldError(id, bad);
+      if (bad) valid = false;
+    });
+
+    var studentMobileEl = $("#studentMobile");
+    if (studentMobileEl.value.trim() && !isValidMobile(studentMobileEl.value.trim())){
+      toggleFieldError("studentMobile", true);
+      valid = false;
+    } else {
+      toggleFieldError("studentMobile", false);
+    }
+
+    return valid;
+  }
+
+  function toggleFieldError(id, isError){
+    var el = $("#" + id);
+    var err = $("#err-" + id);
+    if (!el) return;
+    el.classList.toggle("error", !!isError);
+    if (err) err.classList.toggle("show", !!isError);
+    if (isError) el.setAttribute("aria-invalid","true");
+    else el.removeAttribute("aria-invalid");
+  }
+
+  function collectStudentForm(){
+    state.studentName = $("#studentName").value.trim();
+    state.studentClass = $("#studentClass").value;
+    state.studentSection = $("#studentSection").value.trim();
+    state.schoolName = $("#schoolName").value.trim();
+    state.district = $("#district").value.trim();
+    state.parentName = $("#parentName").value.trim();
+    state.parentMobile = $("#parentMobile").value.trim();
+    state.studentMobile = $("#studentMobile").value.trim();
+    saveDraft();
+  }
+
+  function fillStudentForm(){
+    $("#studentName").value = state.studentName || "";
+    $("#studentClass").value = state.studentClass || "";
+    $("#studentSection").value = state.studentSection || "";
+    $("#schoolName").value = state.schoolName || "";
+    $("#district").value = state.district || "";
+    $("#parentName").value = state.parentName || "";
+    $("#parentMobile").value = state.parentMobile || "";
+    $("#studentMobile").value = state.studentMobile || "";
+  }
+
+  /* live-clear mobile formatting */
+  ["parentMobile","studentMobile"].forEach(function(id){
+    document.addEventListener("input", function(e){
+      if (e.target && e.target.id === id){
+        e.target.value = e.target.value.replace(/\D/g,"").slice(0,10);
+      }
+    });
+  });
+
+  /* ==========================================================
+     STEP 2 — COMPETITION SELECTION
+  ========================================================== */
+  function isEligibleFor(comp){
+    if (!comp || !state.studentClass) return true;
+    var min = classIndex(comp.classMin);
+    var max = classIndex(comp.classMax);
+    var stu = classIndex(state.studentClass);
+    return (stu >= min && stu <= max);
+  }
+
+  function renderCompetitionList(){
+    var wrap = $("#compList");
+    wrap.innerHTML = "";
+
+    COMPETITIONS.forEach(function(c){
+      var eligible = isEligibleFor(c);
+
+      var card = document.createElement("div");
+      card.className = "comp-card" + (state.competitionId === c.id ? " selected" : "") + (!eligible ? " disabled" : "");
+      card.setAttribute("role","radio");
+      card.setAttribute("tabindex", eligible ? "0" : "-1");
+      card.setAttribute("aria-checked", state.competitionId === c.id ? "true" : "false");
+      card.setAttribute("aria-disabled", eligible ? "false" : "true");
+      card.setAttribute("data-id", c.id);
+
+      var metaHtml = '<span class="pill class-pill">' + c.classLabel + '</span>';
+      if (c.duration) metaHtml += '<span class="pill">' + c.duration + '</span>';
+      if (!eligible) metaHtml += '<span class="pill pill-not-eligible">Not eligible for ' + escapeHtml(state.studentClass) + '</span>';
+
+      var themeText = c.theme ? '"' + c.theme + '"' : "No specific theme announced";
+      var extraHtml = c.extra ? '<p class="comp-extra">' + c.extra + '</p>' : "";
+      var catCountHtml = c.categories ? '<p class="comp-extra">' + c.categories.length + ' categories to choose from</p>' : "";
+
+      card.innerHTML =
+        '<div class="comp-card-top">' +
+          '<div>' +
+            '<div class="comp-num">' + c.number + '</div>' +
+            '<div class="comp-name">' + c.name + '</div>' +
+          '</div>' +
+          '<span class="comp-radio" aria-hidden="true">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' +
+          '</span>' +
+        '</div>' +
+        '<div class="comp-meta">' + metaHtml + '</div>' +
+        '<div class="comp-theme"><strong>Theme:</strong> ' + themeText + '</div>' +
+        extraHtml + catCountHtml;
+
+      if (eligible){
+        card.addEventListener("click", function(){ selectCompetition(c.id); });
+        card.addEventListener("keydown", function(e){
+          if (e.key === "Enter" || e.key === " "){ e.preventDefault(); selectCompetition(c.id); }
+        });
+      } else {
+        card.addEventListener("click", function(){
+          showToast(c.name + " is not applicable to " + state.studentClass + ".", "error");
+        });
+      }
+
+      wrap.appendChild(card);
+    });
+
+    if (state.competitionId){
+      renderCategoryOptions();
+      checkEligibility();
+    }
+  }
+
+  function selectCompetition(id){
+    if (state.competitionId !== id){
+      state.category = "";
+    }
+    state.competitionId = id;
+    saveDraft();
+
+    $all(".comp-card").forEach(function(el){
+      var sel = el.getAttribute("data-id") === id;
+      el.classList.toggle("selected", sel);
+      el.setAttribute("aria-checked", sel ? "true" : "false");
+    });
+
+    renderCategoryOptions();
+    checkEligibility();
+  }
+
+  function renderCategoryOptions(){
+    var comp = getCompetition(state.competitionId);
+    var wrap = $("#categoryWrap");
+    var grid = $("#catGrid");
+
+    if (!comp || !comp.categories){
+      wrap.style.display = "none";
+      grid.innerHTML = "";
+      return;
+    }
+
+    wrap.style.display = "block";
+    grid.innerHTML = "";
+    toggleFieldError("category", false);
+
+    comp.categories.forEach(function(cat){
+      var opt = document.createElement("div");
+      opt.className = "cat-option" + (state.category === cat ? " selected" : "");
+      opt.setAttribute("role","radio");
+      opt.setAttribute("tabindex","0");
+      opt.setAttribute("aria-checked", state.category === cat ? "true" : "false");
+      opt.textContent = cat;
+      opt.addEventListener("click", function(){ selectCategory(cat); });
+      opt.addEventListener("keydown", function(e){
+        if (e.key === "Enter" || e.key === " "){ e.preventDefault(); selectCategory(cat); }
+      });
+      grid.appendChild(opt);
+    });
+  }
+
+  function selectCategory(cat){
+    state.category = cat;
+    saveDraft();
+    $all(".cat-option").forEach(function(el){
+      var sel = el.textContent === cat;
+      el.classList.toggle("selected", sel);
+      el.setAttribute("aria-checked", sel ? "true" : "false");
+    });
+    toggleFieldError("category", false);
+  }
+
+  function checkEligibility(){
+    var comp = getCompetition(state.competitionId);
+    var msgEl = $("#eligibilityMsg");
+    if (!comp || !state.studentClass){
+      msgEl.className = "eligibility-msg";
+      msgEl.innerHTML = "";
+      return true;
+    }
+
+    var min = classIndex(comp.classMin);
+    var max = classIndex(comp.classMax);
+    var stu = classIndex(state.studentClass);
+    var eligible = (stu >= min && stu <= max);
+
+    if (eligible){
+      msgEl.className = "eligibility-msg ok show";
+      msgEl.innerHTML = "✓ " + state.studentClass + " is eligible for " + comp.name + ".";
+    } else {
+      msgEl.className = "eligibility-msg warn show";
+      msgEl.innerHTML = "This competition is not applicable to your selected class. Please choose another competition.";
+    }
+    return eligible;
+  }
+
+  function validateCompetitionStep(){
+    if (!state.competitionId){
+      showToast("Please select a competition to continue.", "error");
+      return false;
+    }
+    if (!checkEligibility()){
+      showToast("Selected competition is not applicable to your class.", "error");
+      return false;
+    }
+    var comp = getCompetition(state.competitionId);
+    if (comp.categories && !state.category){
+      toggleFieldError("category", true);
+      showToast("Please select a category.", "error");
+      return false;
+    }
+    return true;
+  }
+
+  /* ==========================================================
+     STEP 3 — REVIEW
+  ========================================================== */
+  function renderSummary(targetId, includeIds){
+    var comp = getCompetition(state.competitionId);
+    var rows = [
+      ["Student name", state.studentName],
+      ["Class", state.studentClass + (state.studentSection ? " - " + state.studentSection : "")],
+      ["School", state.schoolName],
+      ["District", state.district],
+      ["Competition", comp ? comp.name : ""],
+    ];
+    if (comp && comp.categories) rows.push(["Category", state.category]);
+    rows.push(["Parent / guardian name", state.parentName]);
+    rows.push(["Mobile number", state.parentMobile]);
+
+    var html = "";
+    rows.forEach(function(r){
+      html += '<div class="summary-row"><span class="k">' + r[0] + '</span><span class="v">' + escapeHtml(r[1] || "—") + '</span></div>';
+    });
+    $("#" + targetId).innerHTML = html;
+  }
+
+  function escapeHtml(str){
+    return String(str).replace(/[&<>"']/g, function(m){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m];
+    });
+  }
+
+  /* ==========================================================
+     APPLICATION LOGIC (admin-ready structure)
+  ========================================================== */
+  function generateApplicationId(){
+    var rand = Math.floor(100000 + Math.random() * 900000);
+    return "OSTREA-2026-" + rand;
+  }
+
+  function validateApplication(){
+    return validateStudentForm() && validateCompetitionStep();
+  }
+
+  function saveApplication(){
+    state.applicationId = generateApplicationId();
+    state.submittedAt = new Date().toISOString();
+
+    var record = JSON.parse(JSON.stringify(state));
+
+    var list = [];
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) list = JSON.parse(raw);
+    }catch(e){ list = []; }
+
+    list.push(record);
+
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    }catch(e){
+      showToast("Could not save application on this device.", "error");
+      return false;
+    }
+
+    clearDraft();
+    syncToSheet(record);
+    syncToSupabase(record);
+    return true;
+  }
+
+  function syncToSheet(record){
+    if (!SHEET_WEBHOOK_URL || SHEET_WEBHOOK_URL.indexOf("PASTE_YOUR") === 0) return;
+
+    var comp = getCompetition(record.competitionId);
+    var payload = {
+      applicationId: record.applicationId,
+      submittedAt: record.submittedAt,
+      studentName: record.studentName,
+      studentClass: record.studentClass,
+      studentSection: record.studentSection,
+      schoolName: record.schoolName,
+      district: record.district,
+      competition: comp ? comp.name : "",
+      category: record.category || "",
+      parentName: record.parentName,
+      parentMobile: record.parentMobile,
+      studentMobile: record.studentMobile || ""
+    };
+
+    /* fire-and-forget: no-cors means we can't read the response,
+       but the row still gets appended in the Sheet. localStorage
+       above already guarantees the entry is never lost even if
+       this request fails (no internet, script offline, etc). */
+    try{
+      fetch(SHEET_WEBHOOK_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+      }).catch(function(){ /* silent — localStorage copy is safe */ });
+    }catch(e){ /* silent */ }
+  }
+
+  function syncToSupabase(record){
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return;
+
+    var comp = getCompetition(record.competitionId);
+    var payload = {
+      application_id: record.applicationId,
+      submitted_at: record.submittedAt,
+      student_name: record.studentName,
+      student_class: record.studentClass,
+      student_section: record.studentSection,
+      school_name: record.schoolName,
+      district: record.district,
+      competition_id: record.competitionId,
+      competition_name: comp ? comp.name : "",
+      category: record.category || "",
+      parent_name: record.parentName,
+      parent_mobile: record.parentMobile,
+      student_mobile: record.studentMobile || ""
+    };
+
+    /* fire-and-forget, same pattern as syncToSheet: localStorage
+       already guarantees the entry is never lost even if this
+       request fails. The anon key can only INSERT — see
+       supabase_setup.sql for the row-level security policy. */
+    try{
+      fetch(SUPABASE_URL + "/rest/v1/applications", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": SUPABASE_ANON_KEY,
+          "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify(payload)
+      }).catch(function(){ /* silent — localStorage copy is safe */ });
+    }catch(e){ /* silent */ }
+  }
+
+  function showConfirmation(){
+    $("#confirmAppId").textContent = state.applicationId;
+    renderSummary("confirmSummary");
+    buildPrintSheet();
+    goToScreen("confirm");
+    /* Hand off to the payment module (added) — does not affect registration logic above */
+    if (window.OstreaPayment){ window.OstreaPayment.start(state.applicationId); }
+  }
+
+  function buildPrintSheet(){
+    var comp = getCompetition(state.competitionId);
+    var rows = [
+      ["Application ID", state.applicationId],
+      ["Student name", state.studentName],
+      ["Class", state.studentClass + (state.studentSection ? " - " + state.studentSection : "")],
+      ["School", state.schoolName],
+      ["District", state.district],
+      ["Competition", comp ? comp.name : ""],
+    ];
+    if (comp && comp.categories) rows.push(["Category", state.category]);
+    rows.push(["Parent / guardian name", state.parentName]);
+    rows.push(["Mobile number", state.parentMobile]);
+
+    var html = "";
+    rows.forEach(function(r){
+      html += '<p style="margin:6px 0;"><strong>' + r[0] + ':</strong> ' + escapeHtml(r[1] || "—") + '</p>';
+    });
+    $("#printBody").innerHTML = html;
+  }
+
+  function shareToWhatsApp(){
+    var comp = getCompetition(state.competitionId);
+    var statusLink = window.location.origin + window.location.pathname + "?check=" + encodeURIComponent(state.applicationId);
+    var lines = [
+      "OSTREA AWARDS 2026",
+      "Student Application",
+      "",
+      "Student: " + state.studentName,
+      "Class: " + state.studentClass + (state.studentSection ? " - " + state.studentSection : ""),
+      "School: " + state.schoolName,
+      "Competition: " + (comp ? comp.name : "") + (state.category ? " (" + state.category + ")" : ""),
+      "",
+      "Application ID: " + state.applicationId,
+      "",
+      "Check payment status: " + statusLink
+    ];
+    var text = encodeURIComponent(lines.join("\n"));
+    window.open("https://wa.me/?text=" + text, "_blank", "noopener");
+  }
+
+  function printApplication(){
+    window.print();
+  }
+
+  function resetApplication(){
+    state = {
+      studentName:"", studentClass:"", studentSection:"", schoolName:"",
+      district:"", parentName:"", parentMobile:"", studentMobile:"",
+      competitionId:"", category:"",
+      applicationId:"", submittedAt:""
+    };
+    clearDraft();
+
+    $("#formStudent").reset();
+    studentFields.concat(["studentMobile"]).forEach(function(id){ toggleFieldError(id, false); });
+    $("#eligibilityMsg").className = "eligibility-msg";
+    $("#eligibilityMsg").innerHTML = "";
+    renderCompetitionList();
+
+    if (window.OstreaPayment){ window.OstreaPayment.reset(); }
+
+    goToScreen("welcome");
+  }
+
+  /* ==========================================================
+     EVENT WIRING
+  ========================================================== */
+  $("#btnStart").addEventListener("click", function(){
+    fillStudentForm();
+    goToScreen("student");
+  });
+
+  $("#btnStudentBack").addEventListener("click", function(){
+    goToScreen("welcome");
+  });
+
+  $("#btnStudentNext").addEventListener("click", function(){
+    if (!validateStudentForm()){
+      showToast("Please fix the highlighted fields.", "error");
+      var firstError = $(".input.error");
+      if (firstError) firstError.focus();
+      return;
+    }
+    collectStudentForm();
+    renderCompetitionList();
+    goToScreen("competition");
+  });
+
+  $("#btnCompBack").addEventListener("click", function(){
+    goToScreen("student");
+  });
+
+  $("#btnCompNext").addEventListener("click", function(){
+    if (!validateCompetitionStep()) return;
+    renderSummary("summaryList");
+    goToScreen("review");
+  });
+
+  $("#btnEditApp").addEventListener("click", function(){
+    fillStudentForm();
+    goToScreen("student");
+  });
+
+  $("#btnSubmitApp").addEventListener("click", function(){
+    if (!validateApplication()){
+      showToast("Please complete all required fields correctly.", "error");
+      goToScreen(!validateStudentForm() ? "student" : "competition");
+      return;
+    }
+    var btn = $("#btnSubmitApp");
+    btn.disabled = true;
+    btn.textContent = "SUBMITTING…";
+
+    setTimeout(function(){
+      var ok = saveApplication();
+      btn.disabled = false;
+      btn.textContent = "SUBMIT APPLICATION";
+      if (ok){
+        showConfirmation();
+      } else {
+        showToast("Submission failed. Please try again.", "error");
+      }
+    }, 500);
+  });
+
+  $("#btnShareWA").addEventListener("click", shareToWhatsApp);
+  $("#btnPrintApp").addEventListener("click", printApplication);
+  $("#btnNewApp").addEventListener("click", resetApplication);
+
+  /* re-check eligibility if class changes after coming back */
+  $("#studentClass").addEventListener("change", function(){
+    if (state.competitionId){
+      state.studentClass = this.value;
+      checkEligibility();
+    }
+  });
+
+  /* prevent accidental loss on mobile back / refresh */
+  window.addEventListener("beforeunload", function(e){
+    if (currentScreen !== "welcome" && currentScreen !== "confirm"){
+      collectStudentFormSafe();
+      e.preventDefault();
+      e.returnValue = "";
+    }
+  });
+  function collectStudentFormSafe(){
+    try{ collectStudentForm(); }catch(e){}
+  }
+
+  /* ==========================================================
+     INIT
+  ========================================================== */
+  function init(){
+    loadDraft();
+    fillStudentForm();
+    renderCompetitionList();
+    goToScreen("welcome", { skipScroll: true });
+  }
+
+  init();
+
+})();
+</script>
+
+<!-- ==========================================================
+     PAYMENT VERIFICATION MODULE (added)
+     Self-contained: does not touch any variable, function or
+     element used by the registration logic above. Talks to the
+     same Supabase project via two SECURITY DEFINER RPC calls,
+     so the anon key can never set a payment to VERIFIED itself
+     — only an authenticated admin can (see admin.html and
+     supabase_setup_payments.sql).
+========================================================== -->
+<script>
+(function(){
+  "use strict";
+
+  var SUPABASE_URL = "https://zjmteojnlgewdzdyrydh.supabase.co";
+  var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqbXRlb2pubGdld2R6ZHlyeWRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgyNTU0NTEsImV4cCI6MjEwMzgzMTQ1MX0.y3TENUGETRDwR3GTNp71dso1WaGmo5VO5O7cccBqitU";
+  var FEE_AMOUNT = 75; /* keep in sync with REG_FEE shown elsewhere on this page */
+  var MAX_FILE_BYTES = 6 * 1024 * 1024; /* 6MB, configurable here in one place */
+  var ALLOWED_TYPES = ["image/jpeg","image/png","image/webp"];
+  var STATUS_POLL_MS = 15000;
+
+  function $(sel){ return document.querySelector(sel); }
+
+  var els = {};
+  var regId = null;
+  var selectedFile = null;
+  var pollTimer = null;
+
+  function cacheEls(){
+    els.badge = $("#payStatusBadge");
+    els.icon = $("#payStatusIcon");
+    els.text = $("#payStatusText");
+    els.before = $("#payBeforeProof");
+    els.after = $("#payAfterProof");
+    els.afterText = $("#payAfterProofText");
+    els.replaceBtn = $("#btnReplaceProof");
+    els.amountVal = $("#payAmountVal");
+    els.upiIdText = $("#payUpiIdText");
+    els.instructionsText = $("#payInstructionsText");
+    els.qrHolder = $("#payQrCode");
+    els.fileInput = $("#payScreenshotInput");
+    els.uploadLabelText = $("#payUploadLabelText");
+    els.previewWrap = $("#payPreviewWrap");
+    els.previewImg = $("#payPreviewImg");
+    els.ocrBox = $("#payOcrBox");
+    els.submitBtn = $("#btnSubmitProof");
+  }
+
+  function showToastSafe(msg, type){
+    var t = document.getElementById("toast");
+    if (!t) return;
+    t.textContent = msg;
+    t.className = "toast show" + (type ? " " + type : "");
+    clearTimeout(showToastSafe._tm);
+    showToastSafe._tm = setTimeout(function(){ t.classList.remove("show"); }, 2800);
+  }
+
+  /* ---------------- Supabase RPC helpers ---------------- */
+  function rpc(fnName, payload){
+    return fetch(SUPABASE_URL + "/rest/v1/rpc/" + fnName, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": "Bearer " + SUPABASE_ANON_KEY
+      },
+      body: JSON.stringify(payload)
+    }).then(function(res){
+      return res.json().catch(function(){ return null; }).then(function(data){
+        if (!res.ok){ throw new Error((data && (data.message || data.hint)) || "Request failed."); }
+        return data;
+      });
+    });
+  }
+
+  function fetchPaymentSettings(){
+    return fetch(SUPABASE_URL + "/rest/v1/payment_settings?select=upi_id,upi_payee_name,instructions&id=eq.1", {
+      headers: { "apikey": SUPABASE_ANON_KEY, "Authorization": "Bearer " + SUPABASE_ANON_KEY }
+    }).then(function(res){
+      if (!res.ok) throw new Error("settings fetch failed");
+      return res.json();
+    }).then(function(rows){ return (rows && rows[0]) || null; });
+  }
+
+  function uploadScreenshot(file, path){
+    return fetch(SUPABASE_URL + "/storage/v1/object/payment-proofs/" + path, {
+      method: "POST",
+      headers: {
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+        "Content-Type": file.type || "application/octet-stream",
+        "x-upsert": "false"
+      },
+      body: file
+    }).then(function(res){
+      if (!res.ok){
+        return res.json().catch(function(){ return {}; }).then(function(data){
+          throw new Error((data && data.message) || "Upload failed. Please try again.");
+        });
+      }
+      return path;
+    });
+  }
+
+  /* ---------------- UI: status badge ---------------- */
+  function renderStatus(status, adminNote, registrationStatus){
+    els.badge.className = "pay-status-badge " + status.toLowerCase();
+    var icons = { UNPAID:"⏳", PENDING:"⏳", VERIFIED:"✅", REJECTED:"❌" };
+    var labels = {
+      UNPAID:"UNPAID",
+      PENDING:"PAYMENT VERIFICATION PENDING",
+      VERIFIED: registrationStatus === "CONFIRMED" ? "PAYMENT VERIFIED — REGISTRATION CONFIRMED" : "PAYMENT VERIFIED",
+      REJECTED:"PAYMENT PROOF REJECTED"
+    };
+    els.icon.textContent = icons[status] || "⏳";
+    els.text.textContent = labels[status] || status;
+
+    if (status === "UNPAID"){
+      els.before.style.display = "block";
+      els.after.style.display = "none";
+    } else if (status === "PENDING"){
+      els.before.style.display = "none";
+      els.after.style.display = "block";
+      els.afterText.textContent = "Your payment screenshot has been received. Our team will verify it against the actual transaction shortly. This page updates automatically.";
+      els.replaceBtn.style.display = "block";
+    } else if (status === "VERIFIED"){
+      els.before.style.display = "none";
+      els.after.style.display = "block";
+      els.afterText.textContent = "🎉 Payment verified. Your registration is confirmed. Keep your Application ID for reference.";
+      els.replaceBtn.style.display = "none";
+      stopPolling();
+    } else if (status === "REJECTED"){
+      els.before.style.display = "none";
+      els.after.style.display = "block";
+      els.afterText.textContent = "Your payment proof could not be confirmed" + (adminNote ? (": " + adminNote) : ". ") + " Please upload a clearer or correct screenshot.";
+      els.replaceBtn.style.display = "block";
+    }
+  }
+
+  function refreshStatus(){
+    if (!regId) return;
+    rpc("get_payment_status", { p_registration_id: regId }).then(function(data){
+      if (!data) return;
+      renderStatus(data.payment_status || "UNPAID", data.admin_note, data.registration_status);
+    }).catch(function(){ /* silent — keep last known UI state */ });
+  }
+
+  function startPolling(){
+    stopPolling();
+    pollTimer = setInterval(refreshStatus, STATUS_POLL_MS);
+  }
+  function stopPolling(){
+    if (pollTimer) clearInterval(pollTimer);
+    pollTimer = null;
+  }
+
+  /* ---------------- UPI QR ---------------- */
+  function renderQr(upiId, payeeName){
+    els.qrHolder.innerHTML = "";
+    var amount = FEE_AMOUNT;
+    var upiUrl = "upi://pay?pa=" + encodeURIComponent(upiId) +
+      "&pn=" + encodeURIComponent(payeeName || "OSTREA AWARDS 2026") +
+      "&am=" + encodeURIComponent(String(amount)) +
+      "&cu=INR" +
+      "&tn=" + encodeURIComponent("OSTREA 2026 " + (regId || ""));
+
+    if (window.QRCode){
+      new QRCode(els.qrHolder, { text: upiUrl, width: 176, height: 176, correctLevel: QRCode.CorrectLevel.M });
+    } else {
+      els.qrHolder.textContent = "QR unavailable — pay to the UPI ID below.";
+    }
+    els.upiIdText.textContent = upiId;
+  }
+
+  function loadPaymentSettings(){
+    fetchPaymentSettings().then(function(settings){
+      if (!settings){
+        els.upiIdText.textContent = "UPI details unavailable — please contact the organizers.";
+        return;
+      }
+      renderQr(settings.upi_id, settings.upi_payee_name);
+      els.instructionsText.textContent = settings.instructions || "";
+    }).catch(function(){
+      els.upiIdText.textContent = "Could not load UPI details. Please refresh.";
+    });
+  }
+
+  /* ---------------- File selection + validation ---------------- */
+  function resetFileUi(){
+    selectedFile = null;
+    els.previewWrap.style.display = "none";
+    els.previewImg.src = "";
+    els.ocrBox.className = "pay-ocr-box";
+    els.ocrBox.innerHTML = "";
+    els.submitBtn.disabled = true;
+    els.uploadLabelText.textContent = "UPLOAD PAYMENT SCREENSHOT";
+    if (els.fileInput) els.fileInput.value = "";
+  }
+
+  function handleFileChosen(file){
+    if (!file) return;
+    if (ALLOWED_TYPES.indexOf(file.type) === -1){
+      showToastSafe("Please upload a JPG, PNG, or WEBP image.", "error");
+      resetFileUi();
+      return;
+    }
+    if (file.size > MAX_FILE_BYTES){
+      showToastSafe("File is too large. Max size is " + Math.round(MAX_FILE_BYTES/1024/1024) + "MB.", "error");
+      resetFileUi();
+      return;
+    }
+    selectedFile = file;
+    var reader = new FileReader();
+    reader.onload = function(e){
+      els.previewImg.src = e.target.result;
+      els.previewWrap.style.display = "block";
+    };
+    reader.readAsDataURL(file);
+    els.uploadLabelText.textContent = "CHANGE SCREENSHOT";
+    els.submitBtn.disabled = false;
+    runOcr(file);
+  }
+
+  /* ---------------- OCR (on-device, best-effort) ---------------- */
+  var lastOcr = null;
+
+  function runOcr(file){
+    lastOcr = null;
+    els.ocrBox.className = "pay-ocr-box show";
+    els.ocrBox.innerHTML = '<span class="pay-spinner" aria-hidden="true"></span> Reading screenshot…';
+
+    if (!window.Tesseract){
+      els.ocrBox.innerHTML = "OCR unavailable in this browser — you can still submit; the admin will verify manually.";
+      return;
+    }
+
+    Tesseract.recognize(file, "eng")
+      .then(function(result){
+        var text = (result && result.data && result.data.text) || "";
+        lastOcr = parseOcrText(text);
+        renderOcrBox(lastOcr, text);
+      })
+      .catch(function(){
+        els.ocrBox.innerHTML = "OCR DATA INCOMPLETE — could not read the screenshot automatically. You can still submit for manual review.";
+      });
+  }
+
+  function parseOcrText(text){
+    var utr = null, amount = null, date = null, time = null, upiName = null;
+
+    var utrMatch = text.match(/\b(?:UTR|UPI\s*Ref(?:erence)?\s*(?:No\.?|Number)?|Txn\s*ID|Transaction\s*ID)\s*[:\-]?\s*([A-Za-z0-9]{8,25})/i);
+    if (utrMatch) utr = utrMatch[1];
+    if (!utr){
+      var bare = text.match(/\b\d{12,22}\b/);
+      if (bare) utr = bare[0];
+    }
+
+    var amtMatch = text.match(/(?:₹|Rs\.?|INR)\s*([0-9]+(?:,[0-9]{2,3})*(?:\.\d{1,2})?)/i);
+    if (amtMatch) amount = parseFloat(amtMatch[1].replace(/,/g, ""));
+
+    var dateMatch = text.match(/\b(\d{1,2}[\/\-][A-Za-z]{3,9}[\/\-]\d{2,4}|\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})\b/);
+    if (dateMatch) date = dateMatch[1];
+
+    var timeMatch = text.match(/\b(\d{1,2}:\d{2}(?::\d{2})?\s*(?:AM|PM|am|pm)?)\b/);
+    if (timeMatch) time = timeMatch[1];
+
+    var nameMatch = text.match(/(?:Paid to|To|Payee)\s*[:\-]?\s*([A-Za-z][A-Za-z .]{2,40})/i);
+    if (nameMatch) upiName = nameMatch[1].trim();
+
+    return { utr: utr, amount: amount, date: date, time: time, upiName: upiName };
+  }
+
+  function renderOcrBox(ocr, rawText){
+    if (!ocr || (!ocr.utr && !ocr.amount && !ocr.date && !ocr.time)){
+      els.ocrBox.innerHTML = "OCR DATA INCOMPLETE — some details could not be read automatically. The admin will still check your screenshot manually.";
+      return;
+    }
+    var matchNote = "";
+    if (ocr.amount != null){
+      matchNote = (Math.abs(ocr.amount - FEE_AMOUNT) < 0.01)
+        ? '<div class="row"><span>Amount check</span><span>Match ✅</span></div>'
+        : '<div class="row"><span>Amount check</span><span>Mismatch ⚠️</span></div>';
+    }
+    els.ocrBox.innerHTML =
+      (ocr.utr ? '<div class="row"><span>UTR / Txn ID</span><span>' + escapeHtmlLocal(ocr.utr) + '</span></div>' : "") +
+      (ocr.amount != null ? '<div class="row"><span>OCR amount</span><span>₹' + ocr.amount + '</span></div>' : "") +
+      (ocr.date ? '<div class="row"><span>Date</span><span>' + escapeHtmlLocal(ocr.date) + '</span></div>' : "") +
+      (ocr.time ? '<div class="row"><span>Time</span><span>' + escapeHtmlLocal(ocr.time) + '</span></div>' : "") +
+      matchNote +
+      '<div class="row" style="margin-top:4px;color:var(--ink-soft);"><span>This is only extracted text — admin verifies the real transaction.</span></div>';
+  }
+
+  function escapeHtmlLocal(str){
+    return String(str).replace(/[&<>"']/g, function(m){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m];
+    });
+  }
+
+  /* ---------------- Submit ---------------- */
+  function submitProof(){
+    if (!selectedFile || !regId) return;
+    els.submitBtn.disabled = true;
+    els.submitBtn.innerHTML = '<span class="pay-spinner" aria-hidden="true"></span> SUBMITTING…';
+
+    var ext = (selectedFile.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g,"") || "jpg";
+    var path = regId + "/" + Date.now() + "." + ext;
+
+    uploadScreenshot(selectedFile, path)
+      .then(function(storedPath){
+        var ocr = lastOcr || {};
+        return rpc("submit_payment_proof", {
+          p_registration_id: regId,
+          p_screenshot_path: storedPath,
+          p_amount: FEE_AMOUNT,
+          p_ocr_utr: ocr.utr || null,
+          p_ocr_amount: ocr.amount != null ? ocr.amount : null,
+          p_ocr_date: ocr.date || null,
+          p_ocr_time: ocr.time || null,
+          p_ocr_upi_name: ocr.upiName || null,
+          p_ocr_bank_name: null,
+          p_ocr_raw_text: null
+        });
+      })
+      .then(function(){
+        showToastSafe("Payment proof submitted.", "ok");
+        renderStatus("PENDING");
+        startPolling();
+      })
+      .catch(function(err){
+        showToastSafe(err.message || "Could not submit payment proof.", "error");
+        /* only restore the button on failure — on success the "before" panel is hidden anyway */
+        els.submitBtn.disabled = false;
+        els.submitBtn.textContent = "SUBMIT PAYMENT PROOF";
+      });
+  }
+
+  /* ---------------- Public API ---------------- */
+  function start(applicationId){
+    if (!applicationId) return;
+    regId = applicationId;
+    cacheEls();
+    if (!els.badge) return; /* markup not present on this page */
+
+    els.amountVal.textContent = "₹" + FEE_AMOUNT;
+    resetFileUi();
+    loadPaymentSettings();
+    renderStatus("UNPAID");
+    refreshStatus();
+    startPolling();
+
+    els.fileInput.addEventListener("change", function(){
+      handleFileChosen(this.files && this.files[0]);
+    });
+    els.submitBtn.addEventListener("click", submitProof);
+    els.replaceBtn.addEventListener("click", function(){
+      els.before.style.display = "block";
+      els.after.style.display = "none";
+      resetFileUi();
+    });
+  }
+
+  function reset(){
+    stopPolling();
+    regId = null;
+    selectedFile = null;
+  }
+
+  window.OstreaPayment = { start: start, reset: reset };
+})();
+</script>
+
+<!-- ==========================================================
+     CHECK STATUS MODULE (added)
+     Fully independent of the registration screens and of the
+     confirmation-page payment card above — works for any
+     registration, any time, from the welcome screen or a
+     shared link (?check=REGISTRATION_ID).
+========================================================== -->
+<script>
+(function(){
+  "use strict";
+
+  var SUPABASE_URL = "https://zjmteojnlgewdzdyrydh.supabase.co";
+  var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqbXRlb2pubGdld2R6ZHlyeWRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgyNTU0NTEsImV4cCI6MjEwMzgzMTQ1MX0.y3TENUGETRDwR3GTNp71dso1WaGmo5VO5O7cccBqitU";
+
+  function $(sel){ return document.querySelector(sel); }
+
+  var modal = null, input = null, result = null, checkBtn = null;
+
+  function escapeHtmlLocal(str){
+    return String(str == null ? "" : str).replace(/[&<>"']/g, function(m){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m];
+    });
+  }
+
+  function openModal(prefillId){
+    modal.classList.add("show");
+    if (prefillId){
+      input.value = prefillId;
+      runCheck(prefillId);
+    }
+  }
+  function closeModal(){
+    modal.classList.remove("show");
+  }
+
+  function renderResult(html){
+    result.innerHTML = html;
+  }
+
+  function renderLoading(){
+    renderResult('<div class="pay-status-badge pending"><span class="pay-spinner" aria-hidden="true"></span><span>Checking…</span></div>');
+  }
+
+  function renderStatusResult(data){
+    var status = data.payment_status || "UNPAID";
+    var labels = {
+      UNPAID: "UNPAID — no payment proof submitted yet",
+      PENDING: "⏳ PAYMENT VERIFICATION PENDING",
+      VERIFIED: data.registration_status === "CONFIRMED"
+        ? "✅ PAYMENT VERIFIED — REGISTRATION CONFIRMED"
+        : "✅ PAYMENT VERIFIED",
+      REJECTED: "❌ PAYMENT PROOF REJECTED"
+    };
+    var html = '<div class="pay-status-badge ' + status.toLowerCase() + '">' +
+      '<span>' + escapeHtmlLocal(labels[status] || status) + '</span></div>';
+    if (status === "REJECTED" && data.admin_note){
+      html += '<p style="font-size:0.86rem;color:var(--ink-soft);margin-top:8px;">Reason: ' + escapeHtmlLocal(data.admin_note) + '</p>';
+    }
+    if (status === "UNPAID"){
+      html += '<p style="font-size:0.86rem;color:var(--ink-soft);margin-top:8px;">If you already registered, complete payment and upload your screenshot on the confirmation page shown right after registration.</p>';
+    }
+    renderResult(html);
+  }
+
+  function runCheck(regId){
+    regId = (regId || "").trim().toUpperCase();
+    if (!regId){
+      renderResult('<p style="color:var(--error);font-size:0.86rem;">Please enter your Registration ID.</p>');
+      return;
+    }
+    renderLoading();
+    checkBtn.disabled = true;
+
+    fetch(SUPABASE_URL + "/rest/v1/rpc/get_payment_status", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": "Bearer " + SUPABASE_ANON_KEY
+      },
+      body: JSON.stringify({ p_registration_id: regId })
+    }).then(function(res){
+      return res.json().catch(function(){ return null; }).then(function(data){
+        if (!res.ok){ throw new Error((data && data.message) || "Registration ID not found."); }
+        return data;
+      });
+    }).then(function(data){
+      checkBtn.disabled = false;
+      renderStatusResult(data || {});
+    }).catch(function(err){
+      checkBtn.disabled = false;
+      renderResult('<p style="color:var(--error);font-size:0.86rem;">' + escapeHtmlLocal(err.message || "Registration ID not found.") + '</p>');
+    });
+  }
+
+  function init(){
+    modal = $("#statusModal");
+    input = $("#statusRegIdInput");
+    result = $("#statusCheckResult");
+    checkBtn = $("#statusCheckBtn");
+    if (!modal) return;
+
+    var openLink = $("#btnOpenStatusCheck");
+    if (openLink) openLink.addEventListener("click", function(){ openModal(); });
+
+    $("#statusModalClose").addEventListener("click", closeModal);
+    modal.addEventListener("click", function(e){ if (e.target.id === "statusModal") closeModal(); });
+
+    checkBtn.addEventListener("click", function(){ runCheck(input.value); });
+    input.addEventListener("keydown", function(e){ if (e.key === "Enter") runCheck(input.value); });
+
+    /* Deep link support: a shared WhatsApp link can open straight to
+       this student's status via ?check=OSTREA-2026-00125 */
+    try{
+      var params = new URLSearchParams(window.location.search);
+      var checkId = params.get("check");
+      if (checkId) openModal(checkId);
+    }catch(e){ /* older browsers without URLSearchParams — silently skip deep link */ }
+  }
+
+  if (document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+</body>
+</html>
